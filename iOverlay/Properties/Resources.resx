@@ -118,68 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ValorantIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ValorantIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SpotifyIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SpotifyIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Spotify_wziyAHw3le" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Spotify_wziyAHw3le.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Ascendant 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Ascendant 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Bronze 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Bronze 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Ascendant 2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Ascendant 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Ascendant 3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Ascendant 3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Bronze 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Bronze 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Bronze 2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Bronze 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Bronze 3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Bronze 3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Diamond 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Diamond 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Diamond 2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Diamond 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Diamond 3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Diamond 3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Gold 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Gold 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Immortal 2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Immortal 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Gold 2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Gold 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Gold 3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Gold 3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Ascendant 3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Ascendant 3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Immortal 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Immortal 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Immortal 2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Immortal 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Immortal 3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Immortal 3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Iron 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Iron 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Iron 2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Iron 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Iron 3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Iron 3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Silver 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Silver 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Platinum 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Platinum 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -187,22 +145,64 @@
   <data name="Platinum 2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Platinum 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Iron 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Iron 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Silver 3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Silver 3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SpotifyIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SpotifyIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Unranked" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Unranked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bronze 3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Bronze 3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Iron 2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Iron 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Gold 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Gold 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Bronze 2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Bronze 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Iron 3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Iron 3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Platinum 3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Platinum 3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Radiant" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Radiant.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Silver 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Silver 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Diamond 3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Diamond 3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Immortal 3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Immortal 3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Silver 2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Silver 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Silver 3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Silver 3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Gold 3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Gold 3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Unranked" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Unranked.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ValorantIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ValorantIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Diamond 2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Diamond 2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Ascendant 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Ascendant 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Diamond 1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Diamond 1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="settingsIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\settingsIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

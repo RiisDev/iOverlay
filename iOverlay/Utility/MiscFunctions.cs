@@ -29,4 +29,17 @@ namespace iOverlay.Utility
             };
         }
     }
+
+    public class NoCueButton : Button
+    {
+        public NoCueButton() : base()
+        {
+            SetStyle(ControlStyles.Selectable, false);
+        }
+
+        protected override bool ShowFocusCues
+        {
+            get { return false;  }
+        }
+    }
 }

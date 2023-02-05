@@ -126,12 +126,12 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="bunifuProgressBar1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAQoAAAANCAYAAABRuSDFAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADjSURBVGhD7dqxDcIwEIXhjMEIlJSMQEXNEgzAFlRsQssK
-        2cAegCAEBQ0FPEsnXRJdQ8v9T/rkKD6XeUoQHSGE/JRa666U0mv9AMijPfdy0vXC6iCOhi4aeowPA0hn
-        UBdsrRam0cZensEhAMmoC25al1YPHm2U+TCAvFQJZ6sHTzQIIC8VxcvqwRMNAsjN6sETDQHIzerBo5vX
-        +RCAvPTp8bZ68LQfLqJhADmpE3qrB482VtoY5sMA8lEX3LVurB6m0cbBBsLDAP6fdcDRaiGOBtbtlWN8
-        EEAOevbb/6mCN4mu+wLGoSBkJ6omrAAAAABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAAR8AAAANCAYAAACQPmppAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADmSURBVGhD7dqxDcJADIXhjMEIlJSMQEXNEgzAFlRsQssK
+        2eAyAEEIChoKeCdZchK5IpZo/id9ugj72qeAaAgh5O/pum5XSml1fgBgjtolctLzwiomjpYuWnoMLwNA
+        gl79srWqGUeDvTyDSwAwm/rlpnNplePRoEyXASCTauZsleOJFgEgk8rnZZXjiRYBIJtVjidaAoBsVjke
+        fXidLgFAJn3telvleOoPQdEyAGRRz7RWOR4NVhr002UAyKB+uevcWOWMo8HBFsLLAPAL65WjVU0cLazr
+        q9HwIgD8Sn1S/0MYvPE0zRffDK4htKokVQAAAABJRU5ErkJggg==
 </value>
   </data>
 </root>

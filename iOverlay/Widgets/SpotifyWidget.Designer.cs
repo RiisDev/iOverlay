@@ -32,7 +32,10 @@
             this.songNameLabel = new Bunifu.UI.WinForms.BunifuLabel();
             this.artistNameLabel = new Bunifu.UI.WinForms.BunifuLabel();
             this.bunifuProgressBar1 = new Bunifu.UI.WinForms.BunifuProgressBar();
-            this.albumArt = new System.Windows.Forms.Button();
+            this.webView = new Microsoft.Web.WebView2.WinForms.WebView2();
+            this.albumArt = new Bunifu.UI.WinForms.BunifuPictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.webView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.albumArt)).BeginInit();
             this.SuspendLayout();
             // 
             // songNameLabel
@@ -45,9 +48,9 @@
             this.songNameLabel.Location = new System.Drawing.Point(77, 8);
             this.songNameLabel.Name = "songNameLabel";
             this.songNameLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.songNameLabel.Size = new System.Drawing.Size(75, 21);
+            this.songNameLabel.Size = new System.Drawing.Size(16, 21);
             this.songNameLabel.TabIndex = 2;
-            this.songNameLabel.Text = "Paralyzed";
+            this.songNameLabel.Text = "....";
             this.songNameLabel.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.songNameLabel.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
             // 
@@ -58,12 +61,12 @@
             this.artistNameLabel.Cursor = System.Windows.Forms.Cursors.Default;
             this.artistNameLabel.CursorType = System.Windows.Forms.Cursors.Default;
             this.artistNameLabel.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.artistNameLabel.Location = new System.Drawing.Point(79, 32);
+            this.artistNameLabel.Location = new System.Drawing.Point(77, 32);
             this.artistNameLabel.Name = "artistNameLabel";
             this.artistNameLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.artistNameLabel.Size = new System.Drawing.Size(32, 15);
+            this.artistNameLabel.Size = new System.Drawing.Size(9, 15);
             this.artistNameLabel.TabIndex = 3;
-            this.artistNameLabel.Text = "Sueco";
+            this.artistNameLabel.Text = "...";
             this.artistNameLabel.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.artistNameLabel.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
             // 
@@ -78,7 +81,7 @@
             this.bunifuProgressBar1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(223)))), ((int)(((byte)(223)))));
             this.bunifuProgressBar1.BorderRadius = 9;
             this.bunifuProgressBar1.BorderThickness = 1;
-            this.bunifuProgressBar1.Location = new System.Drawing.Point(75, 53);
+            this.bunifuProgressBar1.Location = new System.Drawing.Point(73, 53);
             this.bunifuProgressBar1.Maximum = 100;
             this.bunifuProgressBar1.MaximumValue = 100;
             this.bunifuProgressBar1.Minimum = 0;
@@ -88,29 +91,37 @@
             this.bunifuProgressBar1.ProgressBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(223)))), ((int)(((byte)(223)))));
             this.bunifuProgressBar1.ProgressColorLeft = System.Drawing.Color.DodgerBlue;
             this.bunifuProgressBar1.ProgressColorRight = System.Drawing.Color.DodgerBlue;
-            this.bunifuProgressBar1.Size = new System.Drawing.Size(266, 13);
+            this.bunifuProgressBar1.Size = new System.Drawing.Size(287, 13);
             this.bunifuProgressBar1.TabIndex = 0;
             this.bunifuProgressBar1.Value = 50;
             this.bunifuProgressBar1.ValueByTransition = 50;
             // 
+            // webView
+            // 
+            this.webView.AllowExternalDrop = true;
+            this.webView.CreationProperties = null;
+            this.webView.DefaultBackgroundColor = System.Drawing.Color.White;
+            this.webView.Location = new System.Drawing.Point(0, 76);
+            this.webView.Name = "webView";
+            this.webView.Size = new System.Drawing.Size(367, 550);
+            this.webView.TabIndex = 7;
+            this.webView.ZoomFactor = 1D;
+            // 
             // albumArt
             // 
-            this.albumArt.BackColor = System.Drawing.Color.Black;
-            this.albumArt.BackgroundImage = global::iOverlay.Properties.Resources.Spotify_wziyAHw3le;
-            this.albumArt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.albumArt.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.albumArt.FlatAppearance.BorderSize = 0;
-            this.albumArt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.albumArt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
-            this.albumArt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.albumArt.Font = new System.Drawing.Font("Segoe MDL2 Assets", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.albumArt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.albumArt.Location = new System.Drawing.Point(0, 0);
+            this.albumArt.AllowFocused = false;
+            this.albumArt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.albumArt.AutoSizeHeight = true;
+            this.albumArt.BorderRadius = 0;
+            this.albumArt.Image = global::iOverlay.Properties.Resources.SpotifyIcon;
+            this.albumArt.IsCircle = true;
+            this.albumArt.Location = new System.Drawing.Point(-2, -1);
             this.albumArt.Name = "albumArt";
             this.albumArt.Size = new System.Drawing.Size(70, 70);
-            this.albumArt.TabIndex = 6;
-            this.albumArt.Text = "\xE768";
-            this.albumArt.UseVisualStyleBackColor = false;
+            this.albumArt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.albumArt.TabIndex = 8;
+            this.albumArt.TabStop = false;
+            this.albumArt.Type = Bunifu.UI.WinForms.BunifuPictureBox.Types.Square;
             // 
             // SpotifyWidget
             // 
@@ -118,6 +129,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(365, 70);
             this.Controls.Add(this.albumArt);
+            this.Controls.Add(this.webView);
             this.Controls.Add(this.artistNameLabel);
             this.Controls.Add(this.songNameLabel);
             this.Controls.Add(this.bunifuProgressBar1);
@@ -125,6 +137,8 @@
             this.Name = "SpotifyWidget";
             this.Text = "SpotifyWidget";
             this.Load += new System.EventHandler(this.SpotifyWidget_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.webView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.albumArt)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -135,6 +149,7 @@
         private Bunifu.UI.WinForms.BunifuProgressBar bunifuProgressBar1;
         private Bunifu.UI.WinForms.BunifuLabel songNameLabel;
         private Bunifu.UI.WinForms.BunifuLabel artistNameLabel;
-        private System.Windows.Forms.Button albumArt;
+        private Microsoft.Web.WebView2.WinForms.WebView2 webView;
+        private Bunifu.UI.WinForms.BunifuPictureBox albumArt;
     }
 }

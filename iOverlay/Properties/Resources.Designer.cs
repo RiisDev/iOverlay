@@ -283,6 +283,16 @@ namespace iOverlay.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap settingsIcon {
+            get {
+                object obj = ResourceManager.GetObject("settingsIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Silver_1 {
             get {
                 object obj = ResourceManager.GetObject("Silver 1", resourceCulture);
@@ -306,16 +316,6 @@ namespace iOverlay.Properties {
         internal static System.Drawing.Bitmap Silver_3 {
             get {
                 object obj = ResourceManager.GetObject("Silver 3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Spotify_wziyAHw3le {
-            get {
-                object obj = ResourceManager.GetObject("Spotify_wziyAHw3le", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

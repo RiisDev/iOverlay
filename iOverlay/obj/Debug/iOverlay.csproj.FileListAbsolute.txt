@@ -46,10 +46,11 @@ E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\bin\Debug\System.Text.Enc
 E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\bin\Debug\System.Threading.AccessControl.xml
 E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\obj\Debug\iOverlay.csproj.AssemblyReference.cache
 E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\obj\Debug\iOverlay.csproj.SuggestedBindingRedirects.cache
-E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\obj\Debug\iOverlay.exe.config
 E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\obj\Debug\iOverlay.MainForm.resources
 E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\obj\Debug\iOverlay.Properties.Resources.resources
+E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\obj\Debug\iOverlay.Widgets.Settings.resources
 E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\obj\Debug\iOverlay.Widgets.SpotifyWidget.resources
+E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\obj\Debug\iOverlay.Widgets.ValorantWidget.resources
 E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\obj\Debug\iOverlay.csproj.GenerateResource.cache
 E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\obj\Debug\iOverlay.exe.licenses
 E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\obj\Debug\iOverlay.csproj.CoreCompileInputs.cache
@@ -58,4 +59,9 @@ E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\obj\Debug\iOverlay.csproj
 E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\obj\Debug\iOverlay.csproj.CopyComplete
 E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\obj\Debug\iOverlay.exe
 E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\obj\Debug\iOverlay.pdb
-E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\obj\Debug\iOverlay.Widgets.ValorantWidget.resources
+E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\bin\Debug\runtimes\win-x86\native\WebView2Loader.dll
+E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\bin\Debug\runtimes\win-x64\native\WebView2Loader.dll
+E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\bin\Debug\runtimes\win-arm64\native\WebView2Loader.dll
+E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\bin\Debug\Microsoft.Web.WebView2.Core.xml
+E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\bin\Debug\Microsoft.Web.WebView2.WinForms.xml
+E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\bin\Debug\Microsoft.Web.WebView2.Wpf.xml
