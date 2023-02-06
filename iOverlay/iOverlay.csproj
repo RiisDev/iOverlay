@@ -504,6 +504,13 @@
   <Import Project="..\packages\Microsoft.Web.WebView2.1.0.1518.46\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.1518.46\build\Microsoft.Web.WebView2.targets')" />
   <PropertyGroup>
     <PostBuildEvent>cd $(OutDir)
-del *.xml</PostBuildEvent>
+del *.xml
+del *.config
+del *.pdb
+rd /q /s "$(TargetDir)runtimes\win-x64"
+rd /q /s "$(TargetDir)runtimes\win-arm64"
+copy /y "$(SolutionDir)packages\Microsoft.Web.WebView2.1.0.1518.46\lib\net45\Microsoft.Web.WebView2.Core.dll" "$(TargetDir)Microsoft.Web.WebView2.Core.dll"
+copy /y "$(SolutionDir)packages\Microsoft.Web.WebView2.1.0.1518.46\lib\net45\Microsoft.Web.WebView2.WinForms.dll" "$(TargetDir)Microsoft.Web.WebView2.WinForms.dll"
+</PostBuildEvent>
   </PropertyGroup>
 </Project>
