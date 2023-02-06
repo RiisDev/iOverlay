@@ -1,5 +1,5 @@
 
-![Logo](https://i.imgur.com/fNCvXMt.png)
+![Logo](https://i.imgur.com/rolDQwL.png)
 
 Open-source suite of customizable overlays featuring Spotify & Valorant widgets. Enhance your stream with real-time information. Easy to use for all skill levels.
 
