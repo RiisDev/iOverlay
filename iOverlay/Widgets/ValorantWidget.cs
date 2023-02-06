@@ -63,24 +63,17 @@ namespace iOverlay.Widgets
 
         private void DoTheme(bool isDarkMode)
         {
-            if (!isDarkMode)
+            BackColor = isDarkMode ? Color.Black : Color.White;
+            foreach (Control control in Controls)
             {
-                BackColor = Color.White;
-                foreach (Control control in Controls)
-                {
-                    if (control is Label)
-                    {
-                        control.ForeColor = Color.FromKnownColor(KnownColor.ControlText);
-                    }
-                }
+                control.ForeColor = isDarkMode ? Color.White : Color.FromKnownColor(KnownColor.ControlText);
             }
         }
 
+
         private void UpdateRR()
         {
-            int CurrentRR = GetUserRR();
-            int ProgressValue = rankRRProgress.Value;
-            int step = CurrentRR - ProgressValue;
+            int step = GetUserRR() - rankRRProgress.Value;
             rankRRProgress.Invoke(new Action(() =>
             {
                 rankRRProgress.Value += step;
@@ -95,7 +88,7 @@ namespace iOverlay.Widgets
 
         private async void ValorantWidget_Load(object sender, EventArgs e)
         {
-
+            DoTheme(Properties.Settings.Default.valorantDarkMode);
             MiscFunctions.CreateMovableForm(this, this);
             Region = Region.FromHrgn(MiscFunctions.CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
             Opacity = .9;
@@ -104,16 +97,16 @@ namespace iOverlay.Widgets
 
             webView.CoreWebView2.NavigationCompleted += async (saef, esr) =>
             {
-                string Data = await webView.CoreWebView2.ExecuteScriptAsync("document.body.innerText");
-                Data = Data.Substring(1, Data.Length - 2).Replace("\\", "");
-                JToken JsonData = JToken.Parse(Data);
+                string bodyInnerHtml = await webView.CoreWebView2.ExecuteScriptAsync("document.body.innerText");
+                bodyInnerHtml = bodyInnerHtml.Substring(1, bodyInnerHtml.Length - 2).Replace("\\", "");
+                JToken jsonData = JToken.Parse(bodyInnerHtml);
+                JToken userStats = jsonData["data"]["segments"][0]["stats"];
 
-                winPctLabel.Text = JsonData["data"]["segments"][0]["stats"]["matchesWinPct"].Value<string>("displayValue");
-                KDLabel.Text = JsonData["data"]["segments"][0]["stats"]["kDRatio"].Value<string>("displayValue");
-                rankNameLabel.Text = JsonData["data"]["segments"][0]["stats"]["rank"]["metadata"].Value<string>("tierName");
-                rankIcon.Image = RankPictures[JsonData["data"]["segments"][0]["stats"]["rank"]["metadata"].Value<string>("tierName")];
+                winPctLabel.Text = userStats["matchesWinPct"].Value<string>("displayValue");
+                KDLabel.Text = userStats["kDRatio"].Value<string>("displayValue");
+                rankNameLabel.Text = userStats["rank"]["metadata"].Value<string>("tierName");
+                rankIcon.Image = RankPictures[userStats["rank"]["metadata"].Value<string>("tierName")];
 
-                DoTheme(Properties.Settings.Default.valorantDarkMode);
             };
 
             UpdateRR();
@@ -121,7 +114,7 @@ namespace iOverlay.Widgets
 
             await Task.Run(async () =>
             {
-                for (; ; )
+                while (true)
                 {
                     await Task.Delay(60000);
                     UpdateRR();
@@ -131,7 +124,7 @@ namespace iOverlay.Widgets
 
             await Task.Run(async () =>
             {
-                for (; ; )
+                while (true)
                 {
                     await Task.Delay(500000);
                     webView.CoreWebView2.Navigate($"https://api.tracker.gg/api/v2/valorant/standard/profile/riot/{GetParsedRiotName()}?forceCollect=true");
