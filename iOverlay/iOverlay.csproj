@@ -40,10 +40,10 @@
       <HintPath>..\packages\Bunifu.Licensing.5.0.0\lib\net40\Bunifu.Licensing.dll</HintPath>
     </Reference>
     <Reference Include="Bunifu.UI.WinForms">
-      <HintPath>..\..\..\Bunifu\Bunifu.UI.WinForms.dll</HintPath>
+      <HintPath>Bunifu\Bunifu.UI.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Bunifu.UI.WinForms.1.5.3">
-      <HintPath>..\..\..\Bunifu\Bunifu.UI.WinForms.1.5.3.dll</HintPath>
+      <HintPath>Bunifu\Bunifu.UI.WinForms.1.5.3.dll</HintPath>
     </Reference>
     <Reference Include="Costura, Version=5.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Costura.Fody.5.7.0\lib\netstandard1.0\Costura.dll</HintPath>
