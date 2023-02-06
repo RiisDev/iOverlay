@@ -107,20 +107,29 @@ setInterval(function() {
                     Client.Headers.Add(HttpRequestHeader.Authorization, SpotifyAuth);
                     Client.Headers.Add(HttpRequestHeader.ContentType, "application/json");
 
-                    Client.DownloadStringCompleted += (__, DownloadStringArgs) =>
+                    Client.DownloadStringCompleted += async (__, DownloadStringArgs) =>
                     {
-                        JToken returnedData = JToken.Parse(DownloadStringArgs.Result);
-                        double songTimeStamp = returnedData.Value<double>("progress_ms");
-                        double songDuration = returnedData["item"].Value<double>("duration_ms");
-
-                        int Percent = (int)Math.Floor((songTimeStamp / songDuration) * 100);
-
-                        bunifuProgressBar1.Invoke((Action)(() =>
+                        try
                         {
-                            bunifuProgressBar1.Value = Percent;
-                        }));
+                            JToken returnedData = JToken.Parse(DownloadStringArgs.Result);
+                            double songTimeStamp = returnedData.Value<double>("progress_ms");
+                            double songDuration = returnedData["item"].Value<double>("duration_ms");
 
-                        Client.DownloadStringAsync(new Uri("https://api.spotify.com/v1/me/player"));
+                            int Percent = (int)Math.Floor((songTimeStamp / songDuration) * 100);
+
+                            bunifuProgressBar1.Invoke((Action)(() =>
+                            {
+                                bunifuProgressBar1.Value = Percent;
+                            }));
+
+                            Client.DownloadStringAsync(new Uri("https://api.spotify.com/v1/me/player"));
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex.ToString());
+                            await Task.Delay(60000);
+                            Client.DownloadStringAsync(new Uri("https://api.spotify.com/v1/me/player"));
+                        }
                     };
 
                     Client.DownloadStringAsync(new Uri("https://api.spotify.com/v1/me/player"));
