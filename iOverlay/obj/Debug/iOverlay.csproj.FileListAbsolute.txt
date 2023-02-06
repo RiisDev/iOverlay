@@ -65,3 +65,14 @@ E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\bin\Debug\runtimes\win-ar
 E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\bin\Debug\Microsoft.Web.WebView2.Core.xml
 E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\bin\Debug\Microsoft.Web.WebView2.WinForms.xml
 E:\Sources\C#\Public Source Releases\iOverlay\iOverlay\bin\Debug\Microsoft.Web.WebView2.Wpf.xml
+C:\Users\irisd\Documents\GitHub\iOverlay\iOverlay\obj\Debug\iOverlay.csproj.AssemblyReference.cache
+C:\Users\irisd\Documents\GitHub\iOverlay\iOverlay\obj\Debug\iOverlay.csproj.SuggestedBindingRedirects.cache
+C:\Users\irisd\Documents\GitHub\iOverlay\iOverlay\obj\Debug\iOverlay.MainForm.resources
+C:\Users\irisd\Documents\GitHub\iOverlay\iOverlay\obj\Debug\iOverlay.Properties.Resources.resources
+C:\Users\irisd\Documents\GitHub\iOverlay\iOverlay\obj\Debug\iOverlay.Widgets.Settings.resources
+C:\Users\irisd\Documents\GitHub\iOverlay\iOverlay\obj\Debug\iOverlay.Widgets.SpotifyWidget.resources
+C:\Users\irisd\Documents\GitHub\iOverlay\iOverlay\obj\Debug\iOverlay.Widgets.ValorantWidget.resources
+C:\Users\irisd\Documents\GitHub\iOverlay\iOverlay\obj\Debug\iOverlay.csproj.GenerateResource.cache
+C:\Users\irisd\Documents\GitHub\iOverlay\iOverlay\obj\Debug\iOverlay.exe.licenses
+C:\Users\irisd\Documents\GitHub\iOverlay\iOverlay\obj\Debug\iOverlay.exe
+C:\Users\irisd\Documents\GitHub\iOverlay\iOverlay\obj\Debug\iOverlay.pdb

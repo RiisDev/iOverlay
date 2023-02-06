@@ -2,3 +2,5 @@
 *.exe
 .vs/*
 iOverlay/bin/*
+*.cache
+.vs/iOverlay/v17/.suo
