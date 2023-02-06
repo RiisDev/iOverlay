@@ -2,6 +2,7 @@
 using Microsoft.Web.WebView2.Core;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Net;
 using System.Reflection;
@@ -129,6 +130,10 @@ setInterval(() => {
                             {
                                 await Task.Delay(30000);
                                 Client.DownloadStringAsync(new Uri("https://api.spotify.com/v1/me/player"));
+                            }
+                            else
+                            {
+                                Debug.WriteLine(exception.InnerException);
                             }
                         }
                         catch { }

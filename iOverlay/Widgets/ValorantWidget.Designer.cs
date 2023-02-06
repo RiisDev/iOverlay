@@ -30,6 +30,7 @@ namespace iOverlay.Widgets
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ValorantWidget));
             this.artistNameLabel = new System.Windows.Forms.Label();
             this.rankNameLabel = new System.Windows.Forms.Label();
             this.bunifuLabel1 = new System.Windows.Forms.Label();
@@ -196,6 +197,7 @@ namespace iOverlay.Widgets
             this.Controls.Add(this.rankNameLabel);
             this.Controls.Add(this.rankRRProgress);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ValorantWidget";
             this.Opacity = 0.8D;
             this.Text = "ValorantWidget";

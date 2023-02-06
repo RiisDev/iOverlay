@@ -134,6 +134,7 @@
             this.Controls.Add(this.songNameLabel);
             this.Controls.Add(this.bunifuProgressBar1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SpotifyWidget";
             this.Text = "SpotifyWidget";
             this.Load += new System.EventHandler(this.SpotifyWidget_Load);

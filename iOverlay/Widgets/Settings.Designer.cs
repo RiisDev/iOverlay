@@ -34,6 +34,7 @@ namespace iOverlay.Widgets
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings));
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties1 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties2 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
@@ -43,7 +44,6 @@ namespace iOverlay.Widgets
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties6 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties7 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties8 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             Utilities.BunifuPages.BunifuAnimatorNS.Animation animation1 = new Utilities.BunifuPages.BunifuAnimatorNS.Animation();
             this.controlPanel = new System.Windows.Forms.Panel();
             this.closeButton = new iOverlay.Utility.NoCueButton();
@@ -52,6 +52,10 @@ namespace iOverlay.Widgets
             this.bunifuButton21 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             this.valorantPageButton = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             this.tabPages = new System.Windows.Forms.Panel();
+            this.spotifySettingsPage = new System.Windows.Forms.Panel();
+            this.applySpotifySettings = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
+            this.spotifyDarkModeToggle = new Bunifu.UI.WinForms.BunifuToggleSwitch2();
+            this.label9 = new System.Windows.Forms.Label();
             this.valorantSettingsPage = new System.Windows.Forms.Panel();
             this.valorantDarkModeToggle = new Bunifu.UI.WinForms.BunifuToggleSwitch2();
             this.label6 = new System.Windows.Forms.Label();
@@ -63,16 +67,12 @@ namespace iOverlay.Widgets
             this.label2 = new System.Windows.Forms.Label();
             this.valorantUserName = new Bunifu.UI.WinForms.BunifuTextBox();
             this.valorantNameLabel = new System.Windows.Forms.Label();
-            this.spotifySettingsPage = new System.Windows.Forms.Panel();
-            this.applySpotifySettings = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
-            this.spotifyDarkModeToggle = new Bunifu.UI.WinForms.BunifuToggleSwitch2();
-            this.label9 = new System.Windows.Forms.Label();
             this.bunifuTransition1 = new Utilities.BunifuPages.BunifuTransition(this.components);
             this.controlPanel.SuspendLayout();
             this.tabList.SuspendLayout();
             this.tabPages.SuspendLayout();
-            this.valorantSettingsPage.SuspendLayout();
             this.spotifySettingsPage.SuspendLayout();
+            this.valorantSettingsPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // controlPanel
@@ -314,6 +314,135 @@ namespace iOverlay.Widgets
             this.tabPages.Name = "tabPages";
             this.tabPages.Size = new System.Drawing.Size(555, 250);
             this.tabPages.TabIndex = 3;
+            // 
+            // spotifySettingsPage
+            // 
+            this.spotifySettingsPage.Controls.Add(this.applySpotifySettings);
+            this.spotifySettingsPage.Controls.Add(this.spotifyDarkModeToggle);
+            this.spotifySettingsPage.Controls.Add(this.label9);
+            this.spotifySettingsPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spotifySettingsPage.Location = new System.Drawing.Point(0, 0);
+            this.spotifySettingsPage.Name = "spotifySettingsPage";
+            this.spotifySettingsPage.Size = new System.Drawing.Size(555, 250);
+            this.spotifySettingsPage.TabIndex = 0;
+            // 
+            // applySpotifySettings
+            // 
+            this.applySpotifySettings.AllowAnimations = true;
+            this.applySpotifySettings.AllowMouseEffects = true;
+            this.applySpotifySettings.AllowToggling = false;
+            this.applySpotifySettings.AnimationSpeed = 200;
+            this.applySpotifySettings.AutoGenerateColors = false;
+            this.applySpotifySettings.AutoRoundBorders = false;
+            this.applySpotifySettings.AutoSizeLeftIcon = true;
+            this.applySpotifySettings.AutoSizeRightIcon = true;
+            this.applySpotifySettings.BackColor = System.Drawing.Color.Transparent;
+            this.applySpotifySettings.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
+            this.applySpotifySettings.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("applySpotifySettings.BackgroundImage")));
+            this.applySpotifySettings.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
+            this.applySpotifySettings.ButtonText = "Apply";
+            this.applySpotifySettings.ButtonTextMarginLeft = 0;
+            this.applySpotifySettings.ColorContrastOnClick = 45;
+            this.applySpotifySettings.ColorContrastOnHover = 45;
+            this.applySpotifySettings.Cursor = System.Windows.Forms.Cursors.Default;
+            borderEdges3.BottomLeft = true;
+            borderEdges3.BottomRight = true;
+            borderEdges3.TopLeft = true;
+            borderEdges3.TopRight = true;
+            this.applySpotifySettings.CustomizableEdges = borderEdges3;
+            this.applySpotifySettings.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.applySpotifySettings.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.applySpotifySettings.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.applySpotifySettings.DisabledForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.applySpotifySettings.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.ButtonStates.Pressed;
+            this.applySpotifySettings.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.applySpotifySettings.ForeColor = System.Drawing.Color.White;
+            this.applySpotifySettings.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.applySpotifySettings.IconLeftCursor = System.Windows.Forms.Cursors.Default;
+            this.applySpotifySettings.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
+            this.applySpotifySettings.IconMarginLeft = 11;
+            this.applySpotifySettings.IconPadding = 10;
+            this.applySpotifySettings.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.applySpotifySettings.IconRightCursor = System.Windows.Forms.Cursors.Default;
+            this.applySpotifySettings.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
+            this.applySpotifySettings.IconSize = 25;
+            this.applySpotifySettings.IdleBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
+            this.applySpotifySettings.IdleBorderRadius = 1;
+            this.applySpotifySettings.IdleBorderThickness = 1;
+            this.applySpotifySettings.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
+            this.applySpotifySettings.IdleIconLeftImage = null;
+            this.applySpotifySettings.IdleIconRightImage = null;
+            this.applySpotifySettings.IndicateFocus = false;
+            this.applySpotifySettings.Location = new System.Drawing.Point(137, 206);
+            this.applySpotifySettings.Margin = new System.Windows.Forms.Padding(3, 3, 1, 3);
+            this.applySpotifySettings.Name = "applySpotifySettings";
+            this.applySpotifySettings.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.applySpotifySettings.OnDisabledState.BorderRadius = 1;
+            this.applySpotifySettings.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
+            this.applySpotifySettings.OnDisabledState.BorderThickness = 1;
+            this.applySpotifySettings.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.applySpotifySettings.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.applySpotifySettings.OnDisabledState.IconLeftImage = null;
+            this.applySpotifySettings.OnDisabledState.IconRightImage = null;
+            this.applySpotifySettings.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(200)))), ((int)(((byte)(252)))));
+            this.applySpotifySettings.onHoverState.BorderRadius = 1;
+            this.applySpotifySettings.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
+            this.applySpotifySettings.onHoverState.BorderThickness = 1;
+            this.applySpotifySettings.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(200)))), ((int)(((byte)(252)))));
+            this.applySpotifySettings.onHoverState.ForeColor = System.Drawing.Color.White;
+            this.applySpotifySettings.onHoverState.IconLeftImage = null;
+            this.applySpotifySettings.onHoverState.IconRightImage = null;
+            this.applySpotifySettings.OnIdleState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
+            this.applySpotifySettings.OnIdleState.BorderRadius = 1;
+            this.applySpotifySettings.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
+            this.applySpotifySettings.OnIdleState.BorderThickness = 1;
+            this.applySpotifySettings.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
+            this.applySpotifySettings.OnIdleState.ForeColor = System.Drawing.Color.White;
+            this.applySpotifySettings.OnIdleState.IconLeftImage = null;
+            this.applySpotifySettings.OnIdleState.IconRightImage = null;
+            this.applySpotifySettings.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(85)))), ((int)(((byte)(137)))));
+            this.applySpotifySettings.OnPressedState.BorderRadius = 1;
+            this.applySpotifySettings.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
+            this.applySpotifySettings.OnPressedState.BorderThickness = 1;
+            this.applySpotifySettings.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(85)))), ((int)(((byte)(137)))));
+            this.applySpotifySettings.OnPressedState.ForeColor = System.Drawing.Color.White;
+            this.applySpotifySettings.OnPressedState.IconLeftImage = null;
+            this.applySpotifySettings.OnPressedState.IconRightImage = null;
+            this.applySpotifySettings.Size = new System.Drawing.Size(273, 32);
+            this.applySpotifySettings.TabIndex = 10;
+            this.applySpotifySettings.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.applySpotifySettings.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.applySpotifySettings.TextMarginLeft = 0;
+            this.applySpotifySettings.TextPadding = new System.Windows.Forms.Padding(0);
+            this.applySpotifySettings.UseDefaultRadiusAndThickness = true;
+            this.applySpotifySettings.Click += new System.EventHandler(this.applySpotifySettings_Click);
+            // 
+            // spotifyDarkModeToggle
+            // 
+            this.spotifyDarkModeToggle.BackColor = System.Drawing.Color.Transparent;
+            this.spotifyDarkModeToggle.Checked = true;
+            this.spotifyDarkModeToggle.CheckedBackColor = System.Drawing.Color.DodgerBlue;
+            this.spotifyDarkModeToggle.CheckedSwitchColor = System.Drawing.Color.White;
+            this.spotifyDarkModeToggle.CheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
+            this.spotifyDarkModeToggle.Location = new System.Drawing.Point(108, 15);
+            this.spotifyDarkModeToggle.Name = "spotifyDarkModeToggle";
+            this.spotifyDarkModeToggle.OutlineThickness = 2;
+            this.spotifyDarkModeToggle.Size = new System.Drawing.Size(42, 22);
+            this.spotifyDarkModeToggle.TabIndex = 6;
+            this.spotifyDarkModeToggle.UncheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
+            this.spotifyDarkModeToggle.UncheckedSwitchColor = System.Drawing.Color.White;
+            this.spotifyDarkModeToggle.UncheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 12.25F, System.Drawing.FontStyle.Bold);
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(10, 13);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(105, 23);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "Dark Mode: ";
             // 
             // valorantSettingsPage
             // 
@@ -658,135 +787,6 @@ namespace iOverlay.Widgets
             this.valorantNameLabel.TabIndex = 0;
             this.valorantNameLabel.Text = "Valorant Tag:";
             // 
-            // spotifySettingsPage
-            // 
-            this.spotifySettingsPage.Controls.Add(this.applySpotifySettings);
-            this.spotifySettingsPage.Controls.Add(this.spotifyDarkModeToggle);
-            this.spotifySettingsPage.Controls.Add(this.label9);
-            this.spotifySettingsPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spotifySettingsPage.Location = new System.Drawing.Point(0, 0);
-            this.spotifySettingsPage.Name = "spotifySettingsPage";
-            this.spotifySettingsPage.Size = new System.Drawing.Size(555, 250);
-            this.spotifySettingsPage.TabIndex = 0;
-            // 
-            // applySpotifySettings
-            // 
-            this.applySpotifySettings.AllowAnimations = true;
-            this.applySpotifySettings.AllowMouseEffects = true;
-            this.applySpotifySettings.AllowToggling = false;
-            this.applySpotifySettings.AnimationSpeed = 200;
-            this.applySpotifySettings.AutoGenerateColors = false;
-            this.applySpotifySettings.AutoRoundBorders = false;
-            this.applySpotifySettings.AutoSizeLeftIcon = true;
-            this.applySpotifySettings.AutoSizeRightIcon = true;
-            this.applySpotifySettings.BackColor = System.Drawing.Color.Transparent;
-            this.applySpotifySettings.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
-            this.applySpotifySettings.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("applySpotifySettings.BackgroundImage")));
-            this.applySpotifySettings.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            this.applySpotifySettings.ButtonText = "Apply";
-            this.applySpotifySettings.ButtonTextMarginLeft = 0;
-            this.applySpotifySettings.ColorContrastOnClick = 45;
-            this.applySpotifySettings.ColorContrastOnHover = 45;
-            this.applySpotifySettings.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges3.BottomLeft = true;
-            borderEdges3.BottomRight = true;
-            borderEdges3.TopLeft = true;
-            borderEdges3.TopRight = true;
-            this.applySpotifySettings.CustomizableEdges = borderEdges3;
-            this.applySpotifySettings.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.applySpotifySettings.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.applySpotifySettings.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.applySpotifySettings.DisabledForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
-            this.applySpotifySettings.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.ButtonStates.Pressed;
-            this.applySpotifySettings.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.applySpotifySettings.ForeColor = System.Drawing.Color.White;
-            this.applySpotifySettings.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.applySpotifySettings.IconLeftCursor = System.Windows.Forms.Cursors.Default;
-            this.applySpotifySettings.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
-            this.applySpotifySettings.IconMarginLeft = 11;
-            this.applySpotifySettings.IconPadding = 10;
-            this.applySpotifySettings.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.applySpotifySettings.IconRightCursor = System.Windows.Forms.Cursors.Default;
-            this.applySpotifySettings.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
-            this.applySpotifySettings.IconSize = 25;
-            this.applySpotifySettings.IdleBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
-            this.applySpotifySettings.IdleBorderRadius = 1;
-            this.applySpotifySettings.IdleBorderThickness = 1;
-            this.applySpotifySettings.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
-            this.applySpotifySettings.IdleIconLeftImage = null;
-            this.applySpotifySettings.IdleIconRightImage = null;
-            this.applySpotifySettings.IndicateFocus = false;
-            this.applySpotifySettings.Location = new System.Drawing.Point(137, 206);
-            this.applySpotifySettings.Margin = new System.Windows.Forms.Padding(3, 3, 1, 3);
-            this.applySpotifySettings.Name = "applySpotifySettings";
-            this.applySpotifySettings.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.applySpotifySettings.OnDisabledState.BorderRadius = 1;
-            this.applySpotifySettings.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            this.applySpotifySettings.OnDisabledState.BorderThickness = 1;
-            this.applySpotifySettings.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.applySpotifySettings.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
-            this.applySpotifySettings.OnDisabledState.IconLeftImage = null;
-            this.applySpotifySettings.OnDisabledState.IconRightImage = null;
-            this.applySpotifySettings.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(200)))), ((int)(((byte)(252)))));
-            this.applySpotifySettings.onHoverState.BorderRadius = 1;
-            this.applySpotifySettings.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            this.applySpotifySettings.onHoverState.BorderThickness = 1;
-            this.applySpotifySettings.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(200)))), ((int)(((byte)(252)))));
-            this.applySpotifySettings.onHoverState.ForeColor = System.Drawing.Color.White;
-            this.applySpotifySettings.onHoverState.IconLeftImage = null;
-            this.applySpotifySettings.onHoverState.IconRightImage = null;
-            this.applySpotifySettings.OnIdleState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
-            this.applySpotifySettings.OnIdleState.BorderRadius = 1;
-            this.applySpotifySettings.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            this.applySpotifySettings.OnIdleState.BorderThickness = 1;
-            this.applySpotifySettings.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
-            this.applySpotifySettings.OnIdleState.ForeColor = System.Drawing.Color.White;
-            this.applySpotifySettings.OnIdleState.IconLeftImage = null;
-            this.applySpotifySettings.OnIdleState.IconRightImage = null;
-            this.applySpotifySettings.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(85)))), ((int)(((byte)(137)))));
-            this.applySpotifySettings.OnPressedState.BorderRadius = 1;
-            this.applySpotifySettings.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            this.applySpotifySettings.OnPressedState.BorderThickness = 1;
-            this.applySpotifySettings.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(85)))), ((int)(((byte)(137)))));
-            this.applySpotifySettings.OnPressedState.ForeColor = System.Drawing.Color.White;
-            this.applySpotifySettings.OnPressedState.IconLeftImage = null;
-            this.applySpotifySettings.OnPressedState.IconRightImage = null;
-            this.applySpotifySettings.Size = new System.Drawing.Size(273, 32);
-            this.applySpotifySettings.TabIndex = 10;
-            this.applySpotifySettings.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.applySpotifySettings.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
-            this.applySpotifySettings.TextMarginLeft = 0;
-            this.applySpotifySettings.TextPadding = new System.Windows.Forms.Padding(0);
-            this.applySpotifySettings.UseDefaultRadiusAndThickness = true;
-            this.applySpotifySettings.Click += new System.EventHandler(this.applySpotifySettings_Click);
-            // 
-            // spotifyDarkModeToggle
-            // 
-            this.spotifyDarkModeToggle.BackColor = System.Drawing.Color.Transparent;
-            this.spotifyDarkModeToggle.Checked = true;
-            this.spotifyDarkModeToggle.CheckedBackColor = System.Drawing.Color.DodgerBlue;
-            this.spotifyDarkModeToggle.CheckedSwitchColor = System.Drawing.Color.White;
-            this.spotifyDarkModeToggle.CheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
-            this.spotifyDarkModeToggle.Location = new System.Drawing.Point(108, 15);
-            this.spotifyDarkModeToggle.Name = "spotifyDarkModeToggle";
-            this.spotifyDarkModeToggle.OutlineThickness = 2;
-            this.spotifyDarkModeToggle.Size = new System.Drawing.Size(42, 22);
-            this.spotifyDarkModeToggle.TabIndex = 6;
-            this.spotifyDarkModeToggle.UncheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
-            this.spotifyDarkModeToggle.UncheckedSwitchColor = System.Drawing.Color.White;
-            this.spotifyDarkModeToggle.UncheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 12.25F, System.Drawing.FontStyle.Bold);
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(10, 13);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(105, 23);
-            this.label9.TabIndex = 7;
-            this.label9.Text = "Dark Mode: ";
-            // 
             // bunifuTransition1
             // 
             this.bunifuTransition1.AnimationType = Utilities.BunifuPages.BunifuAnimatorNS.AnimationType.VertSlide;
@@ -818,6 +818,7 @@ namespace iOverlay.Widgets
             this.Controls.Add(this.tabList);
             this.Controls.Add(this.controlPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Settings";
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.Settings_Load);
@@ -825,10 +826,10 @@ namespace iOverlay.Widgets
             this.controlPanel.PerformLayout();
             this.tabList.ResumeLayout(false);
             this.tabPages.ResumeLayout(false);
-            this.valorantSettingsPage.ResumeLayout(false);
-            this.valorantSettingsPage.PerformLayout();
             this.spotifySettingsPage.ResumeLayout(false);
             this.spotifySettingsPage.PerformLayout();
+            this.valorantSettingsPage.ResumeLayout(false);
+            this.valorantSettingsPage.PerformLayout();
             this.ResumeLayout(false);
 
         }

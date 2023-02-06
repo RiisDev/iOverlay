@@ -35,6 +35,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>iOverlay.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bunifu.Licensing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=f89b4760ba7dcb6b, processorArchitecture=MSIL">
       <HintPath>..\packages\Bunifu.Licensing.5.0.0\lib\net40\Bunifu.Licensing.dll</HintPath>
@@ -487,6 +490,9 @@
   <ItemGroup>
     <Folder Include="WebViewData\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="iOverlay.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.6.4\build\Fody.targets" Condition="Exists('..\packages\Fody.6.6.4\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -507,10 +513,11 @@
 del *.xml
 del *.config
 del *.pdb
+del "Release-Installer.exe"
 rd /q /s "$(TargetDir)runtimes\win-x64"
 rd /q /s "$(TargetDir)runtimes\win-arm64"
 copy /y "$(SolutionDir)packages\Microsoft.Web.WebView2.1.0.1518.46\lib\net45\Microsoft.Web.WebView2.Core.dll" "$(TargetDir)Microsoft.Web.WebView2.Core.dll"
 copy /y "$(SolutionDir)packages\Microsoft.Web.WebView2.1.0.1518.46\lib\net45\Microsoft.Web.WebView2.WinForms.dll" "$(TargetDir)Microsoft.Web.WebView2.WinForms.dll"
-</PostBuildEvent>
+"C:\Program Files\7-Zip\7z.exe" a -sfx7z.sfx "Release-Installer.exe" *.*</PostBuildEvent>
   </PropertyGroup>
 </Project>
