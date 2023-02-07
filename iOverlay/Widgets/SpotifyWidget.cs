@@ -121,14 +121,31 @@ setInterval(() => {
                         {
                             if (exception.InnerException.Message.Contains("401"))
                             {
+                                Debug.WriteLine("Grabbing new auth...");
                                 string oldAuth = SpotifyAuth;
-                                webView.CoreWebView2.Navigate("https://accounts.spotify.com/en/login");
+
+                                webView.Invoke((Action)(() =>
+                                {
+                                    webView.CoreWebView2.Navigate("https://accounts.spotify.com/en/login");
+                                }));
 
                                 while (oldAuth == SpotifyAuth) await Task.Delay(25);
+                                Debug.WriteLine("New auth grabbed...");
+                                Client.DownloadStringAsync(new Uri("https://api.spotify.com/v1/me/player"));
                             }
                             else if (exception.InnerException.Message.Contains("429"))
                             {
                                 await Task.Delay(30000);
+                                Client.DownloadStringAsync(new Uri("https://api.spotify.com/v1/me/player"));
+                            }
+                            else if (exception.InnerException.Message.Contains("502"))
+                            {
+                                Debug.WriteLine("502 Re-Running...");
+                                Client.DownloadStringAsync(new Uri("https://api.spotify.com/v1/me/player"));
+                            }
+                            else if (exception.InnerException.Message.Contains("503"))
+                            {
+                                Debug.WriteLine("503 Re-Running...");
                                 Client.DownloadStringAsync(new Uri("https://api.spotify.com/v1/me/player"));
                             }
                             else
