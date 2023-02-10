@@ -1,23 +1,16 @@
-﻿using Bunifu.UI.WinForms;
-using iOverlay.Properties;
+﻿using iOverlay.Properties;
 using iOverlay.Utility;
-using Microsoft.Web.WebView2.Core;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace iOverlay.Widgets
 {
-
     public partial class ValorantWidget : Form
     {
         WebClient client = new WebClient();
@@ -56,28 +49,36 @@ namespace iOverlay.Widgets
             return $"{Properties.Settings.Default.valorantUsername.Replace(" ", "%20")}%23{Properties.Settings.Default.valorantTagLine}";
         }
 
-        private int GetUserRR()
+        private Tuple<string, int> GetUserRR()
         {
-            return int.Parse(client.DownloadString($"https://api.kyroskoh.xyz/valorant/v1/mmr/NA/{Properties.Settings.Default.valorantUsername}/{Properties.Settings.Default.valorantTagLine}?show=rronly&display=0").Replace("RR.", ""));
+            Console.WriteLine($"https://api.kyroskoh.xyz/valorant/v1/mmr/NA/{Properties.Settings.Default.valorantUsername}/{Properties.Settings.Default.valorantTagLine}");
+            string returnedData = client.DownloadString($"https://api.kyroskoh.xyz/valorant/v1/mmr/NA/{Properties.Settings.Default.valorantUsername}/{Properties.Settings.Default.valorantTagLine}");
+            if (returnedData == null) return new Tuple<string, int>("Unranked", 0);
+
+            int rrCount = int.Parse(returnedData.Substring(returnedData.IndexOf("-") + 1).Replace("RR", ""));
+            string rankName = returnedData.Substring(0,returnedData.IndexOf("-")-1);
+
+            return new Tuple<string, int>(rankName, rrCount);
         }
 
         private void DoTheme(bool isDarkMode)
         {
             BackColor = isDarkMode ? Color.Black : Color.White;
-            foreach (Control control in Controls)
-            {
-                control.ForeColor = isDarkMode ? Color.White : Color.FromKnownColor(KnownColor.ControlText);
-            }
+
+            foreach (Control control in Controls) control.ForeColor = isDarkMode ? Color.White : Color.FromKnownColor(KnownColor.ControlText);
         }
 
 
         private void UpdateRR()
         {
-            int step = GetUserRR() - rankRRProgress.Value;
-            rankRRProgress.Invoke(new Action(() =>
-            {
-                rankRRProgress.Value += step;
-            }));
+            Tuple<string, int> rankReturn = GetUserRR();
+            int rrCount = rankReturn.Item2;
+            string rankName = rankReturn.Item1;
+            int step = rrCount - rankRRProgress.Value;
+
+            rankRRProgress.Invoke((Action)(() => rankRRProgress.Value += step));
+            rankNameLabel.Invoke((Action)(() => rankNameLabel.Text = rankName));
+            rankNameLabel.Invoke((Action)(() => rankIcon.Image = RankPictures[rankName]));
         }
 
         public ValorantWidget()
@@ -104,8 +105,6 @@ namespace iOverlay.Widgets
 
                 winPctLabel.Text = userStats["matchesWinPct"].Value<string>("displayValue");
                 KDLabel.Text = userStats["kDRatio"].Value<string>("displayValue");
-                rankNameLabel.Text = userStats["rank"]["metadata"].Value<string>("tierName");
-                rankIcon.Image = RankPictures[userStats["rank"]["metadata"].Value<string>("tierName")];
 
             };
 

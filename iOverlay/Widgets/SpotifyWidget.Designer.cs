@@ -34,6 +34,7 @@
             this.bunifuProgressBar1 = new Bunifu.UI.WinForms.BunifuProgressBar();
             this.webView = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.albumArt = new Bunifu.UI.WinForms.BunifuPictureBox();
+            this.RefreshSpotify = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.webView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.albumArt)).BeginInit();
             this.SuspendLayout();
@@ -123,11 +124,23 @@
             this.albumArt.TabStop = false;
             this.albumArt.Type = Bunifu.UI.WinForms.BunifuPictureBox.Types.Square;
             // 
+            // RefreshSpotify
+            // 
+            this.RefreshSpotify.Location = new System.Drawing.Point(290, -1);
+            this.RefreshSpotify.Name = "RefreshSpotify";
+            this.RefreshSpotify.Size = new System.Drawing.Size(75, 23);
+            this.RefreshSpotify.TabIndex = 9;
+            this.RefreshSpotify.Text = "Refresh";
+            this.RefreshSpotify.UseVisualStyleBackColor = true;
+            this.RefreshSpotify.Visible = false;
+            this.RefreshSpotify.Click += new System.EventHandler(this.RefreshSpotify_Click);
+            // 
             // SpotifyWidget
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(365, 70);
+            this.Controls.Add(this.RefreshSpotify);
             this.Controls.Add(this.albumArt);
             this.Controls.Add(this.webView);
             this.Controls.Add(this.artistNameLabel);
@@ -152,5 +165,6 @@
         private Bunifu.UI.WinForms.BunifuLabel artistNameLabel;
         private Microsoft.Web.WebView2.WinForms.WebView2 webView;
         private Bunifu.UI.WinForms.BunifuPictureBox albumArt;
+        private System.Windows.Forms.Button RefreshSpotify;
     }
 }

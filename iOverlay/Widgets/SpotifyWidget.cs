@@ -1,5 +1,6 @@
 ﻿using iOverlay.Utility;
 using Microsoft.Web.WebView2.Core;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Diagnostics;
@@ -14,6 +15,7 @@ namespace iOverlay.Widgets
     public partial class SpotifyWidget : Form
     {
         private string SpotifyAuth = "";
+        private bool Refreshed = false;
         private string CurrentUrl = "";
 
         public SpotifyWidget()
@@ -33,6 +35,9 @@ namespace iOverlay.Widgets
 
         private async void SpotifyWidget_Load(object sender, EventArgs e)
         {
+            #if DEBUG
+                RefreshSpotify.Visible = true;
+            #endif
             ApplyTheme(darkMode: Properties.Settings.Default.spotifyDarkMode);
             Region = Region.FromHrgn(MiscFunctions.CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
             MiscFunctions.CreateMovableForm(this, this);
@@ -55,6 +60,7 @@ namespace iOverlay.Widgets
                     Size = new Size(365, 630);
                     Region = Region.FromHrgn(MiscFunctions.CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
                 }
+                Refreshed = true;
             };
             webView.CoreWebView2.WebResourceRequested += (__, ResourceArgs) =>
             {
@@ -110,10 +116,7 @@ setInterval(() => {
 
                             int Percent = (int)Math.Floor((songTimeStamp / songDuration) * 100);
 
-                            bunifuProgressBar1.Invoke((Action)(() =>
-                            {
-                                bunifuProgressBar1.Value = Percent;
-                            }));
+                            bunifuProgressBar1.Invoke((Action)(() => bunifuProgressBar1.Value = Percent));
 
                             Client.DownloadStringAsync(new Uri("https://api.spotify.com/v1/me/player"));
                         }
@@ -121,16 +124,12 @@ setInterval(() => {
                         {
                             if (exception.InnerException.Message.Contains("401"))
                             {
-                                Debug.WriteLine("Grabbing new auth...");
                                 string oldAuth = SpotifyAuth;
+                                Refreshed = false;
 
-                                webView.Invoke((Action)(() =>
-                                {
-                                    webView.CoreWebView2.Navigate("https://accounts.spotify.com/en/login");
-                                }));
+                                webView.Invoke((Action)(() => webView.CoreWebView2.Navigate("https://accounts.spotify.com/en/login")));
 
-                                while (oldAuth == SpotifyAuth) await Task.Delay(25);
-                                Debug.WriteLine("New auth grabbed...");
+                                while (!Refreshed) await Task.Delay(25);
                                 Client.DownloadStringAsync(new Uri("https://api.spotify.com/v1/me/player"));
                             }
                             else if (exception.InnerException.Message.Contains("429"))
@@ -153,7 +152,15 @@ setInterval(() => {
                                 Debug.WriteLine(exception.InnerException);
                             }
                         }
-                        catch { }
+                        catch (JsonReaderException)
+                        {
+                            await Task.Delay(15000);
+                            Client.DownloadStringAsync(new Uri("https://api.spotify.com/v1/me/player"));
+                        }
+                        catch (Exception exception)
+                        {
+                            Debug.WriteLine("Unhandled Except: " + exception);
+                        }
                     };
 
                     Client.DownloadStringAsync(new Uri("https://api.spotify.com/v1/me/player"));
@@ -170,6 +177,11 @@ setInterval(() => {
                 songNameLabel.Text = data[1];
                 albumArt.Load(data[2]);
             }
+        }
+
+        private void RefreshSpotify_Click(object sender, EventArgs e)
+        {
+            webView.Invoke((Action)(() => webView.CoreWebView2.Navigate("https://accounts.spotify.com/en/login")));
         }
     }
 }
