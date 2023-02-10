@@ -13,8 +13,8 @@ namespace iOverlay.Widgets
 {
     public partial class ValorantWidget : Form
     {
-        WebClient client = new WebClient();
-        private Dictionary<string, Image> RankPictures = new Dictionary<string, Image>()
+        private readonly WebClient _client = new WebClient();
+        private readonly Dictionary<string, Image> _rankPictures = new Dictionary<string, Image>()
         {
             { "Unranked", Resources.Unranked },
             { "Iron 1", Resources.Iron_1 },
@@ -51,10 +51,8 @@ namespace iOverlay.Widgets
 
         private Tuple<string, int> GetUserRR()
         {
-            Console.WriteLine($"https://api.kyroskoh.xyz/valorant/v1/mmr/NA/{Properties.Settings.Default.valorantUsername}/{Properties.Settings.Default.valorantTagLine}");
-            string returnedData = client.DownloadString($"https://api.kyroskoh.xyz/valorant/v1/mmr/NA/{Properties.Settings.Default.valorantUsername}/{Properties.Settings.Default.valorantTagLine}");
-            if (returnedData == null) return new Tuple<string, int>("Unranked", 0);
-
+            string returnedData = _client.DownloadString($"https://api.kyroskoh.xyz/valorant/v1/mmr/NA/{Properties.Settings.Default.valorantUsername}/{Properties.Settings.Default.valorantTagLine}");
+            
             int rrCount = int.Parse(returnedData.Substring(returnedData.IndexOf("-") + 1).Replace("RR", ""));
             string rankName = returnedData.Substring(0,returnedData.IndexOf("-")-1);
 
@@ -78,7 +76,7 @@ namespace iOverlay.Widgets
 
             rankRRProgress.Invoke((Action)(() => rankRRProgress.Value += step));
             rankNameLabel.Invoke((Action)(() => rankNameLabel.Text = rankName));
-            rankNameLabel.Invoke((Action)(() => rankIcon.Image = RankPictures[rankName]));
+            rankNameLabel.Invoke((Action)(() => rankIcon.Image = _rankPictures[rankName]));
         }
 
         public ValorantWidget()
@@ -101,6 +99,12 @@ namespace iOverlay.Widgets
                 string bodyInnerHtml = await webView.CoreWebView2.ExecuteScriptAsync("document.body.innerText");
                 bodyInnerHtml = bodyInnerHtml.Substring(1, bodyInnerHtml.Length - 2).Replace("\\", "");
                 JToken jsonData = JToken.Parse(bodyInnerHtml);
+
+                if (jsonData["data"] == null) return;
+                if (jsonData["data"]["segments"] == null) return;
+                if (jsonData["data"]["segments"][0] == null) return;
+                if (jsonData["data"]["segments"][0]["stats"] == null) return;
+                
                 JToken userStats = jsonData["data"]["segments"][0]["stats"];
 
                 winPctLabel.Text = userStats["matchesWinPct"].Value<string>("displayValue");
