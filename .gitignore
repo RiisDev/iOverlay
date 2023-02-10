@@ -2,6 +2,7 @@
 *.exe
 .vs/*
 iOverlay/bin/*
+iOverlay/obj/*
 *.cache
 *.suo
 *.cache
