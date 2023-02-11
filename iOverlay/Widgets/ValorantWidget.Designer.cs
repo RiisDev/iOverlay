@@ -64,7 +64,7 @@ namespace iOverlay.Widgets
             this.rankNameLabel.Location = new System.Drawing.Point(78, 26);
             this.rankNameLabel.Name = "rankNameLabel";
             this.rankNameLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.rankNameLabel.Size = new System.Drawing.Size(161, 30);
+            this.rankNameLabel.Size = new System.Drawing.Size(140, 30);
             this.rankNameLabel.TabIndex = 4;
             this.rankNameLabel.Text = "UNRAKED";
             // 
@@ -73,7 +73,7 @@ namespace iOverlay.Widgets
             this.bunifuLabel1.Cursor = System.Windows.Forms.Cursors.Default;
             this.bunifuLabel1.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold);
             this.bunifuLabel1.ForeColor = System.Drawing.Color.White;
-            this.bunifuLabel1.Location = new System.Drawing.Point(235, 12);
+            this.bunifuLabel1.Location = new System.Drawing.Point(216, 12);
             this.bunifuLabel1.Name = "bunifuLabel1";
             this.bunifuLabel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.bunifuLabel1.Size = new System.Drawing.Size(48, 13);
@@ -85,7 +85,7 @@ namespace iOverlay.Widgets
             this.winPctLabel.Cursor = System.Windows.Forms.Cursors.Default;
             this.winPctLabel.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
             this.winPctLabel.ForeColor = System.Drawing.Color.White;
-            this.winPctLabel.Location = new System.Drawing.Point(235, 26);
+            this.winPctLabel.Location = new System.Drawing.Point(216, 26);
             this.winPctLabel.Name = "winPctLabel";
             this.winPctLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.winPctLabel.Size = new System.Drawing.Size(48, 23);
@@ -97,7 +97,7 @@ namespace iOverlay.Widgets
             this.KDLabel.Cursor = System.Windows.Forms.Cursors.Default;
             this.KDLabel.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
             this.KDLabel.ForeColor = System.Drawing.Color.White;
-            this.KDLabel.Location = new System.Drawing.Point(286, 26);
+            this.KDLabel.Location = new System.Drawing.Point(267, 26);
             this.KDLabel.Name = "KDLabel";
             this.KDLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.KDLabel.Size = new System.Drawing.Size(60, 23);
@@ -109,7 +109,7 @@ namespace iOverlay.Widgets
             this.bunifuLabel4.Cursor = System.Windows.Forms.Cursors.Default;
             this.bunifuLabel4.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold);
             this.bunifuLabel4.ForeColor = System.Drawing.Color.White;
-            this.bunifuLabel4.Location = new System.Drawing.Point(289, 12);
+            this.bunifuLabel4.Location = new System.Drawing.Point(270, 12);
             this.bunifuLabel4.Name = "bunifuLabel4";
             this.bunifuLabel4.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.bunifuLabel4.Size = new System.Drawing.Size(41, 13);
@@ -186,7 +186,7 @@ namespace iOverlay.Widgets
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.ClientSize = new System.Drawing.Size(334, 72);
+            this.ClientSize = new System.Drawing.Size(219, 72);
             this.Controls.Add(this.webView);
             this.Controls.Add(this.rankIcon);
             this.Controls.Add(this.KDLabel);

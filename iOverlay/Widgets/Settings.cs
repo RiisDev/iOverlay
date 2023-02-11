@@ -49,6 +49,7 @@ namespace iOverlay.Widgets
             valorantUserName.Text = Properties.Settings.Default.valorantUsername;
             valorantTagLine.Text = Properties.Settings.Default.valorantTagLine;
             valorantDarkModeToggle.Checked = Properties.Settings.Default.valorantDarkMode;
+            showWinPctAndKD.Checked = Properties.Settings.Default.valorantShowPct;
 
             spotifyDarkModeToggle.Checked = Properties.Settings.Default.spotifyDarkMode;
         }
@@ -64,6 +65,7 @@ namespace iOverlay.Widgets
             Properties.Settings.Default.valorantUsername = valorantUserName.Text;
             Properties.Settings.Default.valorantTagLine = valorantTagLine.Text;
             Properties.Settings.Default.valorantDarkMode = valorantDarkModeToggle.Checked;
+            Properties.Settings.Default.valorantShowPct = showWinPctAndKD.Checked;
             Properties.Settings.Default.Save();
         }
     }

@@ -158,7 +158,23 @@ namespace iOverlay.Widgets
 
             webView.CoreWebView2.WebMessageReceived += CoreWebView2_WebMessageReceived;
 
-            await webView.CoreWebView2.ExecuteScriptAsync(@"const getArtist=()=>{const t=document.querySelectorAll('[data-testid=""""context-item-info-artist""""]');return Array.from(t).map(t=>t.innerHTML).join("", "")};setInterval(()=>{const t=[getArtist(),document.querySelector('[data-testid=""""context-item-link""""]').innerHTML,document.querySelector('[data-testid=""""cover-art-image""""]').src,document.querySelector('[data-testid=""""playback-duration""""]').innerHTML,document.querySelector('[data-testid=""""playback-position""""]').innerHTML,document.querySelector('[data-testid=""""progress-bar""""]').style.cssText].join(""|"");window.chrome.webview.postMessage(t)},0);");
+            await webView.CoreWebView2.ExecuteScriptAsync(@"
+const getArtist = () => {
+  const artistsRaw = document.querySelectorAll('[data-testid=""context-item-info-artist""]');
+  return Array.from(artistsRaw).map(a => a.innerHTML).join(', ');
+};
+setInterval(() => {
+  const message = [
+    getArtist(),
+    document.querySelector('[data-testid=""context-item-link""]').innerHTML,
+    document.querySelector('[data-testid=""cover-art-image""]').src,
+    document.querySelector('[data-testid=""playback-duration""]').innerHTML,
+    document.querySelector('[data-testid=""playback-position""]').innerHTML,
+    document.querySelector('[data-testid=""progress-bar""]').style.cssText
+  ].join('|');
+  window.chrome.webview.postMessage(message);
+}, 0);
+");
 
             await Task.Run(SpotifyTimestampHandler);
         }

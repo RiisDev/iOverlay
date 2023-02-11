@@ -49,34 +49,43 @@ namespace iOverlay.Widgets
             return $"{Properties.Settings.Default.valorantUsername.Replace(" ", "%20")}%23{Properties.Settings.Default.valorantTagLine}";
         }
 
-        private Tuple<string, int> GetUserRR()
+        private Tuple<string, int> GetUserRr()
         {
             string returnedData = _client.DownloadString($"https://api.kyroskoh.xyz/valorant/v1/mmr/NA/{Properties.Settings.Default.valorantUsername}/{Properties.Settings.Default.valorantTagLine}");
-            
-            int rrCount = int.Parse(returnedData.Substring(returnedData.IndexOf("-") + 1).Replace("RR", ""));
-            string rankName = returnedData.Substring(0,returnedData.IndexOf("-")-1);
+            string rrParsed = returnedData.Substring(returnedData.IndexOf("-") + 2).Replace("RR.", "");
+            string rankNameParsed = returnedData.Substring(0, returnedData.IndexOf("-") - 1);
+
+            int rrCount = int.Parse(rrParsed);
+            string rankName = rankNameParsed;
 
             return new Tuple<string, int>(rankName, rrCount);
         }
 
         private void DoTheme(bool isDarkMode)
         {
-            BackColor = isDarkMode ? Color.Black : Color.White;
+            BackColor = isDarkMode ? Color.FromArgb(15, 15, 15) : Color.White;
+            Size = Properties.Settings.Default.valorantShowPct ? new Size(311, 72) : new Size(219, 72);
 
             foreach (Control control in Controls) control.ForeColor = isDarkMode ? Color.White : Color.FromKnownColor(KnownColor.ControlText);
+            
+            rankIcon.Location = new Point(10, 10);
         }
 
 
-        private void UpdateRR()
+        private void UpdateRr()
         {
-            Tuple<string, int> rankReturn = GetUserRR();
+            Tuple<string, int> rankReturn = GetUserRr();
             int rrCount = rankReturn.Item2;
             string rankName = rankReturn.Item1;
             int step = rrCount - rankRRProgress.Value;
+            
+            rankRRProgress.Invalidate();
+            rankNameLabel.Invalidate();
+            rankIcon.Invalidate();
 
             rankRRProgress.Invoke((Action)(() => rankRRProgress.Value += step));
             rankNameLabel.Invoke((Action)(() => rankNameLabel.Text = rankName));
-            rankNameLabel.Invoke((Action)(() => rankIcon.Image = _rankPictures[rankName]));
+            rankIcon.Invoke((Action)(() => rankIcon.Image = _rankPictures[rankName]));
         }
 
         public ValorantWidget()
@@ -90,7 +99,7 @@ namespace iOverlay.Widgets
             DoTheme(Properties.Settings.Default.valorantDarkMode);
             MiscFunctions.CreateMovableForm(this, this);
             Region = Region.FromHrgn(MiscFunctions.CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
-            Opacity = .9;
+            Opacity = .8;
 
             await webView.EnsureCoreWebView2Async();
 
@@ -112,7 +121,7 @@ namespace iOverlay.Widgets
 
             };
 
-            UpdateRR();
+            UpdateRr();
             webView.CoreWebView2.Navigate($"https://api.tracker.gg/api/v2/valorant/standard/profile/riot/{GetParsedRiotName()}?forceCollect=true");
 
             await Task.Run(async () =>
@@ -120,7 +129,7 @@ namespace iOverlay.Widgets
                 while (true)
                 {
                     await Task.Delay(60000);
-                    UpdateRR();
+                    UpdateRr();
                     Debug.WriteLine("Updating RR...");
                 }
             });

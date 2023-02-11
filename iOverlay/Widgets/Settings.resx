@@ -136,15 +136,6 @@
         AAAASUVORK5CYII=
 </value>
   </data>
-  <data name="applySpotifySettings.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAREAAAAgCAYAAAA1xUwyAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACQSURBVHhe7dSpDYAAAMBARmNP2IwxUGB4PAmE2hOn6juM
-        875cDoAflnsiTwHgExMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMB
-        EhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBkmGctvUpALyatvUE3jCp3Zq81QsA
-        AAAASUVORK5CYII=
-</value>
-  </data>
   <data name="applyValorantSettings.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAREAAAAgCAYAAAA1xUwyAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -168,6 +159,15 @@
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABwSURBVGhD7dGxCcAwDAVRLeT5XRm0R8bIAA4CNVlBdx+u
         +e0LB9ne+8nMa7Mq1yaOqGOtZcMq1yYWeWoiAxIZkMiARAYkMiCRAYkMSGRAIgMSGZDIgEQGJDIgkQGJ
         DEhkQD/kc85bh82qXJvYzV7EB+RlAhNfYTRGAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="applySpotifySettings.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAREAAAAgCAYAAAA1xUwyAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACQSURBVHhe7dSpDYAAAMBARmNP2IwxUGB4PAmE2hOn6juM
+        875cDoAflnsiTwHgExMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMB
+        EhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBEhMBkmGctvUpALyatvUE3jCp3Zq81QsA
+        AAAASUVORK5CYII=
 </value>
   </data>
   <metadata name="bunifuTransition1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

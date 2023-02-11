@@ -34,8 +34,8 @@ namespace iOverlay.Widgets
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings));
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties1 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties2 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties3 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
@@ -68,6 +68,8 @@ namespace iOverlay.Widgets
             this.valorantUserName = new Bunifu.UI.WinForms.BunifuTextBox();
             this.valorantNameLabel = new System.Windows.Forms.Label();
             this.bunifuTransition1 = new Utilities.BunifuPages.BunifuTransition(this.components);
+            this.showWinPctAndKD = new Bunifu.UI.WinForms.BunifuToggleSwitch2();
+            this.label7 = new System.Windows.Forms.Label();
             this.controlPanel.SuspendLayout();
             this.tabList.SuspendLayout();
             this.tabPages.SuspendLayout();
@@ -307,8 +309,8 @@ namespace iOverlay.Widgets
             // 
             // tabPages
             // 
-            this.tabPages.Controls.Add(this.spotifySettingsPage);
             this.tabPages.Controls.Add(this.valorantSettingsPage);
+            this.tabPages.Controls.Add(this.spotifySettingsPage);
             this.tabPages.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabPages.Location = new System.Drawing.Point(0, 65);
             this.tabPages.Name = "tabPages";
@@ -345,11 +347,11 @@ namespace iOverlay.Widgets
             this.applySpotifySettings.ColorContrastOnClick = 45;
             this.applySpotifySettings.ColorContrastOnHover = 45;
             this.applySpotifySettings.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges3.BottomLeft = true;
-            borderEdges3.BottomRight = true;
-            borderEdges3.TopLeft = true;
-            borderEdges3.TopRight = true;
-            this.applySpotifySettings.CustomizableEdges = borderEdges3;
+            borderEdges4.BottomLeft = true;
+            borderEdges4.BottomRight = true;
+            borderEdges4.TopLeft = true;
+            borderEdges4.TopRight = true;
+            this.applySpotifySettings.CustomizableEdges = borderEdges4;
             this.applySpotifySettings.DialogResult = System.Windows.Forms.DialogResult.None;
             this.applySpotifySettings.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.applySpotifySettings.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -446,6 +448,8 @@ namespace iOverlay.Widgets
             // 
             // valorantSettingsPage
             // 
+            this.valorantSettingsPage.Controls.Add(this.showWinPctAndKD);
+            this.valorantSettingsPage.Controls.Add(this.label7);
             this.valorantSettingsPage.Controls.Add(this.valorantDarkModeToggle);
             this.valorantSettingsPage.Controls.Add(this.label6);
             this.valorantSettingsPage.Controls.Add(this.applyValorantSettings);
@@ -508,11 +512,11 @@ namespace iOverlay.Widgets
             this.applyValorantSettings.ColorContrastOnClick = 45;
             this.applyValorantSettings.ColorContrastOnHover = 45;
             this.applyValorantSettings.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges4.BottomLeft = true;
-            borderEdges4.BottomRight = true;
-            borderEdges4.TopLeft = true;
-            borderEdges4.TopRight = true;
-            this.applyValorantSettings.CustomizableEdges = borderEdges4;
+            borderEdges3.BottomLeft = true;
+            borderEdges3.BottomRight = true;
+            borderEdges3.TopLeft = true;
+            borderEdges3.TopRight = true;
+            this.applyValorantSettings.CustomizableEdges = borderEdges3;
             this.applyValorantSettings.DialogResult = System.Windows.Forms.DialogResult.None;
             this.applyValorantSettings.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.applyValorantSettings.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -808,6 +812,33 @@ namespace iOverlay.Widgets
             animation1.TransparencyCoeff = 0F;
             this.bunifuTransition1.DefaultAnimation = animation1;
             // 
+            // showWinPctAndKD
+            // 
+            this.showWinPctAndKD.BackColor = System.Drawing.Color.Transparent;
+            this.showWinPctAndKD.Checked = true;
+            this.showWinPctAndKD.CheckedBackColor = System.Drawing.Color.DodgerBlue;
+            this.showWinPctAndKD.CheckedSwitchColor = System.Drawing.Color.White;
+            this.showWinPctAndKD.CheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
+            this.showWinPctAndKD.Location = new System.Drawing.Point(166, 87);
+            this.showWinPctAndKD.Name = "showWinPctAndKD";
+            this.showWinPctAndKD.OutlineThickness = 2;
+            this.showWinPctAndKD.Size = new System.Drawing.Size(42, 22);
+            this.showWinPctAndKD.TabIndex = 11;
+            this.showWinPctAndKD.UncheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
+            this.showWinPctAndKD.UncheckedSwitchColor = System.Drawing.Color.White;
+            this.showWinPctAndKD.UncheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 12.25F, System.Drawing.FontStyle.Bold);
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(20, 87);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(152, 23);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Show Win % | KD: ";
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -859,5 +890,7 @@ namespace iOverlay.Widgets
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 applyValorantSettings;
         private Bunifu.UI.WinForms.BunifuToggleSwitch2 valorantDarkModeToggle;
         private System.Windows.Forms.Label label6;
+        private Bunifu.UI.WinForms.BunifuToggleSwitch2 showWinPctAndKD;
+        private System.Windows.Forms.Label label7;
     }
 }

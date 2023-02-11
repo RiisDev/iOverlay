@@ -70,5 +70,17 @@ namespace iOverlay.Properties {
                 this["valorantDarkMode"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool valorantShowPct {
+            get {
+                return ((bool)(this["valorantShowPct"]));
+            }
+            set {
+                this["valorantShowPct"] = value;
+            }
+        }
     }
 }
