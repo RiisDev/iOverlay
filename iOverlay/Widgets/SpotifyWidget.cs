@@ -131,15 +131,14 @@ namespace iOverlay.Widgets
                 if (webPage.ToLower().Contains("web-player-link"))
                 {
                     Size = new Size(365, 70);
-                    Region = Region.FromHrgn(MiscFunctions.CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
                     webView.CoreWebView2.Navigate("https://open.spotify.com/");
                 }
                 else if (webPage.Contains("Email address or username"))
                 {
                     Size = new Size(365, 630);
-                    Region = Region.FromHrgn(MiscFunctions.CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
                 }
 
+                Region = Region.FromHrgn(MiscFunctions.CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
                 _refreshed = true;
             };
             webView.CoreWebView2.WebResourceRequested += (__, resourceArgs) =>
