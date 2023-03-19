@@ -116,7 +116,7 @@
             this.albumArt.BorderRadius = 0;
             this.albumArt.Image = global::iOverlay.Properties.Resources.SpotifyIcon;
             this.albumArt.IsCircle = true;
-            this.albumArt.Location = new System.Drawing.Point(-2, -1);
+            this.albumArt.Location = new System.Drawing.Point(-3, -2);
             this.albumArt.Name = "albumArt";
             this.albumArt.Size = new System.Drawing.Size(70, 70);
             this.albumArt.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -139,7 +139,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(365, 70);
+            this.ClientSize = new System.Drawing.Size(363, 69);
             this.Controls.Add(this.RefreshSpotify);
             this.Controls.Add(this.albumArt);
             this.Controls.Add(this.webView);

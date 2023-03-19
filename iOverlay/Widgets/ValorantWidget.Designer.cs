@@ -162,7 +162,7 @@ namespace iOverlay.Widgets
             this.rankIcon.BorderRadius = 26;
             this.rankIcon.Image = global::iOverlay.Properties.Resources.Unranked;
             this.rankIcon.IsCircle = true;
-            this.rankIcon.Location = new System.Drawing.Point(10, 10);
+            this.rankIcon.Location = new System.Drawing.Point(12, 12);
             this.rankIcon.Name = "rankIcon";
             this.rankIcon.Size = new System.Drawing.Size(53, 53);
             this.rankIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -175,9 +175,9 @@ namespace iOverlay.Widgets
             this.webView.AllowExternalDrop = true;
             this.webView.CreationProperties = null;
             this.webView.DefaultBackgroundColor = System.Drawing.Color.White;
-            this.webView.Location = new System.Drawing.Point(0, 0);
+            this.webView.Location = new System.Drawing.Point(83, 92);
             this.webView.Name = "webView";
-            this.webView.Size = new System.Drawing.Size(0, 0);
+            this.webView.Size = new System.Drawing.Size(299, 269);
             this.webView.TabIndex = 18;
             this.webView.ZoomFactor = 1D;
             // 
@@ -186,7 +186,7 @@ namespace iOverlay.Widgets
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.ClientSize = new System.Drawing.Size(219, 72);
+            this.ClientSize = new System.Drawing.Size(514, 373);
             this.Controls.Add(this.webView);
             this.Controls.Add(this.rankIcon);
             this.Controls.Add(this.KDLabel);

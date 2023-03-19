@@ -35,15 +35,6 @@ namespace iOverlay.Widgets
             HidePages();
             MiscFunctions.CreateMovableForm(this, controlPanel);
 
-            foreach (BunifuButton2 tabButton in tabList.Controls)
-            {
-                tabButton.Click += (buttonsender, mouseargs) =>
-                {
-                    HidePages();
-                    tabPages.Controls[tabButton.TabIndex].Visible = true;
-                };
-            }
-
             (tabList.Controls[0] as BunifuButton2).PerformClick();
 
             valorantUserName.Text = Properties.Settings.Default.valorantUsername;
@@ -67,6 +58,18 @@ namespace iOverlay.Widgets
             Properties.Settings.Default.valorantDarkMode = valorantDarkModeToggle.Checked;
             Properties.Settings.Default.valorantShowPct = showWinPctAndKD.Checked;
             Properties.Settings.Default.Save();
+        }
+
+        private void bunifuButton21_Click(object sender, EventArgs e)
+        {
+            HidePages();
+            spotifySettingsPage.Visible = true;
+        }
+
+        private void valorantPageButton_Click(object sender, EventArgs e)
+        {
+            HidePages();
+            valorantSettingsPage.Visible = true;
         }
     }
 }

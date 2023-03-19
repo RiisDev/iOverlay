@@ -34,7 +34,6 @@ namespace iOverlay.Widgets
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings));
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties1 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties2 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
@@ -44,19 +43,18 @@ namespace iOverlay.Widgets
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties6 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties7 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties8 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             Utilities.BunifuPages.BunifuAnimatorNS.Animation animation1 = new Utilities.BunifuPages.BunifuAnimatorNS.Animation();
             this.controlPanel = new System.Windows.Forms.Panel();
             this.closeButton = new iOverlay.Utility.NoCueButton();
             this.label1 = new System.Windows.Forms.Label();
             this.tabList = new System.Windows.Forms.FlowLayoutPanel();
-            this.bunifuButton21 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             this.valorantPageButton = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
+            this.bunifuButton21 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             this.tabPages = new System.Windows.Forms.Panel();
-            this.spotifySettingsPage = new System.Windows.Forms.Panel();
-            this.applySpotifySettings = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
-            this.spotifyDarkModeToggle = new Bunifu.UI.WinForms.BunifuToggleSwitch2();
-            this.label9 = new System.Windows.Forms.Label();
             this.valorantSettingsPage = new System.Windows.Forms.Panel();
+            this.showWinPctAndKD = new Bunifu.UI.WinForms.BunifuToggleSwitch2();
+            this.label7 = new System.Windows.Forms.Label();
             this.valorantDarkModeToggle = new Bunifu.UI.WinForms.BunifuToggleSwitch2();
             this.label6 = new System.Windows.Forms.Label();
             this.applyValorantSettings = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
@@ -67,14 +65,16 @@ namespace iOverlay.Widgets
             this.label2 = new System.Windows.Forms.Label();
             this.valorantUserName = new Bunifu.UI.WinForms.BunifuTextBox();
             this.valorantNameLabel = new System.Windows.Forms.Label();
+            this.spotifySettingsPage = new System.Windows.Forms.Panel();
+            this.applySpotifySettings = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
+            this.spotifyDarkModeToggle = new Bunifu.UI.WinForms.BunifuToggleSwitch2();
+            this.label9 = new System.Windows.Forms.Label();
             this.bunifuTransition1 = new Utilities.BunifuPages.BunifuTransition(this.components);
-            this.showWinPctAndKD = new Bunifu.UI.WinForms.BunifuToggleSwitch2();
-            this.label7 = new System.Windows.Forms.Label();
             this.controlPanel.SuspendLayout();
             this.tabList.SuspendLayout();
             this.tabPages.SuspendLayout();
-            this.spotifySettingsPage.SuspendLayout();
             this.valorantSettingsPage.SuspendLayout();
+            this.spotifySettingsPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // controlPanel
@@ -118,104 +118,14 @@ namespace iOverlay.Widgets
             // 
             // tabList
             // 
-            this.tabList.Controls.Add(this.bunifuButton21);
             this.tabList.Controls.Add(this.valorantPageButton);
+            this.tabList.Controls.Add(this.bunifuButton21);
             this.tabList.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabList.Location = new System.Drawing.Point(0, 30);
             this.tabList.Margin = new System.Windows.Forms.Padding(3, 3, 2, 3);
             this.tabList.Name = "tabList";
             this.tabList.Size = new System.Drawing.Size(555, 35);
             this.tabList.TabIndex = 2;
-            // 
-            // bunifuButton21
-            // 
-            this.bunifuButton21.AllowAnimations = true;
-            this.bunifuButton21.AllowMouseEffects = true;
-            this.bunifuButton21.AllowToggling = false;
-            this.bunifuButton21.AnimationSpeed = 200;
-            this.bunifuButton21.AutoGenerateColors = false;
-            this.bunifuButton21.AutoRoundBorders = false;
-            this.bunifuButton21.AutoSizeLeftIcon = true;
-            this.bunifuButton21.AutoSizeRightIcon = true;
-            this.bunifuButton21.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuButton21.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
-            this.bunifuButton21.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuButton21.BackgroundImage")));
-            this.bunifuButton21.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            this.bunifuButton21.ButtonText = "Spotify Settings";
-            this.bunifuButton21.ButtonTextMarginLeft = 0;
-            this.bunifuButton21.ColorContrastOnClick = 45;
-            this.bunifuButton21.ColorContrastOnHover = 45;
-            this.bunifuButton21.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges1.BottomLeft = true;
-            borderEdges1.BottomRight = true;
-            borderEdges1.TopLeft = true;
-            borderEdges1.TopRight = true;
-            this.bunifuButton21.CustomizableEdges = borderEdges1;
-            this.bunifuButton21.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.bunifuButton21.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.bunifuButton21.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.bunifuButton21.DisabledForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
-            this.bunifuButton21.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.ButtonStates.Pressed;
-            this.bunifuButton21.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.bunifuButton21.ForeColor = System.Drawing.Color.White;
-            this.bunifuButton21.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bunifuButton21.IconLeftCursor = System.Windows.Forms.Cursors.Default;
-            this.bunifuButton21.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
-            this.bunifuButton21.IconMarginLeft = 11;
-            this.bunifuButton21.IconPadding = 10;
-            this.bunifuButton21.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.bunifuButton21.IconRightCursor = System.Windows.Forms.Cursors.Default;
-            this.bunifuButton21.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
-            this.bunifuButton21.IconSize = 25;
-            this.bunifuButton21.IdleBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
-            this.bunifuButton21.IdleBorderRadius = 1;
-            this.bunifuButton21.IdleBorderThickness = 1;
-            this.bunifuButton21.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
-            this.bunifuButton21.IdleIconLeftImage = null;
-            this.bunifuButton21.IdleIconRightImage = null;
-            this.bunifuButton21.IndicateFocus = false;
-            this.bunifuButton21.Location = new System.Drawing.Point(3, 3);
-            this.bunifuButton21.Margin = new System.Windows.Forms.Padding(3, 3, 1, 3);
-            this.bunifuButton21.Name = "bunifuButton21";
-            this.bunifuButton21.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.bunifuButton21.OnDisabledState.BorderRadius = 1;
-            this.bunifuButton21.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            this.bunifuButton21.OnDisabledState.BorderThickness = 1;
-            this.bunifuButton21.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.bunifuButton21.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
-            this.bunifuButton21.OnDisabledState.IconLeftImage = null;
-            this.bunifuButton21.OnDisabledState.IconRightImage = null;
-            this.bunifuButton21.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(200)))), ((int)(((byte)(252)))));
-            this.bunifuButton21.onHoverState.BorderRadius = 1;
-            this.bunifuButton21.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            this.bunifuButton21.onHoverState.BorderThickness = 1;
-            this.bunifuButton21.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(200)))), ((int)(((byte)(252)))));
-            this.bunifuButton21.onHoverState.ForeColor = System.Drawing.Color.White;
-            this.bunifuButton21.onHoverState.IconLeftImage = null;
-            this.bunifuButton21.onHoverState.IconRightImage = null;
-            this.bunifuButton21.OnIdleState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
-            this.bunifuButton21.OnIdleState.BorderRadius = 1;
-            this.bunifuButton21.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            this.bunifuButton21.OnIdleState.BorderThickness = 1;
-            this.bunifuButton21.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
-            this.bunifuButton21.OnIdleState.ForeColor = System.Drawing.Color.White;
-            this.bunifuButton21.OnIdleState.IconLeftImage = null;
-            this.bunifuButton21.OnIdleState.IconRightImage = null;
-            this.bunifuButton21.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(85)))), ((int)(((byte)(137)))));
-            this.bunifuButton21.OnPressedState.BorderRadius = 1;
-            this.bunifuButton21.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            this.bunifuButton21.OnPressedState.BorderThickness = 1;
-            this.bunifuButton21.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(85)))), ((int)(((byte)(137)))));
-            this.bunifuButton21.OnPressedState.ForeColor = System.Drawing.Color.White;
-            this.bunifuButton21.OnPressedState.IconLeftImage = null;
-            this.bunifuButton21.OnPressedState.IconRightImage = null;
-            this.bunifuButton21.Size = new System.Drawing.Size(273, 32);
-            this.bunifuButton21.TabIndex = 0;
-            this.bunifuButton21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.bunifuButton21.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
-            this.bunifuButton21.TextMarginLeft = 0;
-            this.bunifuButton21.TextPadding = new System.Windows.Forms.Padding(0);
-            this.bunifuButton21.UseDefaultRadiusAndThickness = true;
             // 
             // valorantPageButton
             // 
@@ -236,11 +146,11 @@ namespace iOverlay.Widgets
             this.valorantPageButton.ColorContrastOnClick = 45;
             this.valorantPageButton.ColorContrastOnHover = 45;
             this.valorantPageButton.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges2.BottomLeft = true;
-            borderEdges2.BottomRight = true;
-            borderEdges2.TopLeft = true;
-            borderEdges2.TopRight = true;
-            this.valorantPageButton.CustomizableEdges = borderEdges2;
+            borderEdges1.BottomLeft = true;
+            borderEdges1.BottomRight = true;
+            borderEdges1.TopLeft = true;
+            borderEdges1.TopRight = true;
+            this.valorantPageButton.CustomizableEdges = borderEdges1;
             this.valorantPageButton.DialogResult = System.Windows.Forms.DialogResult.None;
             this.valorantPageButton.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.valorantPageButton.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -264,7 +174,7 @@ namespace iOverlay.Widgets
             this.valorantPageButton.IdleIconLeftImage = null;
             this.valorantPageButton.IdleIconRightImage = null;
             this.valorantPageButton.IndicateFocus = false;
-            this.valorantPageButton.Location = new System.Drawing.Point(280, 3);
+            this.valorantPageButton.Location = new System.Drawing.Point(3, 3);
             this.valorantPageButton.Margin = new System.Windows.Forms.Padding(3, 3, 1, 3);
             this.valorantPageButton.Name = "valorantPageButton";
             this.valorantPageButton.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
@@ -306,6 +216,98 @@ namespace iOverlay.Widgets
             this.valorantPageButton.TextMarginLeft = 0;
             this.valorantPageButton.TextPadding = new System.Windows.Forms.Padding(0);
             this.valorantPageButton.UseDefaultRadiusAndThickness = true;
+            this.valorantPageButton.Click += new System.EventHandler(this.valorantPageButton_Click);
+            // 
+            // bunifuButton21
+            // 
+            this.bunifuButton21.AllowAnimations = true;
+            this.bunifuButton21.AllowMouseEffects = true;
+            this.bunifuButton21.AllowToggling = false;
+            this.bunifuButton21.AnimationSpeed = 200;
+            this.bunifuButton21.AutoGenerateColors = false;
+            this.bunifuButton21.AutoRoundBorders = false;
+            this.bunifuButton21.AutoSizeLeftIcon = true;
+            this.bunifuButton21.AutoSizeRightIcon = true;
+            this.bunifuButton21.BackColor = System.Drawing.Color.Transparent;
+            this.bunifuButton21.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
+            this.bunifuButton21.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuButton21.BackgroundImage")));
+            this.bunifuButton21.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
+            this.bunifuButton21.ButtonText = "Spotify Settings";
+            this.bunifuButton21.ButtonTextMarginLeft = 0;
+            this.bunifuButton21.ColorContrastOnClick = 45;
+            this.bunifuButton21.ColorContrastOnHover = 45;
+            this.bunifuButton21.Cursor = System.Windows.Forms.Cursors.Default;
+            borderEdges2.BottomLeft = true;
+            borderEdges2.BottomRight = true;
+            borderEdges2.TopLeft = true;
+            borderEdges2.TopRight = true;
+            this.bunifuButton21.CustomizableEdges = borderEdges2;
+            this.bunifuButton21.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.bunifuButton21.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.bunifuButton21.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.bunifuButton21.DisabledForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.bunifuButton21.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.ButtonStates.Pressed;
+            this.bunifuButton21.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.bunifuButton21.ForeColor = System.Drawing.Color.White;
+            this.bunifuButton21.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bunifuButton21.IconLeftCursor = System.Windows.Forms.Cursors.Default;
+            this.bunifuButton21.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
+            this.bunifuButton21.IconMarginLeft = 11;
+            this.bunifuButton21.IconPadding = 10;
+            this.bunifuButton21.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.bunifuButton21.IconRightCursor = System.Windows.Forms.Cursors.Default;
+            this.bunifuButton21.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
+            this.bunifuButton21.IconSize = 25;
+            this.bunifuButton21.IdleBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
+            this.bunifuButton21.IdleBorderRadius = 1;
+            this.bunifuButton21.IdleBorderThickness = 1;
+            this.bunifuButton21.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
+            this.bunifuButton21.IdleIconLeftImage = null;
+            this.bunifuButton21.IdleIconRightImage = null;
+            this.bunifuButton21.IndicateFocus = false;
+            this.bunifuButton21.Location = new System.Drawing.Point(280, 3);
+            this.bunifuButton21.Margin = new System.Windows.Forms.Padding(3, 3, 1, 3);
+            this.bunifuButton21.Name = "bunifuButton21";
+            this.bunifuButton21.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.bunifuButton21.OnDisabledState.BorderRadius = 1;
+            this.bunifuButton21.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
+            this.bunifuButton21.OnDisabledState.BorderThickness = 1;
+            this.bunifuButton21.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.bunifuButton21.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.bunifuButton21.OnDisabledState.IconLeftImage = null;
+            this.bunifuButton21.OnDisabledState.IconRightImage = null;
+            this.bunifuButton21.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(200)))), ((int)(((byte)(252)))));
+            this.bunifuButton21.onHoverState.BorderRadius = 1;
+            this.bunifuButton21.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
+            this.bunifuButton21.onHoverState.BorderThickness = 1;
+            this.bunifuButton21.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(200)))), ((int)(((byte)(252)))));
+            this.bunifuButton21.onHoverState.ForeColor = System.Drawing.Color.White;
+            this.bunifuButton21.onHoverState.IconLeftImage = null;
+            this.bunifuButton21.onHoverState.IconRightImage = null;
+            this.bunifuButton21.OnIdleState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
+            this.bunifuButton21.OnIdleState.BorderRadius = 1;
+            this.bunifuButton21.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
+            this.bunifuButton21.OnIdleState.BorderThickness = 1;
+            this.bunifuButton21.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
+            this.bunifuButton21.OnIdleState.ForeColor = System.Drawing.Color.White;
+            this.bunifuButton21.OnIdleState.IconLeftImage = null;
+            this.bunifuButton21.OnIdleState.IconRightImage = null;
+            this.bunifuButton21.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(85)))), ((int)(((byte)(137)))));
+            this.bunifuButton21.OnPressedState.BorderRadius = 1;
+            this.bunifuButton21.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
+            this.bunifuButton21.OnPressedState.BorderThickness = 1;
+            this.bunifuButton21.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(85)))), ((int)(((byte)(137)))));
+            this.bunifuButton21.OnPressedState.ForeColor = System.Drawing.Color.White;
+            this.bunifuButton21.OnPressedState.IconLeftImage = null;
+            this.bunifuButton21.OnPressedState.IconRightImage = null;
+            this.bunifuButton21.Size = new System.Drawing.Size(273, 32);
+            this.bunifuButton21.TabIndex = 0;
+            this.bunifuButton21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.bunifuButton21.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.bunifuButton21.TextMarginLeft = 0;
+            this.bunifuButton21.TextPadding = new System.Windows.Forms.Padding(0);
+            this.bunifuButton21.UseDefaultRadiusAndThickness = true;
+            this.bunifuButton21.Click += new System.EventHandler(this.bunifuButton21_Click);
             // 
             // tabPages
             // 
@@ -316,135 +318,6 @@ namespace iOverlay.Widgets
             this.tabPages.Name = "tabPages";
             this.tabPages.Size = new System.Drawing.Size(555, 250);
             this.tabPages.TabIndex = 3;
-            // 
-            // spotifySettingsPage
-            // 
-            this.spotifySettingsPage.Controls.Add(this.applySpotifySettings);
-            this.spotifySettingsPage.Controls.Add(this.spotifyDarkModeToggle);
-            this.spotifySettingsPage.Controls.Add(this.label9);
-            this.spotifySettingsPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spotifySettingsPage.Location = new System.Drawing.Point(0, 0);
-            this.spotifySettingsPage.Name = "spotifySettingsPage";
-            this.spotifySettingsPage.Size = new System.Drawing.Size(555, 250);
-            this.spotifySettingsPage.TabIndex = 0;
-            // 
-            // applySpotifySettings
-            // 
-            this.applySpotifySettings.AllowAnimations = true;
-            this.applySpotifySettings.AllowMouseEffects = true;
-            this.applySpotifySettings.AllowToggling = false;
-            this.applySpotifySettings.AnimationSpeed = 200;
-            this.applySpotifySettings.AutoGenerateColors = false;
-            this.applySpotifySettings.AutoRoundBorders = false;
-            this.applySpotifySettings.AutoSizeLeftIcon = true;
-            this.applySpotifySettings.AutoSizeRightIcon = true;
-            this.applySpotifySettings.BackColor = System.Drawing.Color.Transparent;
-            this.applySpotifySettings.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
-            this.applySpotifySettings.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("applySpotifySettings.BackgroundImage")));
-            this.applySpotifySettings.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            this.applySpotifySettings.ButtonText = "Apply";
-            this.applySpotifySettings.ButtonTextMarginLeft = 0;
-            this.applySpotifySettings.ColorContrastOnClick = 45;
-            this.applySpotifySettings.ColorContrastOnHover = 45;
-            this.applySpotifySettings.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges4.BottomLeft = true;
-            borderEdges4.BottomRight = true;
-            borderEdges4.TopLeft = true;
-            borderEdges4.TopRight = true;
-            this.applySpotifySettings.CustomizableEdges = borderEdges4;
-            this.applySpotifySettings.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.applySpotifySettings.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.applySpotifySettings.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.applySpotifySettings.DisabledForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
-            this.applySpotifySettings.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.ButtonStates.Pressed;
-            this.applySpotifySettings.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.applySpotifySettings.ForeColor = System.Drawing.Color.White;
-            this.applySpotifySettings.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.applySpotifySettings.IconLeftCursor = System.Windows.Forms.Cursors.Default;
-            this.applySpotifySettings.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
-            this.applySpotifySettings.IconMarginLeft = 11;
-            this.applySpotifySettings.IconPadding = 10;
-            this.applySpotifySettings.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.applySpotifySettings.IconRightCursor = System.Windows.Forms.Cursors.Default;
-            this.applySpotifySettings.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
-            this.applySpotifySettings.IconSize = 25;
-            this.applySpotifySettings.IdleBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
-            this.applySpotifySettings.IdleBorderRadius = 1;
-            this.applySpotifySettings.IdleBorderThickness = 1;
-            this.applySpotifySettings.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
-            this.applySpotifySettings.IdleIconLeftImage = null;
-            this.applySpotifySettings.IdleIconRightImage = null;
-            this.applySpotifySettings.IndicateFocus = false;
-            this.applySpotifySettings.Location = new System.Drawing.Point(137, 206);
-            this.applySpotifySettings.Margin = new System.Windows.Forms.Padding(3, 3, 1, 3);
-            this.applySpotifySettings.Name = "applySpotifySettings";
-            this.applySpotifySettings.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.applySpotifySettings.OnDisabledState.BorderRadius = 1;
-            this.applySpotifySettings.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            this.applySpotifySettings.OnDisabledState.BorderThickness = 1;
-            this.applySpotifySettings.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.applySpotifySettings.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
-            this.applySpotifySettings.OnDisabledState.IconLeftImage = null;
-            this.applySpotifySettings.OnDisabledState.IconRightImage = null;
-            this.applySpotifySettings.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(200)))), ((int)(((byte)(252)))));
-            this.applySpotifySettings.onHoverState.BorderRadius = 1;
-            this.applySpotifySettings.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            this.applySpotifySettings.onHoverState.BorderThickness = 1;
-            this.applySpotifySettings.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(200)))), ((int)(((byte)(252)))));
-            this.applySpotifySettings.onHoverState.ForeColor = System.Drawing.Color.White;
-            this.applySpotifySettings.onHoverState.IconLeftImage = null;
-            this.applySpotifySettings.onHoverState.IconRightImage = null;
-            this.applySpotifySettings.OnIdleState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
-            this.applySpotifySettings.OnIdleState.BorderRadius = 1;
-            this.applySpotifySettings.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            this.applySpotifySettings.OnIdleState.BorderThickness = 1;
-            this.applySpotifySettings.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
-            this.applySpotifySettings.OnIdleState.ForeColor = System.Drawing.Color.White;
-            this.applySpotifySettings.OnIdleState.IconLeftImage = null;
-            this.applySpotifySettings.OnIdleState.IconRightImage = null;
-            this.applySpotifySettings.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(85)))), ((int)(((byte)(137)))));
-            this.applySpotifySettings.OnPressedState.BorderRadius = 1;
-            this.applySpotifySettings.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            this.applySpotifySettings.OnPressedState.BorderThickness = 1;
-            this.applySpotifySettings.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(85)))), ((int)(((byte)(137)))));
-            this.applySpotifySettings.OnPressedState.ForeColor = System.Drawing.Color.White;
-            this.applySpotifySettings.OnPressedState.IconLeftImage = null;
-            this.applySpotifySettings.OnPressedState.IconRightImage = null;
-            this.applySpotifySettings.Size = new System.Drawing.Size(273, 32);
-            this.applySpotifySettings.TabIndex = 10;
-            this.applySpotifySettings.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.applySpotifySettings.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
-            this.applySpotifySettings.TextMarginLeft = 0;
-            this.applySpotifySettings.TextPadding = new System.Windows.Forms.Padding(0);
-            this.applySpotifySettings.UseDefaultRadiusAndThickness = true;
-            this.applySpotifySettings.Click += new System.EventHandler(this.applySpotifySettings_Click);
-            // 
-            // spotifyDarkModeToggle
-            // 
-            this.spotifyDarkModeToggle.BackColor = System.Drawing.Color.Transparent;
-            this.spotifyDarkModeToggle.Checked = true;
-            this.spotifyDarkModeToggle.CheckedBackColor = System.Drawing.Color.DodgerBlue;
-            this.spotifyDarkModeToggle.CheckedSwitchColor = System.Drawing.Color.White;
-            this.spotifyDarkModeToggle.CheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
-            this.spotifyDarkModeToggle.Location = new System.Drawing.Point(108, 15);
-            this.spotifyDarkModeToggle.Name = "spotifyDarkModeToggle";
-            this.spotifyDarkModeToggle.OutlineThickness = 2;
-            this.spotifyDarkModeToggle.Size = new System.Drawing.Size(42, 22);
-            this.spotifyDarkModeToggle.TabIndex = 6;
-            this.spotifyDarkModeToggle.UncheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
-            this.spotifyDarkModeToggle.UncheckedSwitchColor = System.Drawing.Color.White;
-            this.spotifyDarkModeToggle.UncheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 12.25F, System.Drawing.FontStyle.Bold);
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(10, 13);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(105, 23);
-            this.label9.TabIndex = 7;
-            this.label9.Text = "Dark Mode: ";
             // 
             // valorantSettingsPage
             // 
@@ -465,6 +338,33 @@ namespace iOverlay.Widgets
             this.valorantSettingsPage.Name = "valorantSettingsPage";
             this.valorantSettingsPage.Size = new System.Drawing.Size(555, 250);
             this.valorantSettingsPage.TabIndex = 1;
+            // 
+            // showWinPctAndKD
+            // 
+            this.showWinPctAndKD.BackColor = System.Drawing.Color.Transparent;
+            this.showWinPctAndKD.Checked = true;
+            this.showWinPctAndKD.CheckedBackColor = System.Drawing.Color.DodgerBlue;
+            this.showWinPctAndKD.CheckedSwitchColor = System.Drawing.Color.White;
+            this.showWinPctAndKD.CheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
+            this.showWinPctAndKD.Location = new System.Drawing.Point(166, 87);
+            this.showWinPctAndKD.Name = "showWinPctAndKD";
+            this.showWinPctAndKD.OutlineThickness = 2;
+            this.showWinPctAndKD.Size = new System.Drawing.Size(42, 22);
+            this.showWinPctAndKD.TabIndex = 11;
+            this.showWinPctAndKD.UncheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
+            this.showWinPctAndKD.UncheckedSwitchColor = System.Drawing.Color.White;
+            this.showWinPctAndKD.UncheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 12.25F, System.Drawing.FontStyle.Bold);
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(20, 87);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(152, 23);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Show Win % | KD: ";
             // 
             // valorantDarkModeToggle
             // 
@@ -791,6 +691,135 @@ namespace iOverlay.Widgets
             this.valorantNameLabel.TabIndex = 0;
             this.valorantNameLabel.Text = "Valorant Tag:";
             // 
+            // spotifySettingsPage
+            // 
+            this.spotifySettingsPage.Controls.Add(this.applySpotifySettings);
+            this.spotifySettingsPage.Controls.Add(this.spotifyDarkModeToggle);
+            this.spotifySettingsPage.Controls.Add(this.label9);
+            this.spotifySettingsPage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spotifySettingsPage.Location = new System.Drawing.Point(0, 0);
+            this.spotifySettingsPage.Name = "spotifySettingsPage";
+            this.spotifySettingsPage.Size = new System.Drawing.Size(555, 250);
+            this.spotifySettingsPage.TabIndex = 0;
+            // 
+            // applySpotifySettings
+            // 
+            this.applySpotifySettings.AllowAnimations = true;
+            this.applySpotifySettings.AllowMouseEffects = true;
+            this.applySpotifySettings.AllowToggling = false;
+            this.applySpotifySettings.AnimationSpeed = 200;
+            this.applySpotifySettings.AutoGenerateColors = false;
+            this.applySpotifySettings.AutoRoundBorders = false;
+            this.applySpotifySettings.AutoSizeLeftIcon = true;
+            this.applySpotifySettings.AutoSizeRightIcon = true;
+            this.applySpotifySettings.BackColor = System.Drawing.Color.Transparent;
+            this.applySpotifySettings.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
+            this.applySpotifySettings.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("applySpotifySettings.BackgroundImage")));
+            this.applySpotifySettings.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
+            this.applySpotifySettings.ButtonText = "Apply";
+            this.applySpotifySettings.ButtonTextMarginLeft = 0;
+            this.applySpotifySettings.ColorContrastOnClick = 45;
+            this.applySpotifySettings.ColorContrastOnHover = 45;
+            this.applySpotifySettings.Cursor = System.Windows.Forms.Cursors.Default;
+            borderEdges4.BottomLeft = true;
+            borderEdges4.BottomRight = true;
+            borderEdges4.TopLeft = true;
+            borderEdges4.TopRight = true;
+            this.applySpotifySettings.CustomizableEdges = borderEdges4;
+            this.applySpotifySettings.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.applySpotifySettings.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.applySpotifySettings.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.applySpotifySettings.DisabledForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.applySpotifySettings.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.ButtonStates.Pressed;
+            this.applySpotifySettings.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.applySpotifySettings.ForeColor = System.Drawing.Color.White;
+            this.applySpotifySettings.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.applySpotifySettings.IconLeftCursor = System.Windows.Forms.Cursors.Default;
+            this.applySpotifySettings.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
+            this.applySpotifySettings.IconMarginLeft = 11;
+            this.applySpotifySettings.IconPadding = 10;
+            this.applySpotifySettings.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.applySpotifySettings.IconRightCursor = System.Windows.Forms.Cursors.Default;
+            this.applySpotifySettings.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
+            this.applySpotifySettings.IconSize = 25;
+            this.applySpotifySettings.IdleBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
+            this.applySpotifySettings.IdleBorderRadius = 1;
+            this.applySpotifySettings.IdleBorderThickness = 1;
+            this.applySpotifySettings.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
+            this.applySpotifySettings.IdleIconLeftImage = null;
+            this.applySpotifySettings.IdleIconRightImage = null;
+            this.applySpotifySettings.IndicateFocus = false;
+            this.applySpotifySettings.Location = new System.Drawing.Point(137, 206);
+            this.applySpotifySettings.Margin = new System.Windows.Forms.Padding(3, 3, 1, 3);
+            this.applySpotifySettings.Name = "applySpotifySettings";
+            this.applySpotifySettings.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.applySpotifySettings.OnDisabledState.BorderRadius = 1;
+            this.applySpotifySettings.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
+            this.applySpotifySettings.OnDisabledState.BorderThickness = 1;
+            this.applySpotifySettings.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.applySpotifySettings.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.applySpotifySettings.OnDisabledState.IconLeftImage = null;
+            this.applySpotifySettings.OnDisabledState.IconRightImage = null;
+            this.applySpotifySettings.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(200)))), ((int)(((byte)(252)))));
+            this.applySpotifySettings.onHoverState.BorderRadius = 1;
+            this.applySpotifySettings.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
+            this.applySpotifySettings.onHoverState.BorderThickness = 1;
+            this.applySpotifySettings.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(200)))), ((int)(((byte)(252)))));
+            this.applySpotifySettings.onHoverState.ForeColor = System.Drawing.Color.White;
+            this.applySpotifySettings.onHoverState.IconLeftImage = null;
+            this.applySpotifySettings.onHoverState.IconRightImage = null;
+            this.applySpotifySettings.OnIdleState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
+            this.applySpotifySettings.OnIdleState.BorderRadius = 1;
+            this.applySpotifySettings.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
+            this.applySpotifySettings.OnIdleState.BorderThickness = 1;
+            this.applySpotifySettings.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(156)))), ((int)(((byte)(250)))));
+            this.applySpotifySettings.OnIdleState.ForeColor = System.Drawing.Color.White;
+            this.applySpotifySettings.OnIdleState.IconLeftImage = null;
+            this.applySpotifySettings.OnIdleState.IconRightImage = null;
+            this.applySpotifySettings.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(85)))), ((int)(((byte)(137)))));
+            this.applySpotifySettings.OnPressedState.BorderRadius = 1;
+            this.applySpotifySettings.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
+            this.applySpotifySettings.OnPressedState.BorderThickness = 1;
+            this.applySpotifySettings.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(85)))), ((int)(((byte)(137)))));
+            this.applySpotifySettings.OnPressedState.ForeColor = System.Drawing.Color.White;
+            this.applySpotifySettings.OnPressedState.IconLeftImage = null;
+            this.applySpotifySettings.OnPressedState.IconRightImage = null;
+            this.applySpotifySettings.Size = new System.Drawing.Size(273, 32);
+            this.applySpotifySettings.TabIndex = 10;
+            this.applySpotifySettings.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.applySpotifySettings.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.applySpotifySettings.TextMarginLeft = 0;
+            this.applySpotifySettings.TextPadding = new System.Windows.Forms.Padding(0);
+            this.applySpotifySettings.UseDefaultRadiusAndThickness = true;
+            this.applySpotifySettings.Click += new System.EventHandler(this.applySpotifySettings_Click);
+            // 
+            // spotifyDarkModeToggle
+            // 
+            this.spotifyDarkModeToggle.BackColor = System.Drawing.Color.Transparent;
+            this.spotifyDarkModeToggle.Checked = true;
+            this.spotifyDarkModeToggle.CheckedBackColor = System.Drawing.Color.DodgerBlue;
+            this.spotifyDarkModeToggle.CheckedSwitchColor = System.Drawing.Color.White;
+            this.spotifyDarkModeToggle.CheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
+            this.spotifyDarkModeToggle.Location = new System.Drawing.Point(108, 15);
+            this.spotifyDarkModeToggle.Name = "spotifyDarkModeToggle";
+            this.spotifyDarkModeToggle.OutlineThickness = 2;
+            this.spotifyDarkModeToggle.Size = new System.Drawing.Size(42, 22);
+            this.spotifyDarkModeToggle.TabIndex = 6;
+            this.spotifyDarkModeToggle.UncheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
+            this.spotifyDarkModeToggle.UncheckedSwitchColor = System.Drawing.Color.White;
+            this.spotifyDarkModeToggle.UncheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 12.25F, System.Drawing.FontStyle.Bold);
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(10, 13);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(105, 23);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "Dark Mode: ";
+            // 
             // bunifuTransition1
             // 
             this.bunifuTransition1.AnimationType = Utilities.BunifuPages.BunifuAnimatorNS.AnimationType.VertSlide;
@@ -812,33 +841,6 @@ namespace iOverlay.Widgets
             animation1.TransparencyCoeff = 0F;
             this.bunifuTransition1.DefaultAnimation = animation1;
             // 
-            // showWinPctAndKD
-            // 
-            this.showWinPctAndKD.BackColor = System.Drawing.Color.Transparent;
-            this.showWinPctAndKD.Checked = true;
-            this.showWinPctAndKD.CheckedBackColor = System.Drawing.Color.DodgerBlue;
-            this.showWinPctAndKD.CheckedSwitchColor = System.Drawing.Color.White;
-            this.showWinPctAndKD.CheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
-            this.showWinPctAndKD.Location = new System.Drawing.Point(166, 87);
-            this.showWinPctAndKD.Name = "showWinPctAndKD";
-            this.showWinPctAndKD.OutlineThickness = 2;
-            this.showWinPctAndKD.Size = new System.Drawing.Size(42, 22);
-            this.showWinPctAndKD.TabIndex = 11;
-            this.showWinPctAndKD.UncheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
-            this.showWinPctAndKD.UncheckedSwitchColor = System.Drawing.Color.White;
-            this.showWinPctAndKD.UncheckedSwitchStyle = Bunifu.UI.WinForms.BunifuToggleSwitch2.SwitchStyles.Fill;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 12.25F, System.Drawing.FontStyle.Bold);
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(20, 87);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(152, 23);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "Show Win % | KD: ";
-            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -857,10 +859,10 @@ namespace iOverlay.Widgets
             this.controlPanel.PerformLayout();
             this.tabList.ResumeLayout(false);
             this.tabPages.ResumeLayout(false);
-            this.spotifySettingsPage.ResumeLayout(false);
-            this.spotifySettingsPage.PerformLayout();
             this.valorantSettingsPage.ResumeLayout(false);
             this.valorantSettingsPage.PerformLayout();
+            this.spotifySettingsPage.ResumeLayout(false);
+            this.spotifySettingsPage.PerformLayout();
             this.ResumeLayout(false);
 
         }

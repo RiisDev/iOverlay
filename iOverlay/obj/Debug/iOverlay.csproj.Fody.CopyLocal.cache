@@ -1,6 +1,6 @@
-E:\Sources\C#\Public Source Releases\iOverlay\packages\Microsoft.Web.WebView2.1.0.1518.46\lib\net45\Microsoft.Web.WebView2.Core.xml
-E:\Sources\C#\Public Source Releases\iOverlay\packages\Microsoft.Web.WebView2.1.0.1518.46\lib\net45\Microsoft.Web.WebView2.WinForms.xml
-E:\Sources\C#\Public Source Releases\iOverlay\packages\Microsoft.Web.WebView2.1.0.1518.46\lib\net45\Microsoft.Web.WebView2.Wpf.xml
+E:\Sources\C#\Public Source Releases\iOverlay\packages\Microsoft.Web.WebView2.1.0.1587.40\lib\net45\Microsoft.Web.WebView2.Core.xml
+E:\Sources\C#\Public Source Releases\iOverlay\packages\Microsoft.Web.WebView2.1.0.1587.40\lib\net45\Microsoft.Web.WebView2.WinForms.xml
+E:\Sources\C#\Public Source Releases\iOverlay\packages\Microsoft.Web.WebView2.1.0.1587.40\lib\net45\Microsoft.Web.WebView2.Wpf.xml
 E:\Sources\C#\Public Source Releases\iOverlay\packages\Microsoft.Win32.Registry.5.0.0\lib\net461\Microsoft.Win32.Registry.xml
 E:\Sources\C#\Public Source Releases\iOverlay\packages\Microsoft.Win32.Registry.AccessControl.7.0.0\lib\net462\Microsoft.Win32.Registry.AccessControl.xml
 E:\Sources\C#\Public Source Releases\iOverlay\packages\Microsoft.Win32.SystemEvents.7.0.0\lib\net462\Microsoft.Win32.SystemEvents.xml
@@ -12,7 +12,7 @@ E:\Sources\C#\Public Source Releases\iOverlay\packages\System.Configuration.Conf
 E:\Sources\C#\Public Source Releases\iOverlay\packages\System.Data.Odbc.7.0.0\lib\net462\System.Data.Odbc.xml
 E:\Sources\C#\Public Source Releases\iOverlay\packages\System.Data.OleDb.7.0.0\lib\net462\System.Data.OleDb.xml
 E:\Sources\C#\Public Source Releases\iOverlay\packages\System.Data.SqlClient.4.8.5\lib\net461\System.Data.SqlClient.xml
-E:\Sources\C#\Public Source Releases\iOverlay\packages\System.Diagnostics.DiagnosticSource.7.0.0\lib\net462\System.Diagnostics.DiagnosticSource.xml
+E:\Sources\C#\Public Source Releases\iOverlay\packages\System.Diagnostics.DiagnosticSource.7.0.1\lib\net462\System.Diagnostics.DiagnosticSource.xml
 E:\Sources\C#\Public Source Releases\iOverlay\packages\System.Diagnostics.EventLog.7.0.0\lib\net462\System.Diagnostics.EventLog.xml
 E:\Sources\C#\Public Source Releases\iOverlay\packages\System.Diagnostics.PerformanceCounter.7.0.0\lib\net462\System.Diagnostics.PerformanceCounter.xml
 E:\Sources\C#\Public Source Releases\iOverlay\packages\System.Drawing.Common.7.0.0\lib\net462\System.Drawing.Common.xml
@@ -24,8 +24,8 @@ E:\Sources\C#\Public Source Releases\iOverlay\packages\System.Numerics.Vectors.4
 E:\Sources\C#\Public Source Releases\iOverlay\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.xml
 E:\Sources\C#\Public Source Releases\iOverlay\packages\System.Security.AccessControl.6.0.0\lib\net461\System.Security.AccessControl.xml
 E:\Sources\C#\Public Source Releases\iOverlay\packages\System.Security.Cryptography.Cng.5.0.0\lib\net47\System.Security.Cryptography.Cng.xml
-E:\Sources\C#\Public Source Releases\iOverlay\packages\System.Security.Cryptography.Pkcs.7.0.0\lib\net462\System.Security.Cryptography.Pkcs.xml
-E:\Sources\C#\Public Source Releases\iOverlay\packages\System.Security.Cryptography.ProtectedData.7.0.0\lib\net462\System.Security.Cryptography.ProtectedData.xml
+E:\Sources\C#\Public Source Releases\iOverlay\packages\System.Security.Cryptography.Pkcs.7.0.1\lib\net462\System.Security.Cryptography.Pkcs.xml
+E:\Sources\C#\Public Source Releases\iOverlay\packages\System.Security.Cryptography.ProtectedData.7.0.1\lib\net462\System.Security.Cryptography.ProtectedData.xml
 E:\Sources\C#\Public Source Releases\iOverlay\packages\System.Security.Cryptography.Xml.7.0.1\lib\net462\System.Security.Cryptography.Xml.xml
 E:\Sources\C#\Public Source Releases\iOverlay\packages\System.Security.Permissions.7.0.0\lib\net462\System.Security.Permissions.xml
 E:\Sources\C#\Public Source Releases\iOverlay\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.xml

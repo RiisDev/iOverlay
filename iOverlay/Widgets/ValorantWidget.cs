@@ -52,9 +52,9 @@ namespace iOverlay.Widgets
         private Tuple<string, int> GetUserRr()
         {
             string returnedData = _client.DownloadString($"https://api.kyroskoh.xyz/valorant/v1/mmr/NA/{Properties.Settings.Default.valorantUsername}/{Properties.Settings.Default.valorantTagLine}");
-            string rrParsed = returnedData.Substring(returnedData.IndexOf("-") + 2).Replace("RR.", "");
+            string rrParsed = returnedData.Substring(returnedData.IndexOf("-") + 2).Replace("RR.", "").Replace("RR", "");
             string rankNameParsed = returnedData.Substring(0, returnedData.IndexOf("-") - 1);
-
+            Console.WriteLine(rrParsed);
             int rrCount = int.Parse(rrParsed);
             string rankName = rankNameParsed;
 
@@ -105,6 +105,7 @@ namespace iOverlay.Widgets
 
             webView.CoreWebView2.NavigationCompleted += async (saef, esr) =>
             {
+                Console.WriteLine("nav complet");
                 string bodyInnerHtml = await webView.CoreWebView2.ExecuteScriptAsync("document.body.innerText");
                 bodyInnerHtml = bodyInnerHtml.Substring(1, bodyInnerHtml.Length - 2).Replace("\\", "");
                 JToken jsonData = JToken.Parse(bodyInnerHtml);
@@ -122,6 +123,7 @@ namespace iOverlay.Widgets
             };
 
             UpdateRr();
+
             webView.CoreWebView2.Navigate($"https://api.tracker.gg/api/v2/valorant/standard/profile/riot/{GetParsedRiotName()}?forceCollect=true");
 
             await Task.Run(async () =>
