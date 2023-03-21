@@ -45,16 +45,23 @@ namespace iOverlay.Widgets
                     {
                         JToken returnedData = JToken.Parse(downloadStringArgs.Result);
 
-                        if (returnedData["progress_ms"] == null) throw new JsonReaderException();
-                        if (returnedData["item"] == null) throw new JsonReaderException(); 
-                        if (returnedData["item"]["duration_ms"] == null) throw new JsonReaderException();
-
                         double songTimeStamp = returnedData.Value<double>("progress_ms");
                         double songDuration = returnedData["item"].Value<double>("duration_ms");
+                        string songName = returnedData["item"].Value<string>("name");
+                        string artistName = returnedData["item"]["artists"][0].Value<string>("name");
+                        string albumArtData = returnedData["item"]["album"]["images"][0].Value<string>("url");
 
                         int percent = (int)Math.Floor((songTimeStamp / songDuration) * 100);
 
                         bunifuProgressBar1.Invoke((Action)(() => bunifuProgressBar1.Value = percent));
+
+                        if (songNameLabel.Text != songName)
+                        {
+                            songNameLabel.Invoke((Action)(() => songNameLabel.Text = songName));
+                            artistNameLabel.Invoke((Action)(() => artistNameLabel.Text = artistName));
+                            albumArt.Invoke((Action)(() => albumArt.Load(albumArtData)));
+                        }
+
 
                         client.DownloadStringAsync(new Uri("https://api.spotify.com/v1/me/player"));
                     }
@@ -79,6 +86,8 @@ namespace iOverlay.Widgets
 
         private async void HandleWebExceptions(WebClient webClient, TargetInvocationException exceptionCode)
         {
+            Console.WriteLine(exceptionCode.ToString());
+
             if (exceptionCode == null) return;
             if (exceptionCode.InnerException == null) return;
 
@@ -93,6 +102,7 @@ namespace iOverlay.Widgets
             }
             else if (exceptionCode.InnerException.Message.Contains("429"))
             {
+                Console.WriteLine(webClient.ResponseHeaders);
                 await Task.Delay(30000);
                 webClient.DownloadStringAsync(new Uri("https://api.spotify.com/v1/me/player"));
             }
@@ -114,7 +124,7 @@ namespace iOverlay.Widgets
 
         private async void SpotifyWidget_Load(object sender, EventArgs e)
         {
-            #if DEBUG
+            #if DEBUG 
                 RefreshSpotify.Visible = true;
             #endif
             ApplyTheme(darkMode: Properties.Settings.Default.spotifyDarkMode);
@@ -133,10 +143,7 @@ namespace iOverlay.Widgets
                     Size = new Size(365, 70);
                     webView.CoreWebView2.Navigate("https://open.spotify.com/");
                 }
-                else if (webPage.Contains("Email address or username"))
-                {
-                    Size = new Size(365, 630);
-                }
+                else if (webPage.Contains("Email address or username")) Size = new Size(365, 630);
 
                 Region = Region.FromHrgn(MiscFunctions.CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
                 _refreshed = true;
@@ -155,38 +162,7 @@ namespace iOverlay.Widgets
 
             while (_spotifyAuth == "") await Task.Delay(50);
 
-            webView.CoreWebView2.WebMessageReceived += CoreWebView2_WebMessageReceived;
-
-            await webView.CoreWebView2.ExecuteScriptAsync(@"
-const getArtist = () => {
-  const artistsRaw = document.querySelectorAll('[data-testid=""context-item-info-artist""]');
-  return Array.from(artistsRaw).map(a => a.innerHTML).join(', ');
-};
-setInterval(() => {
-  const message = [
-    getArtist(),
-    document.querySelector('[data-testid=""context-item-link""]').innerHTML,
-    document.querySelector('[data-testid=""cover-art-image""]').src,
-    document.querySelector('[data-testid=""playback-duration""]').innerHTML,
-    document.querySelector('[data-testid=""playback-position""]').innerHTML,
-    document.querySelector('[data-testid=""progress-bar""]').style.cssText
-  ].join('|');
-  window.chrome.webview.postMessage(message);
-}, 0);
-");
-
             await Task.Run(SpotifyTimestampHandler);
-        }
-
-        private void CoreWebView2_WebMessageReceived(object sender, CoreWebView2WebMessageReceivedEventArgs e)
-        {
-            var data = e.TryGetWebMessageAsString().Split('|');
-
-            if (data[1] == songNameLabel.Text) return;
-
-            artistNameLabel.Text = data[0];
-            songNameLabel.Text = data[1];
-            albumArt.Load(data[2]);
         }
 
         private void RefreshSpotify_Click(object sender, EventArgs e)
