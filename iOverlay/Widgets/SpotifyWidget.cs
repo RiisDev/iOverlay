@@ -91,7 +91,7 @@ namespace iOverlay.Widgets
             if (exceptionCode == null) return;
             if (exceptionCode.InnerException == null) return;
 
-            if (exceptionCode.InnerException.Message.Contains("401"))
+            if (exceptionCode.InnerException.Message.Contains("401")) // Not working
             {
                 _refreshed = false;
 
