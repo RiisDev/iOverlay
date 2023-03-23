@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Net;
 using System.Reflection;
+using System.Reflection.Emit;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,8 +15,12 @@ namespace iOverlay.Widgets
 {
     public partial class SpotifyWidget : Form
     {
+        private string cachedSongName = "";
+        private string songName = "";
         private string _spotifyAuth = "";
-        private bool _refreshed;
+        private bool _refreshed = false;
+        private bool _401Running = false;
+        private int songLabelIndex = 0;
 
         public SpotifyWidget()
         {
@@ -47,7 +52,7 @@ namespace iOverlay.Widgets
 
                         double songTimeStamp = returnedData.Value<double>("progress_ms");
                         double songDuration = returnedData["item"].Value<double>("duration_ms");
-                        string songName = returnedData["item"].Value<string>("name");
+                        songName = returnedData["item"].Value<string>("name") + " ";
                         string artistName = returnedData["item"]["artists"][0].Value<string>("name");
                         string albumArtData = returnedData["item"]["album"]["images"][0].Value<string>("url");
 
@@ -55,13 +60,14 @@ namespace iOverlay.Widgets
 
                         bunifuProgressBar1.Invoke((Action)(() => bunifuProgressBar1.Value = percent));
 
-                        if (songNameLabel.Text != songName)
+
+                        if (songName != cachedSongName)
                         {
                             songNameLabel.Invoke((Action)(() => songNameLabel.Text = songName));
                             artistNameLabel.Invoke((Action)(() => artistNameLabel.Text = artistName));
                             albumArt.Invoke((Action)(() => albumArt.Load(albumArtData)));
+                            cachedSongName = songName;
                         }
-
 
                         client.DownloadStringAsync(new Uri("https://api.spotify.com/v1/me/player"));
                     }
@@ -86,46 +92,40 @@ namespace iOverlay.Widgets
 
         private async void HandleWebExceptions(WebClient webClient, TargetInvocationException exceptionCode)
         {
-            Console.WriteLine(exceptionCode.ToString());
-
             if (exceptionCode == null) return;
             if (exceptionCode.InnerException == null) return;
 
-            if (exceptionCode.InnerException.Message.Contains("401")) // Not working
+            if (exceptionCode.InnerException.Message.Contains("401"))
             {
-                _refreshed = false;
+                if (!_401Running && !webClient.IsBusy)
+                {
+                    _401Running = true;
+                    _refreshed = false;
 
-                webView.Invoke((Action)(() => webView.CoreWebView2.Navigate("https://accounts.spotify.com/en/login")));
+                    webView.Invoke((Action)(() => webView.CoreWebView2.Navigate("https://accounts.spotify.com/en/login")));
 
-                while (!_refreshed) await Task.Delay(25);
-                webClient.DownloadStringAsync(new Uri("https://api.spotify.com/v1/me/player"));
+                    while (!_refreshed) await Task.Delay(25);
+
+                    webClient.DownloadStringAsync(new Uri("https://api.spotify.com/v1/me/player"));
+
+                    _401Running = false;
+                }
             }
             else if (exceptionCode.InnerException.Message.Contains("429"))
             {
-                Console.WriteLine(webClient.ResponseHeaders);
-                await Task.Delay(30000);
+                await Task.Delay(int.Parse(webClient.ResponseHeaders["Retry-After"]));
                 webClient.DownloadStringAsync(new Uri("https://api.spotify.com/v1/me/player"));
             }
-            else if (exceptionCode.InnerException.Message.Contains("502"))
-            {
-                Debug.WriteLine("502 Re-Running...");
-                webClient.DownloadStringAsync(new Uri("https://api.spotify.com/v1/me/player"));
-            }
-            else if (exceptionCode.InnerException.Message.Contains("503"))
-            {
-                Debug.WriteLine("503 Re-Running...");
-                webClient.DownloadStringAsync(new Uri("https://api.spotify.com/v1/me/player"));
-            }
-            else
-            {
-                Debug.WriteLine(exceptionCode.InnerException);
-            }
+            else if (exceptionCode.InnerException.Message.Contains("502")) webClient.DownloadStringAsync(new Uri("https://api.spotify.com/v1/me/player"));
+            else if (exceptionCode.InnerException.Message.Contains("503")) webClient.DownloadStringAsync(new Uri("https://api.spotify.com/v1/me/player"));
+            else Debug.WriteLine(exceptionCode.InnerException);
         }
 
         private async void SpotifyWidget_Load(object sender, EventArgs e)
         {
             #if DEBUG 
                 RefreshSpotify.Visible = true;
+                throwfouroone.Visible = true;
             #endif
             ApplyTheme(darkMode: Properties.Settings.Default.spotifyDarkMode);
             Region = Region.FromHrgn(MiscFunctions.CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
@@ -167,7 +167,27 @@ namespace iOverlay.Widgets
 
         private void RefreshSpotify_Click(object sender, EventArgs e)
         {
-            webView.Invoke((Action)(() => webView.CoreWebView2.Navigate("https://accounts.spotify.com/en/login")));
+           // webView.Invoke((Action)(() => webView.CoreWebView2.Navigate("https://accounts.spotify.com/en/login")));
+        }
+
+        private void scrollTextTimer_Tick(object sender, EventArgs e)
+        {
+            if (TextRenderer.MeasureText(songName, songNameLabel.Font).Width > songNameLabel.Width)
+            {
+                songLabelIndex++;
+
+                songNameLabel.Invoke((Action)(() => {
+                    try
+                    {
+                        songNameLabel.Text = songName.Substring(songLabelIndex) + songName.Substring(0, songLabelIndex);
+                    }
+                    catch { songLabelIndex = 0; }
+                }));
+            }
+            else
+            {
+                songLabelIndex = 0;
+            }
         }
     }
 }

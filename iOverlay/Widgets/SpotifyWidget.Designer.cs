@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SpotifyWidget));
             this.songNameLabel = new Bunifu.UI.WinForms.BunifuLabel();
             this.artistNameLabel = new Bunifu.UI.WinForms.BunifuLabel();
@@ -35,6 +36,8 @@
             this.webView = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.albumArt = new Bunifu.UI.WinForms.BunifuPictureBox();
             this.RefreshSpotify = new System.Windows.Forms.Button();
+            this.throwfouroone = new System.Windows.Forms.Button();
+            this.scrollTextTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.webView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.albumArt)).BeginInit();
             this.SuspendLayout();
@@ -43,13 +46,14 @@
             // 
             this.songNameLabel.AllowParentOverrides = false;
             this.songNameLabel.AutoEllipsis = false;
+            this.songNameLabel.AutoSize = false;
             this.songNameLabel.Cursor = System.Windows.Forms.Cursors.Default;
             this.songNameLabel.CursorType = System.Windows.Forms.Cursors.Default;
             this.songNameLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.songNameLabel.Location = new System.Drawing.Point(77, 8);
             this.songNameLabel.Name = "songNameLabel";
             this.songNameLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.songNameLabel.Size = new System.Drawing.Size(16, 21);
+            this.songNameLabel.Size = new System.Drawing.Size(283, 21);
             this.songNameLabel.TabIndex = 2;
             this.songNameLabel.Text = "....";
             this.songNameLabel.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
@@ -135,11 +139,28 @@
             this.RefreshSpotify.Visible = false;
             this.RefreshSpotify.Click += new System.EventHandler(this.RefreshSpotify_Click);
             // 
+            // throwfouroone
+            // 
+            this.throwfouroone.Location = new System.Drawing.Point(290, 20);
+            this.throwfouroone.Name = "throwfouroone";
+            this.throwfouroone.Size = new System.Drawing.Size(75, 23);
+            this.throwfouroone.TabIndex = 10;
+            this.throwfouroone.Text = "throw code";
+            this.throwfouroone.UseVisualStyleBackColor = true;
+            this.throwfouroone.Visible = false;
+            // 
+            // scrollTextTimer
+            // 
+            this.scrollTextTimer.Enabled = true;
+            this.scrollTextTimer.Interval = 400;
+            this.scrollTextTimer.Tick += new System.EventHandler(this.scrollTextTimer_Tick);
+            // 
             // SpotifyWidget
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(363, 69);
+            this.Controls.Add(this.throwfouroone);
             this.Controls.Add(this.RefreshSpotify);
             this.Controls.Add(this.albumArt);
             this.Controls.Add(this.webView);
@@ -166,5 +187,7 @@
         private Microsoft.Web.WebView2.WinForms.WebView2 webView;
         private Bunifu.UI.WinForms.BunifuPictureBox albumArt;
         private System.Windows.Forms.Button RefreshSpotify;
+        private System.Windows.Forms.Button throwfouroone;
+        private System.Windows.Forms.Timer scrollTextTimer;
     }
 }
