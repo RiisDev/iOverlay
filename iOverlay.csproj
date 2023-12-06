@@ -1,0 +1,122 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>iOverlay.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Images\**" />
+    <EmbeddedResource Remove="Images\**" />
+    <None Remove="Images\**" />
+    <Page Remove="Images\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\Black Future.otf" />
+    <None Remove="Assets\Images\Ascendant 1.png" />
+    <None Remove="Assets\Images\Ascendant 2.png" />
+    <None Remove="Assets\Images\Ascendant 3.png" />
+    <None Remove="Assets\Images\Ascent.png" />
+    <None Remove="Assets\Images\Bind.png" />
+    <None Remove="Assets\Images\Breeze.png" />
+    <None Remove="Assets\Images\Bronze 1.png" />
+    <None Remove="Assets\Images\Bronze 2.png" />
+    <None Remove="Assets\Images\Bronze 3.png" />
+    <None Remove="Assets\Images\Diamond 1.png" />
+    <None Remove="Assets\Images\Diamond 2.png" />
+    <None Remove="Assets\Images\Diamond 3.png" />
+    <None Remove="Assets\Images\Fracture.png" />
+    <None Remove="Assets\Images\Gold 1.png" />
+    <None Remove="Assets\Images\Gold 2.png" />
+    <None Remove="Assets\Images\Gold 3.png" />
+    <None Remove="Assets\Images\Haven.png" />
+    <None Remove="Assets\Images\Icebox.png" />
+    <None Remove="Assets\Images\Immortal 1.png" />
+    <None Remove="Assets\Images\Immortal 2.png" />
+    <None Remove="Assets\Images\Immortal 3.png" />
+    <None Remove="Assets\Images\Iron 1.png" />
+    <None Remove="Assets\Images\Iron 2.png" />
+    <None Remove="Assets\Images\Iron 3.png" />
+    <None Remove="Assets\Images\Lotus.png" />
+    <None Remove="Assets\Images\Platinum 1.png" />
+    <None Remove="Assets\Images\Platinum 2.png" />
+    <None Remove="Assets\Images\Platinum 3.png" />
+    <None Remove="Assets\Images\Radiant.png" />
+    <None Remove="Assets\Images\settingsIcon.png" />
+    <None Remove="Assets\Images\Silver 1.png" />
+    <None Remove="Assets\Images\Silver 2.png" />
+    <None Remove="Assets\Images\Silver 3.png" />
+    <None Remove="Assets\Images\Split.png" />
+    <None Remove="Assets\Images\SpotifyIcon.png" />
+    <None Remove="Assets\Images\Sunset.png" />
+    <None Remove="Assets\Images\Unranked.png" />
+    <None Remove="Assets\Images\ValorantIcon.png" />
+    <None Remove="Assets\Valorant Font.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="iOverlay.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2151.40" />
+    <PackageReference Include="WPF-UI" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Black Future.otf" />
+    <Resource Include="Assets\Images\Ascendant 1.png" />
+    <Resource Include="Assets\Images\Ascendant 2.png" />
+    <Resource Include="Assets\Images\Ascendant 3.png" />
+    <Resource Include="Assets\Images\Ascent.png" />
+    <Resource Include="Assets\Images\Bind.png" />
+    <Resource Include="Assets\Images\Breeze.png" />
+    <Resource Include="Assets\Images\Bronze 1.png" />
+    <Resource Include="Assets\Images\Bronze 2.png" />
+    <Resource Include="Assets\Images\Bronze 3.png" />
+    <Resource Include="Assets\Images\Diamond 1.png" />
+    <Resource Include="Assets\Images\Diamond 2.png" />
+    <Resource Include="Assets\Images\Diamond 3.png" />
+    <Resource Include="Assets\Images\Fracture.png" />
+    <Resource Include="Assets\Images\Gold 1.png" />
+    <Resource Include="Assets\Images\Gold 2.png" />
+    <Resource Include="Assets\Images\Gold 3.png" />
+    <Resource Include="Assets\Images\Haven.png" />
+    <Resource Include="Assets\Images\Icebox.png" />
+    <Resource Include="Assets\Images\Immortal 1.png" />
+    <Resource Include="Assets\Images\Immortal 2.png" />
+    <Resource Include="Assets\Images\Immortal 3.png" />
+    <Resource Include="Assets\Images\Iron 1.png" />
+    <Resource Include="Assets\Images\Iron 2.png" />
+    <Resource Include="Assets\Images\Iron 3.png" />
+    <Resource Include="Assets\Images\Lotus.png" />
+    <Resource Include="Assets\Images\Platinum 1.png" />
+    <Resource Include="Assets\Images\Platinum 2.png" />
+    <Resource Include="Assets\Images\Platinum 3.png" />
+    <Resource Include="Assets\Images\Radiant.png" />
+    <Resource Include="Assets\Images\settingsIcon.png" />
+    <Resource Include="Assets\Images\Silver 1.png" />
+    <Resource Include="Assets\Images\Silver 2.png" />
+    <Resource Include="Assets\Images\Silver 3.png" />
+    <Resource Include="Assets\Images\Split.png" />
+    <Resource Include="Assets\Images\SpotifyIcon.png" />
+    <Resource Include="Assets\Images\Sunset.png" />
+    <Resource Include="Assets\Images\Unranked.png" />
+    <Resource Include="Assets\Images\ValorantIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Assets\BypassCF.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="BypassCF.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
