@@ -1,9 +1,5 @@
-﻿#pragma warning disable CA2211
-#pragma warning disable CA1822
-
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Text.Json;
-using System.Windows;
 using System.Windows.Media;
 
 namespace iOverlay.Logic.WidgetLogic;
@@ -80,43 +76,40 @@ public record ValorantRank(string? Rank, string? RankIcon)
     {
         return new ValorantRank("Unranked", RankIcons.RankIcon["Unranked"]);
     }
+
 }
 
 public class ValorantLogic
 {
     internal HttpClient HttpClient = new();
 
-    public string? InternalRiotParse(string? riotParse, bool tracker = false)
+    private static string? InternalRiotParse(string? riotParse, bool tracker = false)
     {
         return riotParse?.Replace(" ", "%20").Replace("#", tracker ? "%23" : "/");
     }
 
-    public async Task<(ValorantRank, int)> GetCurrentRank(string? riotId)
+    public async Task<(ValorantRank, int, int)?> GetUserRankStats(string? riotId)
     {
         Retry:
-        HttpResponseMessage response =
-            await HttpClient.GetAsync(
-                $"https://api.kyroskoh.xyz/valorant/v1/mmr/NA/{InternalRiotParse(riotId)}?show=combo&display=0");
+        HttpResponseMessage response = await HttpClient.GetAsync($"https://api.kyroskoh.xyz/valorant/v1/mmrchange/NA/{InternalRiotParse(riotId)}?display=0");
+
         string netResponse = await response.Content.ReadAsStringAsync();
 
-        MessageBox.Show(netResponse);
+        if (netResponse.Contains("429")) return null;
+        if (!netResponse.Contains("Current", StringComparison.CurrentCultureIgnoreCase)) goto Retry;
+        
+        string currentRankRatingPart1 = netResponse[(netResponse.IndexOf("is ", StringComparison.Ordinal) + 3)..];
+        string currentRankRating = currentRankRatingPart1[..currentRankRatingPart1.IndexOf(' ', StringComparison.Ordinal)].Trim();
 
-        if (netResponse.Contains("429"))
-        {
-            await Task.Delay(5000);
-            goto Retry;
-        }
-        if (!netResponse.Contains("rr", StringComparison.CurrentCultureIgnoreCase)) goto Retry;
+        string currentRankPart1 = netResponse[(netResponse.IndexOf(" in ", StringComparison.Ordinal) + 4)..];
+        string currentRank = currentRankPart1[..currentRankPart1.IndexOf('.', StringComparison.Ordinal)];
 
+        string rankRatingChangePart1 = netResponse[(netResponse.IndexOf(value: '.', StringComparison.Ordinal) + 1)..];
+        string rankRatingChange = rankRatingChangePart1[..rankRatingChangePart1.IndexOf("RR", StringComparison.Ordinal)];
 
-        string rank = netResponse[..(netResponse.IndexOf('-', StringComparison.Ordinal) - 1)];
-        int rankRating =
-            int.Parse(netResponse[(netResponse.IndexOf('-', StringComparison.Ordinal) + 2)..netResponse.IndexOf('R')]);
-
-        return !rank.Contains("failed")
-            ? (new ValorantRank(rank, RankIcons.RankIcon[rank]), rankRating)
-            : (ValorantRank.Default(), 0);
+        return (new ValorantRank(currentRank, RankIcons.RankIcon[currentRank]), int.Parse(currentRankRating), int.Parse(rankRatingChange));
     }
+
 
     public async Task<(bool, string)> IsValidUser(string? riotId, bool checkTracker)
     {

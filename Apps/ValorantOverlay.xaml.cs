@@ -1,8 +1,10 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.IO;
+using System.Windows;
 using System.Windows.Media.Imaging;
-using System.Windows.Threading;
 using iOverlay.Logic;
 using iOverlay.Logic.WidgetLogic;
+#pragma warning disable IDE0028
 
 namespace iOverlay.Apps;
 
@@ -23,27 +25,18 @@ public partial class ValorantOverlay
 
     private readonly ValorantLogic _logic = new();
 
+    private int _lastEndedCount;
+    private long _lastFileSize;
     private int _oldRankRating;
     private bool _firstInvoke = true;
     private string _firstInvokeString = null!;
 
-    private readonly DispatcherTimer _rankChecker = new()
-    {
-        Interval = TimeSpan.FromMinutes(1)
-    };
+    private static readonly object LogLock = new();
 
-    public ValorantOverlay()
-    {
-        InitializeComponent();
-        _rankChecker.Tick += RankChecker_Tick;
-    }
+    public ValorantOverlay() => InitializeComponent();
 
-    public static T GetRandom<T>(IEnumerable<T> list)
-    {
-        IEnumerable<T> enumerable = list.ToList();
-        return enumerable.ElementAt(new Random(DateTime.Now.Millisecond).Next(enumerable.Count()));
-    }
 
+    //Match Ended
     private async void Window_Loaded(object sender, RoutedEventArgs e)
     {
         this.ApplyDraggable();
@@ -67,47 +60,101 @@ public partial class ValorantOverlay
 
         _firstInvokeString = isValidUser.Item2;
 
-        _rankChecker.Start();
-        RankChecker_Tick(null, null);
+        string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        string logsPath = Path.Combine(userProfile, "AppData", "Local", "Valorant", "Saved", "Logs");
+        string logPath = Path.Combine(logsPath, "ShooterGame.log");
+
+        new Task(async() =>
+        {
+            while (true)
+            {
+                await Task.Delay(500);
+                long currentFileSize = new FileInfo(logPath).Length;
+
+                if (currentFileSize == _lastFileSize) continue;
+
+                _lastFileSize = currentFileSize;
+
+                string fileText = SafeReadFile(logPath);
+                int matchEndedCount = fileText.Split("Match Ended").Length;
+
+                if (_lastEndedCount == matchEndedCount) continue;
+
+                await Task.Delay(5000);
+
+                RunRankCheck();
+                _lastEndedCount = matchEndedCount;
+            }
+        }).Start();
 
     }
 
-    private async void RankChecker_Tick(object? sender, EventArgs? e)
+    // Perhaps game loaded and ready: [2023.12.07-08.32.34:994][820]LogTravelManager: Beginning travel to 192.207.0.1:7071
+    private void RunRankCheck()
     {
-        // Get current rank and rating
-        (ValorantRank currentRank, int rating) = await _logic.GetCurrentRank(App.ValorantSettings?.RiotName);
+        Application.Current.Dispatcher.Invoke(async() =>
+        {
+            // Get current rank and rating
+            (ValorantRank, int, int)? data = await _logic.GetUserRankStats(App.ValorantSettings?.RiotName);
 
-        // Check if user is valid
-        (_, string trackerData) = _firstInvoke ? (false, _firstInvokeString) : await _logic.IsValidUser(App.ValorantSettings?.RiotName, true);
+            ValorantRank valorantRank = data?.Item1 ?? ValorantRank.Default();
+            int currentRankRating = data?.Item2 ?? 0;
+            int rankRatingChanges = data?.Item3 ?? 0;
 
-        // Wait until validation is complete
-        while (string.IsNullOrEmpty(trackerData)) await Task.Delay(15);
+            // Check if user is valid
+            (_, string trackerData) = _firstInvoke ? (false, _firstInvokeString) : await _logic.IsValidUser(App.ValorantSettings?.RiotName, true);
 
-        // Skip if rating hasn't changed
-        if (_oldRankRating == rating) return;
+            // Wait until validation is complete
+            while (string.IsNullOrEmpty(trackerData)) await Task.Delay(15);
 
-        // Get headshot percentage and win percentage
-        string? headshotPercentage = await _logic.GetHeadshotPercentage(trackerData);
-        string? winPercentage = await _logic.GetWinPercentage(trackerData);
+            // Skip if rating hasn't changed
+            if (_oldRankRating == currentRankRating) return;
 
-        // Update UI elements
-        PlayerRank.Content = currentRank.Rank;
-        PlayerRank.Foreground = RankIcons.RankColors[(string)PlayerRank.Content!];
+            // Get headshot percentage and win percentage
+            string? headshotPercentage = await _logic.GetHeadshotPercentage(trackerData);
+            string? winPercentage = await _logic.GetWinPercentage(trackerData);
 
-        SessionRrGain.AnimateSessionRankRating(_firstInvoke ? 0 : (int)RankRatingProgress.Progress - rating);
-        PlayerRankRating.AnimateRankRating(rating);
-        RankRatingProgress.AnimateProgress(rating);
+            // Update UI elements
+            PlayerRank.Content = valorantRank.Rank;
+            PlayerRank.Foreground = RankIcons.RankColors[(string)PlayerRank.Content!];
 
-        PlayerWinPercent.Content = winPercentage;
-        PlayerHeadshotPercent.Content = headshotPercentage;
+            SessionRrGain.AnimateSessionRankRating(_firstInvoke ? 0 : rankRatingChanges);
+            PlayerRankRating.AnimateRankRating(currentRankRating);
+            RankRatingProgress.AnimateProgress(currentRankRating);
 
-        RankIcon.Source = new BitmapImage(new Uri(currentRank.RankIcon!));
+            PlayerWinPercent.Content = winPercentage;
+            PlayerHeadshotPercent.Content = headshotPercentage;
 
-        // Update old rating
-        _oldRankRating = rating;
+            RankIcon.Source = new BitmapImage(new Uri(valorantRank.RankIcon!));
 
-        // Set _firstInvoke to false after first invocation
-        _firstInvoke = false;
+            // Update old rating
+            _oldRankRating = currentRankRating;
+
+            // Set _firstInvoke to false after first invocation
+            _firstInvoke = false;
+        });
     }
 
+
+    // Other methods
+
+    public static T GetRandom<T>(IEnumerable<T> list)
+    {
+        IEnumerable<T> enumerable = list.ToList();
+        return enumerable.ElementAt(new Random(DateTime.Now.Millisecond).Next(enumerable.Count()));
+    }
+
+    private static string SafeReadFile(string filePath)
+    {
+        lock (LogLock)
+        {
+            try
+            {
+                using FileStream fs = new(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                using StreamReader reader = new(fs);
+                return reader.ReadToEnd();
+            }
+            catch { return string.Empty; }
+        }
+    }
 }

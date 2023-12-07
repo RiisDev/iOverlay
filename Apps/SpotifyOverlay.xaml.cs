@@ -1,9 +1,7 @@
-﻿using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Reflection;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
@@ -36,85 +34,79 @@ public partial class SpotifyOverlay
 
     private async void StartSongWatch()
     {
-        try
+        HttpResponseMessage pageData =
+            await _httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Get,
+                "https://api.spotify.com/v1/me/player"));
+
+        if (!pageData.IsSuccessStatusCode)
         {
-            HttpResponseMessage pageData =
-                await _httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Get,
-                    "https://api.spotify.com/v1/me/player"));
-
-            JsonDocument returnedData = JsonDocument.Parse(pageData.Content.ReadAsStringAsync().Result);
-
-            double songTimeStamp;
-
-            try
-            {
-                songTimeStamp = returnedData.RootElement.GetProperty("progress_ms").GetDouble();
-            }
-            catch
-            {
-                songTimeStamp = 0.0;
-            }
-
-
-            JsonElement itemData = returnedData.RootElement.GetProperty("item");
-
-            double songDuration = itemData.GetProperty("duration_ms").GetDouble();
-            string songName = itemData.GetProperty("name").GetString() + " ";
-            string? artistName = itemData.GetProperty("artists")[0].GetProperty("name").GetString();
-            string? albumArtData = itemData.GetProperty("album").GetProperty("images")[0].GetProperty("url")
-                .GetString();
-
-            int percent = (int)Math.Floor(songTimeStamp / songDuration * 100);
-
-            SongProgress.Dispatcher.Invoke(() => { SongProgress.Value = percent; });
-
-            if (songName == _cachedSongName) goto Restart;
-
-            SafeSet(SongName, songName);
-            if (artistName != null) SafeSet(ArtistName, artistName);
-            if (albumArtData != null)
-            {
-                AlbumArt.Dispatcher.Invoke(() => { AlbumArt.ImageSource = new BitmapImage(new Uri(albumArtData)); });
-                SecondAlbumArt.Dispatcher.Invoke(() =>
-                {
-                    SecondAlbumArt.ImageSource = new BitmapImage(new Uri(albumArtData));
-                });
-            }
-
-            _cachedSongName = songName;
-
-            Restart:
-            StartSongWatch();
+            HandleWebExceptions(pageData.StatusCode);
+            return;
         }
-        catch (TargetInvocationException? exception)
-        {
-            HandleWebExceptions(exception);
-        }
-        catch (JsonException)
-        {
-            await Task.Delay(15000);
-            StartSongWatch();
-        }
-        catch (Exception exception)
-        {
-            Debug.WriteLine("Unhandled Except: " + exception);
-        }
+
+        string pageContent = await pageData.Content.ReadAsStringAsync();
+
+        if (!pageContent.Contains('[')) goto Restart;
+
+        JsonDocument returnedData = JsonDocument.Parse(pageContent);
+        
+        // Get base properties
+        JsonElement rootElement = returnedData.RootElement;
+        JsonElement? trackData = rootElement.GetPropertyNullable("item");
+        JsonElement? progressElement = rootElement.GetPropertyNullable("progress_ms");
+        
+        // Get track properties
+        JsonElement? songDurationElement = trackData?.GetPropertyNullable("duration_ms");
+        JsonElement? songNameElement = trackData?.GetPropertyNullable("name");
+        JsonElement? artistNameElement = trackData?.GetPropertyNullable("artists")?[0].GetProperty("name");
+        JsonElement? albumArtElement = trackData?.GetPropertyNullable("album")?.GetPropertyNullable("images")?[0].GetPropertyNullable("url");
+
+        // Set track variables
+        double songTimeStamp = progressElement?.GetDouble() ?? 1.0; 
+        double songDuration = songDurationElement?.GetDouble() ?? 1.0;
+
+        int percent = (int)Math.Floor(songTimeStamp / songDuration * 100);
+
+        string songName = songNameElement?.GetString() + " ";
+        string artistName = artistNameElement?.GetString() ?? "Failed to fetch artist";
+        string albumArt = albumArtElement?.GetString() ?? "pack://application:,,,/Assets/Images/SpotifyIcon.png"; 
+
+        // Perform updates
+        SongProgress.Dispatcher.Invoke(() => { SongProgress.Value = percent; });
+
+        if (songName == _cachedSongName) goto Restart;
+
+        SafeSet(SongName, songName);
+        SafeSet(ArtistName, artistName);
+        AlbumArt.Dispatcher.Invoke(() => { AlbumArt.ImageSource = new BitmapImage(new Uri(albumArt)); });
+        SecondAlbumArt.Dispatcher.Invoke(() => { SecondAlbumArt.ImageSource = new BitmapImage(new Uri(albumArt)); });
+
+        _cachedSongName = songName;
+
+        Restart:
+        StartSongWatch();
     }
 
-    private async void HandleWebExceptions(TargetInvocationException? exceptionCode)
+    private async void HandleWebExceptions(HttpStatusCode statusCode)
     {
-        if (exceptionCode?.InnerException == null) return;
 
-        string innerExceptionMessage = exceptionCode.InnerException.Message;
-
-        if (innerExceptionMessage.Contains("401"))
-            await Handle401Exception();
-        else if (innerExceptionMessage.Contains("429"))
-            await Handle429Exception();
-        else if (innerExceptionMessage.Contains("502") || innerExceptionMessage.Contains("503"))
-            await _httpClient.GetStringAsync("https://api.spotify.com/v1/me/player");
-        else
-            Debug.WriteLine(exceptionCode.InnerException);
+        switch (statusCode)
+        {
+            case HttpStatusCode.Unauthorized:
+                await Handle401Exception();
+                return;
+            case HttpStatusCode.TooManyRequests:
+                await Handle429Exception();
+                return;
+            case HttpStatusCode.InternalServerError:
+            case HttpStatusCode.NotImplemented:
+            case HttpStatusCode.BadGateway:
+            case HttpStatusCode.BadRequest:
+                await Task.Run(StartSongWatch);
+                return;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(statusCode), statusCode, null);
+        }
     }
 
     private async Task Handle401Exception()
@@ -128,8 +120,8 @@ public partial class SpotifyOverlay
 
             while (!_refreshed) await Task.Delay(25);
 
-            await _httpClient.GetStringAsync("https://api.spotify.com/v1/me/player");
-
+            await Task.Run(StartSongWatch);
+            
             _401Running = false;
         }
     }
@@ -142,7 +134,7 @@ public partial class SpotifyOverlay
             int.TryParse(retryAfterHeaders.FirstOrDefault(), out int retryAfterDelay))
         {
             await Task.Delay(retryAfterDelay * 1000); // Delay in milliseconds
-            await _httpClient.GetStringAsync("https://api.spotify.com/v1/me/player");
+            await Task.Run(StartSongWatch);
         }
     }
 

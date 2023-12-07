@@ -2,12 +2,14 @@
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.IO.Pipes;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using Wpf.Ui.Controls;
 using Wpf.Ui.Extensions;
+using MessageBox = System.Windows.MessageBox;
 
 namespace iOverlay.Logic;
 
@@ -199,6 +201,17 @@ public static class MiscLogic
             if (mouseButtonEventArgs.ChangedButton == MouseButton.Left)
                 window.DragMove();
         };
+    }
+
+    public static JsonElement? GetPropertyNullable(this JsonElement jsonElement, string propertyName)
+    {
+        try
+        {
+            if (jsonElement.TryGetProperty(propertyName, out JsonElement returnedElement)) return returnedElement;
+
+            return null;
+        }
+        catch { return null; }
     }
 
     public static async Task<string?> GetTrackerJson(string url)
