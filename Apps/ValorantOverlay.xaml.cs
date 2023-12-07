@@ -80,7 +80,7 @@ public partial class ValorantOverlay
 
                 if (_lastEndedCount == matchEndedCount) continue;
 
-                await Task.Delay(5000);
+                await Task.Delay(3000);
 
                 RunRankCheck();
                 _lastEndedCount = matchEndedCount;
@@ -150,7 +150,7 @@ public partial class ValorantOverlay
         {
             try
             {
-                using FileStream fs = new(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                using FileStream fs = new(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
                 using StreamReader reader = new(fs);
                 return reader.ReadToEnd();
             }
