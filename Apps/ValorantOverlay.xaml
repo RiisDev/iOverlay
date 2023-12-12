@@ -37,35 +37,35 @@
             <Image Name="RankIcon" Source="pack://application:,,,/Assets/Images/Unranked.png" Height="43.5"
                    Width="43.5" Canvas.Left="14.5" Canvas.Top="14" HorizontalAlignment="Left"
                    VerticalAlignment="Center" />
-            <Label Name="PlayerRank" Content="Platinum 3" FontSize="18" Canvas.Left="79" Canvas.Top="6"
+            <Label Name="PlayerRank" Content="Unranked" FontSize="18" Canvas.Left="79" Canvas.Top="6"
                    HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="{StaticResource BlackFuture}"
-                   Foreground="#FF3697A7" />
-            <Label Name="PlayerRankRating" Content="50 RR" FontFamily="{StaticResource BlackFuture}" FontSize="14"
+                   Foreground="White" />
+            <Label Name="PlayerRankRating" Content="0 RR" FontFamily="{StaticResource BlackFuture}" FontSize="14"
                    Canvas.Left="79" Canvas.Top="24" HorizontalAlignment="Center" VerticalAlignment="Top"
-                   Foreground="#FF3697A7" BorderBrush="White" />
+                   Foreground="White" BorderBrush="White" />
             <Label Content="Headshot%" Canvas.Right="80" Canvas.Top="17"
                    HorizontalAlignment="Center" Canvas.Left="187" VerticalAlignment="Top" Foreground="#F7FFFFFF"
                    FontSize="14" FontFamily="Segoe UI Symbol" />
             <Label Content="Session RR:" Canvas.Right="80" Canvas.Top="37"
                    HorizontalAlignment="Center" Canvas.Left="79" VerticalAlignment="Top" Foreground="#F7FFFFFF"
                    FontSize="14" FontFamily="Segoe UI Symbol" />
-            <Label Name="SessionRrGain" Content="+50" VerticalContentAlignment="Center"
+            <Label Name="SessionRrGain" Content="+0" VerticalContentAlignment="Center"
                    HorizontalContentAlignment="Left" Canvas.Right="80" Canvas.Top="41"
                    FontFamily="Cascadia Mono SemiLight" Canvas.Left="149" HorizontalAlignment="Left"
                    VerticalAlignment="Top" Foreground="White" Width="44" />
             <Label Content="Win%" Canvas.Right="80" Canvas.Top="17" FontFamily="Segoe UI Symbol"
                    Canvas.Left="267" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White"
                    FontSize="14" />
-            <Label Name="PlayerHeadshotPercent" Content="40.2%" VerticalContentAlignment="Center"
+            <Label Name="PlayerHeadshotPercent" Content="0%" VerticalContentAlignment="Center"
                    HorizontalContentAlignment="Center" Canvas.Right="80" Canvas.Top="34"
                    FontFamily="Cascadia Mono SemiLight" HorizontalAlignment="Center" Canvas.Left="191"
                    VerticalAlignment="Top" Foreground="#F7FFFFFF" Width="63" />
-            <Label Name="PlayerWinPercent" Content="20%" VerticalContentAlignment="Center"
+            <Label Name="PlayerWinPercent" Content="0%" VerticalContentAlignment="Center"
                    HorizontalContentAlignment="Center" Canvas.Right="80" Canvas.Top="34"
                    FontFamily="Cascadia Mono SemiLight" Canvas.Left="273" HorizontalAlignment="Center"
                    VerticalAlignment="Top" Foreground="White" Width="28" />
             <ui:ProgressRing Name="RankRatingProgress" Canvas.Left="3" Canvas.Top="3" RenderTransformOrigin="0.5,0.5"
-                             Progress="100" EngAngle="4" HorizontalAlignment="Center" Height="66"
+                             Progress="0" EngAngle="4" HorizontalAlignment="Center" Height="66"
                              VerticalAlignment="Top" Width="66">
                 <ui:ProgressRing.RenderTransform>
                     <TransformGroup>

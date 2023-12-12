@@ -47,7 +47,7 @@
             <ProgressBar x:Name="SongProgress" Width="270" Height="13" Maximum="100" Minimum="0" Value="50"
                          VerticalAlignment="Top" Canvas.Top="45" Canvas.Left="80" SmallChange="0.5" />
 
-            <wpf:WebView2 Name="webView" Canvas.Top="72" Height="550" Width="367" />
+            <wpf:WebView2 Name="WebView" Canvas.Top="72" Height="550" Width="367" />
         </Canvas>
     </Border>
 </Window>

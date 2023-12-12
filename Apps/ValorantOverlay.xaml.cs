@@ -4,12 +4,24 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using iOverlay.Logic;
 using iOverlay.Logic.WidgetLogic;
-#pragma warning disable IDE0028
+using iOverlay.ValorantApi.Clients;
 
 namespace iOverlay.Apps;
 
 public partial class ValorantOverlay
 {
+    // Fields
+    private UserClient _userClientConfig = null!;
+    private readonly CancellationTokenSource _cancellationTokenSource;
+    private readonly ValorantLogic _valorantLogic = new ();
+    private readonly Random _backgroundRandom = new(DateTime.Now.Millisecond);
+
+    private bool _firstRun;
+
+    private int _lastEndedCount;
+    private int _oldRankRating;
+    private long _lastFileSize;
+    
     private readonly List<string> _backgroundAssets = new()
     {
         "pack://application:,,,/Assets/Images/Lotus.png",
@@ -23,138 +35,93 @@ public partial class ValorantOverlay
         "pack://application:,,,/Assets/Images/Sunset.png"
     };
 
-    private readonly ValorantLogic _logic = new();
-
-    private int _lastEndedCount;
-    private long _lastFileSize;
-    private int _oldRankRating;
-    private bool _firstInvoke = true;
-    private string _firstInvokeString = null!;
-
-    private static readonly object LogLock = new();
-
-    public ValorantOverlay() => InitializeComponent();
-
-
-    //Match Ended
-    private async void Window_Loaded(object sender, RoutedEventArgs e)
+    public ValorantOverlay()
     {
         this.ApplyDraggable();
-        BackSplash.ImageSource = new BitmapImage(new Uri(GetRandom(_backgroundAssets)));
+        InitializeComponent();
+        BackSplash.ImageSource = new BitmapImage(new Uri(_backgroundRandom.GetRandomListItem(_backgroundAssets)));
 
-        if (App.ValorantSettings == null || string.IsNullOrEmpty(App.ValorantSettings.RiotName))
+        _cancellationTokenSource = new CancellationTokenSource();
+    }
+
+    private async void Window_Loaded(object sender, RoutedEventArgs e)
+    {
+        Retry:
+        if (Process.GetProcessesByName("VALORANT-Win64-Shipping").Length <= 0)
         {
-            MessageBox.Show("Riot Id missing!");
-            Close();
-            return;
+           MessageBoxResult result = MessageBox.Show("Please launch valorant then click Ok!", "Waiting...", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+           if (result == MessageBoxResult.Cancel)
+           {
+               Close();
+               return;
+           }
+           goto Retry;
         }
+        
+        _userClientConfig = new UserClient(new ValorantClient());
+        await MonitorLogFileAsync();
+    }
 
-        (bool, string) isValidUser = await _logic.IsValidUser(App.ValorantSettings.RiotName, true);
-
-        if (!isValidUser.Item1)
+    private async Task MonitorLogFileAsync()
+    {
+        while (!_cancellationTokenSource.Token.IsCancellationRequested)
         {
-            MessageBox.Show(isValidUser.Item2);
-            Close();
-            return;
+            await Task.Delay(500, _cancellationTokenSource.Token);
+
+            long currentFileSize = new FileInfo(_valorantLogic.Log).Length;
+
+            if (currentFileSize == _lastFileSize) continue;
+
+            _lastFileSize = currentFileSize;
+
+            string fileText = _valorantLogic.GetLogText();
+            int matchEndedCount = fileText.Split("Match Ended").Length;
+
+            if (_lastEndedCount == matchEndedCount) continue;
+
+            RunRankCheck();
+            _lastEndedCount = matchEndedCount;
         }
-
-        _firstInvokeString = isValidUser.Item2;
-
-        string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-        string logsPath = Path.Combine(userProfile, "AppData", "Local", "Valorant", "Saved", "Logs");
-        string logPath = Path.Combine(logsPath, "ShooterGame.log");
-
-        new Task(async() =>
-        {
-            while (true)
-            {
-                await Task.Delay(500);
-                long currentFileSize = new FileInfo(logPath).Length;
-
-                if (currentFileSize == _lastFileSize) continue;
-
-                _lastFileSize = currentFileSize;
-
-                string fileText = SafeReadFile(logPath);
-                int matchEndedCount = fileText.Split("Match Ended").Length;
-
-                if (_lastEndedCount == matchEndedCount) continue;
-
-                await Task.Delay(3000);
-
-                RunRankCheck();
-                _lastEndedCount = matchEndedCount;
-            }
-        }).Start();
-
     }
 
     // Perhaps game loaded and ready: [2023.12.07-08.32.34:994][820]LogTravelManager: Beginning travel to 192.207.0.1:7071
     private void RunRankCheck()
     {
-        Application.Current.Dispatcher.Invoke(async() =>
+        Application.Current.Dispatcher.Invoke(async () =>
         {
-            // Get current rank and rating
-            (ValorantRank, int, int)? data = await _logic.GetUserRankStats(App.ValorantSettings?.RiotName);
+            await _userClientConfig.GetStats();
 
-            ValorantRank valorantRank = data?.Item1 ?? ValorantRank.Default();
-            int currentRankRating = data?.Item2 ?? 0;
-            int rankRatingChanges = data?.Item3 ?? 0;
+            if (_userClientConfig.RankRating == _oldRankRating) return;
 
-            // Check if user is valid
-            (_, string trackerData) = _firstInvoke ? (false, _firstInvokeString) : await _logic.IsValidUser(App.ValorantSettings?.RiotName, true);
+            UpdateUiElements(_userClientConfig.Rank, _userClientConfig.RankRating, _userClientConfig.Headshot, _userClientConfig.WinRate);
 
-            // Wait until validation is complete
-            while (string.IsNullOrEmpty(trackerData)) await Task.Delay(15);
+            _oldRankRating = _userClientConfig.RankRating;
+        });
+    }
 
-            // Skip if rating hasn't changed
-            if (_oldRankRating == currentRankRating) return;
-
-            // Get headshot percentage and win percentage
-            string? headshotPercentage = await _logic.GetHeadshotPercentage(trackerData);
-            string? winPercentage = await _logic.GetWinPercentage(trackerData);
-
-            // Update UI elements
-            PlayerRank.Content = valorantRank.Rank;
+    private void UpdateUiElements(ValorantRank rank, int currentRankRating, string? headshotPercentage, string? winPercentage)
+    {
+        Application.Current.Dispatcher.Invoke(() =>
+        {
+            PlayerRank.Content = rank.Rank;
             PlayerRank.Foreground = RankIcons.RankColors[(string)PlayerRank.Content!];
 
-            SessionRrGain.AnimateSessionRankRating(_firstInvoke ? 0 : rankRatingChanges);
+            if (_firstRun) SessionRrGain.AnimateSessionRankRating(currentRankRating);
+
             PlayerRankRating.AnimateRankRating(currentRankRating);
             RankRatingProgress.AnimateProgress(currentRankRating);
 
             PlayerWinPercent.Content = winPercentage;
             PlayerHeadshotPercent.Content = headshotPercentage;
 
-            RankIcon.Source = new BitmapImage(new Uri(valorantRank.RankIcon!));
-
-            // Update old rating
-            _oldRankRating = currentRankRating;
-
-            // Set _firstInvoke to false after first invocation
-            _firstInvoke = false;
+            RankIcon.Source = new BitmapImage(new Uri(rank.RankIcon!));
+            _firstRun = false;
         });
     }
 
-
-    // Other methods
-
-    public static T GetRandom<T>(IEnumerable<T> list)
+    public void Dispose()
     {
-        IEnumerable<T> enumerable = list.ToList();
-        return enumerable.ElementAt(new Random(DateTime.Now.Millisecond).Next(enumerable.Count()));
-    }
-
-    private static string SafeReadFile(string filePath)
-    {
-        lock (LogLock)
-        {
-            try
-            {
-                using FileStream fs = new(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
-                using StreamReader reader = new(fs);
-                return reader.ReadToEnd();
-            }
-            catch { return string.Empty; }
-        }
+        _cancellationTokenSource.Cancel();
+        _cancellationTokenSource.Dispose();
     }
 }

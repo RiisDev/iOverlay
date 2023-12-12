@@ -46,32 +46,7 @@
         <Border Visibility="Hidden" Name="SettingsWindow" Margin="20,48,0,0" Height="380" Width="760"
                 Background="#CC141414" BorderThickness="1.5" CornerRadius="8" BorderBrush="White">
             <Canvas Height="380" Width="760">
-                <Label Content="Valorant Settings" Canvas.Left="301" FontFamily="Segoe UI Semibold" FontSize="22"
-                       Foreground="#EDFFFFFF" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="6" />
-                <Label Content="Valorant Tag:" Canvas.Left="110" Canvas.Top="50" FontFamily="Segoe UI Semibold"
-                       FontSize="22" Foreground="#EDFFFFFF" HorizontalAlignment="Center" VerticalAlignment="Top" />
-                <ui:TextBox Name="ValorantName" Canvas.Left="255" Canvas.Top="50" Width="400" ClearButtonEnabled="True"
-                            PlaceholderEnabled="True" PlaceholderText="TestName#NA1" />
-                <Label Content="Dark Mode:" FontSize="18" Canvas.Left="110" Canvas.Top="94"
-                       FontFamily="Segoe UI Semibold" Background="Transparent" Foreground="#CDFFFFFF"
-                       HorizontalAlignment="Center" VerticalAlignment="Top" />
-                <ui:ToggleSwitch Name="ValorantDarkMode" IsChecked="True" Canvas.Left="217" Canvas.Top="97"
-                                 FontSize="18" />
-                <Label Content="Show Win % | KD:" FontSize="18" Canvas.Left="110" Canvas.Top="122"
-                       FontFamily="Segoe UI Semibold" Background="Transparent" Foreground="#CDFFFFFF"
-                       HorizontalAlignment="Center" VerticalAlignment="Top" />
-                <ui:ToggleSwitch Name="ValorantKdWinPercent" IsChecked="True" Canvas.Left="263" Canvas.Top="127"
-                                 FontSize="18" />
-                <Separator Width="700" Canvas.Top="200" Canvas.Left="29" BorderThickness="1" BorderBrush="#BBFFFFFF" />
-                <Label Content="Spotify Settings" Canvas.Top="209" Canvas.Left="307" FontFamily="Segoe UI Semibold"
-                       FontSize="22" Foreground="#EDFFFFFF" HorizontalAlignment="Center" VerticalAlignment="Top" />
-                <Label Content="Dark Mode:" FontSize="18" Canvas.Left="110" Canvas.Top="247"
-                       FontFamily="Segoe UI Semibold" Background="Transparent" Foreground="#CDFFFFFF"
-                       HorizontalAlignment="Center" VerticalAlignment="Top" />
-                <ui:ToggleSwitch Name="SpotifyDarkMode" IsChecked="True" Canvas.Left="217" Canvas.Top="250"
-                                 FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Top" />
-                <ui:Button Name="SaveSettings" Width="350" Height="35" Canvas.Top="320" Canvas.Left="200"
-                           Content="Apply &amp; Save" Click="SaveSettings_Click" />
+                <ui:Button Name="SaveSettings" Width="350" Height="35" Canvas.Top="320" Canvas.Left="200" Content="Apply &amp; Save" Click="SaveSettings_Click" />
             </Canvas>
         </Border>
     </Canvas>

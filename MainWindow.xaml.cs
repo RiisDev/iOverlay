@@ -1,7 +1,9 @@
 ﻿using System.Diagnostics;
+using System.Net.Http;
+using System.Text.Json;
 using System.Windows;
 using iOverlay.Apps;
-using iOverlay.Logic.SaveLoad;
+using iOverlay.Logic;
 using Microsoft.Web.WebView2.Core;
 using Wpf.Ui.Common;
 using MessageBox = Wpf.Ui.Controls.MessageBox;
@@ -10,7 +12,7 @@ namespace iOverlay;
 
 public partial class MainWindow
 {
-    private readonly IniFileParser _parser = new();
+    internal const string OverlayInternalVersion = "5.0.0";
 
     public MainWindow() => InitializeComponent();
 
@@ -21,13 +23,6 @@ public partial class MainWindow
 
     private void SaveSettings_Click(object sender, RoutedEventArgs e)
     {
-        App.ValorantSettings = new SaveLogic.ValorantSettings(ValorantName.Text, ValorantKdWinPercent.IsChecked!.Value);
-
-        _parser.SetValue("Valorant", "RiotId", ValorantName.Text);
-        _parser.SetValue("Valorant", "ShowStats", ValorantKdWinPercent.IsChecked!.Value.ToString());
-        
-        _parser.Save("settings.config");
-
         SettingsWindow.Visibility = Visibility.Hidden;
     }
 
@@ -51,16 +46,27 @@ public partial class MainWindow
             Environment.Exit(-1);
         }
 
-        _parser.Load("settings.config");
-        App.ValorantSettings = new SaveLogic.ValorantSettings(
-            _parser.GetValue("Valorant", "RiotId"),
-            _parser.GetBoolValue("Valorant", "ShowStats"));
+#if DEBUG
+#else
 
-        ValorantDarkMode.IsChecked = _parser.GetBoolValue("Valorant", "DarkMode");
-        ValorantKdWinPercent.IsChecked = _parser.GetBoolValue("Valorant", "ShowStats");
-        ValorantName.Text = _parser.GetValue("Valorant", "RiotId");
+        Task.Run(() =>
+        {
+            using HttpClient client = new();
 
-        SpotifyDarkMode.IsChecked = _parser.GetBoolValue("Spotify", "DarkMode");
+            client.DefaultRequestHeaders.Add("User-Agent", "request");
+            client.DefaultRequestHeaders.Accept.ParseAdd("application/vnd.github.v3+json");
+
+            string gitReturn = client.GetAsync("https://api.github.com/repos/IrisV3rm/iOverlay/releases/latest").Result.Content.ReadAsStringAsync().Result;
+            JsonDocument parsedGitReturn = JsonDocument.Parse(gitReturn);
+            JsonElement rootGit = parsedGitReturn.RootElement;
+            JsonElement? tagElement = rootGit.GetPropertyNullable("tag_name");
+
+            if (OverlayInternalVersion == tagElement?.GetString()) return;
+
+            MessageBoxResult update = System.Windows.MessageBox.Show("There is an update, would you like to download now?", "iOverlay", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            if (update == MessageBoxResult.Yes) Process.Start("https://api.github.com/repos/IrisV3rm/iOverlay/releases/latest");
+        });
+#endif
     }
 
     private void ShowInvalidMessageBox(string message)
@@ -87,13 +93,6 @@ public partial class MainWindow
         invalidMessageBox.ShowDialog();
     }
 
-    private void ValorantOverlay_Click(object sender, RoutedEventArgs e)
-    {
-        new ValorantOverlay().Show();
-    }
-
-    private void SpotifyOverlay_Click(object sender, RoutedEventArgs e)
-    {
-        new SpotifyOverlay().Show();
-    }
+    private void ValorantOverlay_Click(object sender, RoutedEventArgs e) => new ValorantOverlay().Show();
+    private void SpotifyOverlay_Click(object sender, RoutedEventArgs e) => new SpotifyOverlay().Show();
 }

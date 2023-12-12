@@ -1,42 +1,37 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using iOverlay.Logic;
 using Microsoft.Web.WebView2.Core;
+// ReSharper disable SwitchStatementHandlesSomeKnownEnumValuesWithDefault
+// ReSharper disable FunctionNeverReturns
 
 namespace iOverlay.Apps;
 
 public partial class SpotifyOverlay
 {
+    private async void Border_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) => await Task.Run(StartSongWatch);
     public SpotifyOverlay() => InitializeComponent();
 
     private readonly HttpClient _httpClient = new();
-    private bool _401Running;
+
+    private static readonly Uri PlayerUri = new("https://api.spotify.com/v1/me/player");
+
     private string _cachedSongName = "";
-    private bool _refreshed;
+
     private int _songLabelIndex;
 
-    private static void SafeSet(object controlObject, dynamic value)
-    {
-        switch (controlObject)
-        {
-            case Label label:
-                label.Dispatcher.Invoke(() => { label.Content = value; });
-                break;
-        }
-    }
+    private bool _401Running;
+    private bool _refreshed;
 
-    private async void StartSongWatch()
+
+    private async Task StartSongWatch()
     {
-        HttpResponseMessage pageData =
-            await _httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Get,
-                "https://api.spotify.com/v1/me/player"));
+        HttpResponseMessage pageData = await _httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Get, PlayerUri));
 
         if (!pageData.IsSuccessStatusCode)
         {
@@ -76,15 +71,15 @@ public partial class SpotifyOverlay
 
         if (songName == _cachedSongName) goto Restart;
 
-        SafeSet(SongName, songName);
-        SafeSet(ArtistName, artistName);
+        SongName.SafeSet(songName);
+        ArtistName.SafeSet(artistName);
         AlbumArt.Dispatcher.Invoke(() => { AlbumArt.ImageSource = new BitmapImage(new Uri(albumArt)); });
         SecondAlbumArt.Dispatcher.Invoke(() => { SecondAlbumArt.ImageSource = new BitmapImage(new Uri(albumArt)); });
 
         _cachedSongName = songName;
 
         Restart:
-        StartSongWatch();
+        await Task.Run(StartSongWatch);
     }
 
     private async void HandleWebExceptions(HttpStatusCode statusCode)
@@ -116,7 +111,7 @@ public partial class SpotifyOverlay
             _401Running = true;
             _refreshed = false;
 
-            webView.Dispatcher.Invoke(() => webView.CoreWebView2.Navigate("https://accounts.spotify.com/en/login"));
+            WebView.Dispatcher.Invoke(() => WebView.CoreWebView2.Navigate(PlayerUri.ToString()));
 
             while (!_refreshed) await Task.Delay(25);
 
@@ -128,10 +123,9 @@ public partial class SpotifyOverlay
 
     private async Task Handle429Exception()
     {
-        HttpResponseMessage response = await _httpClient.GetAsync("https://api.spotify.com/v1/me/player");
+        HttpResponseMessage response = await _httpClient.GetAsync(PlayerUri);
 
-        if (response.Headers.TryGetValues("Retry-After", out IEnumerable<string>? retryAfterHeaders) &&
-            int.TryParse(retryAfterHeaders.FirstOrDefault(), out int retryAfterDelay))
+        if (response.Headers.TryGetValues("Retry-After", out IEnumerable<string>? retryAfterHeaders) && int.TryParse(retryAfterHeaders.FirstOrDefault(), out int retryAfterDelay))
         {
             await Task.Delay(retryAfterDelay * 1000); // Delay in milliseconds
             await Task.Run(StartSongWatch);
@@ -141,27 +135,25 @@ public partial class SpotifyOverlay
 
     private void SetupWebViewHandler()
     {
-        webView.CoreWebView2.NavigationCompleted += async (_, _) =>
+        WebView.CoreWebView2.NavigationCompleted += async (_, _) =>
         {
-            string webPage = await webView.CoreWebView2.ExecuteScriptAsync("document.documentElement.outerHTML;");
+            string webPage = await WebView.CoreWebView2.ExecuteScriptAsync("document.documentElement.outerHTML;");
 
             UpdateWindowSize(webPage);
 
             _refreshed = true;
         };
 
-        webView.CoreWebView2.WebResourceRequested += (_, resourceArgs) =>
+        WebView.CoreWebView2.WebResourceRequested += (_, resourceArgs) =>
         {
             if (!resourceArgs.Request.Headers.Contains("authorization")) return;
 
             UpdateWindowSize();
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",
-                resourceArgs.Request.Headers.GetHeader("Authorization").Replace("Bearer ", "").Replace("\n", "")
-                    .Replace("\r", ""));
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", resourceArgs.Request.Headers.GetHeader("Authorization")["Bearer ".Length..].Trim());
         };
 
-        webView.CoreWebView2.AddWebResourceRequestedFilter("*spotify.com*", CoreWebView2WebResourceContext.All);
-        webView.CoreWebView2.Navigate("https://accounts.spotify.com/en/login");
+        WebView.CoreWebView2.AddWebResourceRequestedFilter("*spotify.com*", CoreWebView2WebResourceContext.All);
+        WebView.CoreWebView2.Navigate("https://accounts.spotify.com/en/login");
     }
 
     private void UpdateWindowSize(string webPageActual = "")
@@ -170,7 +162,7 @@ public partial class SpotifyOverlay
         if (webPage.Contains("web-player-link", StringComparison.CurrentCultureIgnoreCase))
         {
             SetWindowSize(365, 69);
-            webView.CoreWebView2.Navigate("https://open.spotify.com/");
+            WebView.CoreWebView2.Navigate("https://open.spotify.com/");
         }
         else if (webPage.Contains("login-username")) SetWindowSize(365, 630);
         else SetWindowSize(363, 69);
@@ -181,8 +173,8 @@ public partial class SpotifyOverlay
         Width = width;
         Height = height;
 
-        webView.Height = height <= 69 ? 0 : 550;
-        webView.Width = height <= 69 ? 0 : width;
+        WebView.Height = height <= 69 ? 0 : 550;
+        WebView.Width = height <= 69 ? 0 : width;
     }
 
     private double? MeasureTextWidth(FrameworkElement label)
@@ -192,12 +184,11 @@ public partial class SpotifyOverlay
         return label.ActualWidth / pixelsPerDip;
     }
 
-    [SuppressMessage("ReSharper", "FunctionNeverReturns")]
     private async void Window_Loaded(object sender, RoutedEventArgs e)
     {
-        new Task(() =>
+        await Task.Run(() =>
         {
-            SongName.Dispatcher.Invoke(async () =>
+            SongName.Dispatcher.InvokeAsync(async () =>
             {
                 while (true)
                 {
@@ -207,9 +198,7 @@ public partial class SpotifyOverlay
 
                         try
                         {
-                            if (_songLabelIndex >= 0 && _songLabelIndex <= _cachedSongName.Length)
-                                SongName.Content = _cachedSongName[_songLabelIndex..] +
-                                                   _cachedSongName[.._songLabelIndex];
+                            if (_songLabelIndex >= 0 && _songLabelIndex <= _cachedSongName.Length) SongName.Content = _cachedSongName[_songLabelIndex..] + _cachedSongName[.._songLabelIndex];
                             else _songLabelIndex = 1;
                         }
                         catch
@@ -217,19 +206,16 @@ public partial class SpotifyOverlay
                             _songLabelIndex = 0;
                         }
                     }
-                    else
-                    {
-                        _songLabelIndex = 0;
-                    }
+                    else _songLabelIndex = 0;
 
                     await Task.Delay(300);
                 }
             });
-        }).Start();
+        });
 
 
         this.ApplyDraggable();
-        await webView.EnsureCoreWebView2Async();
+        await WebView.EnsureCoreWebView2Async();
 
         SetupWebViewHandler();
 
@@ -238,8 +224,4 @@ public partial class SpotifyOverlay
         await Task.Run(StartSongWatch);
     }
 
-    private async void Border_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-    {
-        await Task.Run(StartSongWatch);
-    }
 }
