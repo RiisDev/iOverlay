@@ -1,9 +1,12 @@
-﻿using System.Diagnostics;
+﻿#if DEBUG
+#else
+using iOverlay.Logic.DataTypes;
 using System.Net.Http;
 using System.Text.Json;
+#endif
+using System.Diagnostics;
 using System.Windows;
 using iOverlay.Apps;
-using iOverlay.Logic.DataTypes;
 using Microsoft.Web.WebView2.Core;
 using Wpf.Ui.Common;
 using MessageBox = Wpf.Ui.Controls.MessageBox;
@@ -12,28 +15,13 @@ namespace iOverlay;
 
 public partial class MainWindow
 {
-    internal const string OverlayInternalVersion = "6.0.0";
-
-    public MainWindow() => InitializeComponent();
-
-    private void SettingsPage_Click(object sender, RoutedEventArgs e)
-    {
-        SettingsWindow.Visibility = Visibility.Visible;
-    }
-
-    private void SaveSettings_Click(object sender, RoutedEventArgs e)
-    {
-        SettingsWindow.Visibility = Visibility.Hidden;
-    }
+    internal const string OverlayInternalVersion = "6.1.0";
 
     private void UiWindow_Loaded(object sender, RoutedEventArgs e)
     {
-        try
-        {
+        try {
             CoreWebView2Environment.GetAvailableBrowserVersionString();
-        }
-        catch
-        {
+        } catch {
             ShowInvalidMessageBox("WebView2 SDK is not installed!");
             Environment.Exit(-1);
         }
@@ -83,6 +71,9 @@ public partial class MainWindow
         invalidMessageBox.ShowDialog();
     }
 
+    public MainWindow() => InitializeComponent();
     private void ValorantOverlay_Click(object sender, RoutedEventArgs e) => new ValorantOverlay().Show();
     private void SpotifyOverlay_Click(object sender, RoutedEventArgs e) => new SpotifyOverlay().Show();
+    private void SettingsPage_Click(object sender, RoutedEventArgs e) { SettingsWindow.Visibility = Visibility.Visible; }
+    private void SaveSettings_Click(object sender, RoutedEventArgs e) { SettingsWindow.Visibility = Visibility.Hidden; }
 }

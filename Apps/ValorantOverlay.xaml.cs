@@ -75,11 +75,23 @@ public partial class ValorantOverlay
             _lastFileSize = currentFileSize;
 
             string fileText = _valorantLogic.GetLogText();
+            Debug.WriteLine("FILE CHANGED");
             int matchEndedCount = fileText.Split("Match Ended").Length;
-
+            Debug.WriteLine($"{matchEndedCount} | {_lastEndedCount}");
             if (_lastEndedCount == matchEndedCount) continue;
 
+            Debug.WriteLine("RUNNING RANK CHECK");
+
+            int tempRankRating = _oldRankRating;
+
             RunRankCheck();
+
+            if (tempRankRating == _oldRankRating)
+            {
+                await Task.Delay(2000);
+                continue;
+            }
+
             _lastEndedCount = matchEndedCount;
         }
     }

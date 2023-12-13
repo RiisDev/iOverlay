@@ -40,7 +40,7 @@ namespace iOverlay.Logic.ValorantApi.DataTypes
     );
 
     public record BehaviorFactors(
-        [property: JsonPropertyName("afkRounds")] int? AfkRounds,
+        [property: JsonPropertyName("afkRounds")] double? AfkRounds,
         [property: JsonPropertyName("collisions")] double? Collisions,
         [property: JsonPropertyName("commsRatingRecovery")] int? CommsRatingRecovery,
         [property: JsonPropertyName("damageParticipationOutgoing")] int? DamageParticipationOutgoing,
@@ -299,19 +299,33 @@ namespace iOverlay.Logic.ValorantApi.DataTypes
     );
 
     public record MatchData(
-        [property: JsonPropertyName("MatchID")] string MatchID,
+        [property: JsonPropertyName("MatchID")]
+        string MatchID,
         [property: JsonPropertyName("MapID")] string MapID,
-        [property: JsonPropertyName("SeasonID")] string SeasonID,
-        [property: JsonPropertyName("MatchStartTime")] object MatchStartTime,
-        [property: JsonPropertyName("TierAfterUpdate")] int? TierAfterUpdate,
-        [property: JsonPropertyName("TierBeforeUpdate")] int? TierBeforeUpdate,
-        [property: JsonPropertyName("RankedRatingAfterUpdate")] int? RankedRatingAfterUpdate,
-        [property: JsonPropertyName("RankedRatingBeforeUpdate")] int? RankedRatingBeforeUpdate,
-        [property: JsonPropertyName("RankedRatingEarned")] int? RankedRatingEarned,
-        [property: JsonPropertyName("RankedRatingPerformanceBonus")] int? RankedRatingPerformanceBonus,
-        [property: JsonPropertyName("CompetitiveMovement")] string CompetitiveMovement,
-        [property: JsonPropertyName("AFKPenalty")] int? AFKPenalty
-    );
+        [property: JsonPropertyName("SeasonID")]
+        string SeasonID,
+        [property: JsonPropertyName("MatchStartTime")]
+        object MatchStartTime,
+        [property: JsonPropertyName("TierAfterUpdate")]
+        int? TierAfterUpdate,
+        [property: JsonPropertyName("TierBeforeUpdate")]
+        int? TierBeforeUpdate,
+        [property: JsonPropertyName("RankedRatingAfterUpdate")]
+        int? RankedRatingAfterUpdate,
+        [property: JsonPropertyName("RankedRatingBeforeUpdate")]
+        int? RankedRatingBeforeUpdate,
+        [property: JsonPropertyName("RankedRatingEarned")]
+        int? RankedRatingEarned,
+        [property: JsonPropertyName("RankedRatingPerformanceBonus")]
+        int? RankedRatingPerformanceBonus,
+        [property: JsonPropertyName("CompetitiveMovement")]
+        string CompetitiveMovement,
+        [property: JsonPropertyName("AFKPenalty")]
+        int? AFKPenalty
+    )
+    {
+        public double? HeadshotPercentage { get; set; }
+    };
 
     public record MatchDataContainer(
         [property: JsonPropertyName("Version")]

@@ -1,10 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using System.Text.RegularExpressions;
-#pragma warning disable IDE0060
 
 namespace iOverlay.Logic.ValorantApi.Methods
 {
-    public record ClientData(ClientData.RegionCode Region, string UserId, string PdUrl, string GlzUrl)
+    public record ClientData(ClientData.RegionCode Region, string UserId, string PdUrl, string GlzUrl, string sharedUrl)
     {
         [SuppressMessage("ReSharper", "UnusedMember.Global")]
         [SuppressMessage("ReSharper", "InconsistentNaming")]
@@ -17,11 +15,6 @@ namespace iOverlay.Logic.ValorantApi.Methods
             ap,
             kr,
         }
-
-        public RegionCode Region { get; } = Region;
-        public string UserId { get; } = UserId;
-        public string PdUrl { get; } = PdUrl;
-        public string GlzUrl { get; } = GlzUrl;
     }
 
     public class LogManager
@@ -32,41 +25,13 @@ namespace iOverlay.Logic.ValorantApi.Methods
         public LogManager(string logText)
         {
             CurrentLogText = logText;
-            string userId = GetUserId();
-            string pdUrl = GetPdUrl();
-            string glzUrl = GetGlzUrl();
-            string regionData = GetRegion(pdUrl);
+            string userId = MiscLogic.ExtractValue(CurrentLogText, "Logged in user changed: (.+)", 1);
+            string pdUrl = MiscLogic.ExtractValue(CurrentLogText, @"https://pd\.[^\s]+\.net/", 0);
+            string glzUrl = MiscLogic.ExtractValue(CurrentLogText, @"https://glz[^\s]+\.net/", 0);
+            string regionData = MiscLogic.ExtractValue(CurrentLogText, @"https://pd\.([^\.]+)\.a\.pvp\.net/", 1);
+            string sharedUrl = $"https://shared.{regionData}.a.pvp.net";
             _ = Enum.TryParse(regionData, out ClientData.RegionCode region);
-            ClientData = new ClientData(region, userId, pdUrl, glzUrl);
-        }
-
-        private static string ExtractValue(Match match, int groupId)
-        {
-            return match.Groups[groupId].Value.Replace("\r", "").Replace("\n", "");
-        }
-
-        private string GetUserId()
-        {
-            Match userIdMatch = Regex.Match(CurrentLogText, "Logged in user changed: (.+)");
-            return userIdMatch is not { Success: true } ? "" : ExtractValue(userIdMatch, 1);
-        }
-
-        private string GetPdUrl()
-        {
-            Match userIdMatch = Regex.Match(CurrentLogText, @"https://pd\.[^\s]+\.net/");
-            return userIdMatch is not { Success: true } ? "" : ExtractValue(userIdMatch, 0);
-        }
-
-        private string GetGlzUrl()
-        {
-            Match userIdMatch = Regex.Match(CurrentLogText, @"https://glz[^\s]+\.net/");
-            return userIdMatch is not { Success: true } ? "" : ExtractValue(userIdMatch, 0);
-        }
-
-        private string GetRegion(string pdUrl)
-        {
-            Match userIdMatch = Regex.Match(pdUrl, @"https://pd\.([^\.]+)\.a\.pvp\.net/");
-            return userIdMatch is not { Success: true } ? "" : ExtractValue(userIdMatch, 1);
+            ClientData = new ClientData(region, userId, pdUrl, glzUrl, sharedUrl);
         }
     }
 }

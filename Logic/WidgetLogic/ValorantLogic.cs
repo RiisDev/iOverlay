@@ -113,7 +113,6 @@ public class ValorantLogic
         }
     }
 
-
     public static Dictionary<int, Color> PercentToColour { get; } = new()
     {
         { 0, Color.FromRgb(255, 0, 0) },

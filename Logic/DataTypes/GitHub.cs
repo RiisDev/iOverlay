@@ -5,7 +5,6 @@ using System.Text.Json.Serialization;
 
 namespace iOverlay.Logic.DataTypes
 {
-    // Root myDeserializedClass = JsonSerializer.Deserialize<Root>(myJsonResponse);
     public record Asset(
         [property: JsonPropertyName("url")] string Url,
         [property: JsonPropertyName("browser_download_url")] string BrowserDownloadUrl,

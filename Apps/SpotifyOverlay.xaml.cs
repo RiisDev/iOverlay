@@ -29,7 +29,6 @@ public partial class SpotifyOverlay
     private bool _401Running;
     private bool _refreshed;
 
-
     private async Task StartSongWatch()
     {
         HttpResponseMessage pageData = await _httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Get, PlayerUri));
