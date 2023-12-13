@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using iOverlay.Logic;
+using iOverlay.Logic.DataTypes;
 using Microsoft.Web.WebView2.Core;
 // ReSharper disable SwitchStatementHandlesSomeKnownEnumValuesWithDefault
 // ReSharper disable FunctionNeverReturns
@@ -43,28 +44,18 @@ public partial class SpotifyOverlay
 
         if (!pageContent.Contains('[')) goto Restart;
 
-        JsonDocument returnedData = JsonDocument.Parse(pageContent);
-        
-        // Get base properties
-        JsonElement rootElement = returnedData.RootElement;
-        JsonElement? trackData = rootElement.GetPropertyNullable("item");
-        JsonElement? progressElement = rootElement.GetPropertyNullable("progress_ms");
-        
-        // Get track properties
-        JsonElement? songDurationElement = trackData?.GetPropertyNullable("duration_ms");
-        JsonElement? songNameElement = trackData?.GetPropertyNullable("name");
-        JsonElement? artistNameElement = trackData?.GetPropertyNullable("artists")?[0].GetProperty("name");
-        JsonElement? albumArtElement = trackData?.GetPropertyNullable("album")?.GetPropertyNullable("images")?[0].GetPropertyNullable("url");
+        SpotifyPlayer? player = JsonSerializer.Deserialize<SpotifyPlayer>(pageContent);
 
-        // Set track variables
-        double songTimeStamp = progressElement?.GetDouble() ?? 1.0; 
-        double songDuration = songDurationElement?.GetDouble() ?? 1.0;
+        if (player is null) goto Restart;
+
+        double songTimeStamp = player.ProgressMs ?? 1.0; 
+        double songDuration = player.Track.DurationMs ?? 1.0;
 
         int percent = (int)Math.Floor(songTimeStamp / songDuration * 100);
 
-        string songName = songNameElement?.GetString() + " ";
-        string artistName = artistNameElement?.GetString() ?? "Failed to fetch artist";
-        string albumArt = albumArtElement?.GetString() ?? "pack://application:,,,/Assets/Images/SpotifyIcon.png"; 
+        string songName = player.Track.Name + " ";
+        string artistName = player.Track.Artists[0].Name;
+        string albumArt = player.Track.Album.Images[0].Url; 
 
         // Perform updates
         SongProgress.Dispatcher.Invoke(() => { SongProgress.Value = percent; });

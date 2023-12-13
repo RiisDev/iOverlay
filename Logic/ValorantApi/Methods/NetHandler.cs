@@ -2,12 +2,11 @@
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
-using iOverlay.Logic;
-using iOverlay.ValorantApi.Clients;
-using iOverlay.ValorantApi.DataTypes;
 using System.IO;
+using iOverlay.Logic.ValorantApi.Clients;
+using iOverlay.Logic.ValorantApi.DataTypes;
 
-namespace iOverlay.ValorantApi.Methods
+namespace iOverlay.Logic.ValorantApi.Methods
 {
     public class NetHandler
     {
@@ -67,12 +66,9 @@ namespace iOverlay.ValorantApi.Methods
 
             if (!response.IsSuccessStatusCode) return ("", $"Failed to get entitlement | {response.StatusCode} | {response.Content.ReadAsStringAsync().Result}");
 
-            JsonDocument responseDocument = JsonDocument.Parse(response.Content.ReadAsStringAsync().Result);
-            JsonElement rootElement = responseDocument.RootElement;
-            JsonElement? authTokenElement = rootElement.GetPropertyNullable("accessToken");
-            JsonElement? entitlementElement = rootElement.GetPropertyNullable("token");
+            Entitlement? entitlement = JsonSerializer.Deserialize<Entitlement>(response.Content.ReadAsStringAsync().Result);
 
-            return (authTokenElement?.GetString() ?? "", entitlementElement?.GetString() ?? "");
+            return (entitlement?.AccessToken ?? "", entitlement?.Token ?? "");
         }
 
         public async Task<string?> GetAsync(string baseAddress, string endpoint)
@@ -90,8 +86,6 @@ namespace iOverlay.ValorantApi.Methods
             HttpResponseMessage response = await Client.GetAsync($"{baseAddress}{endpoint}");
 
             if (!response.IsSuccessStatusCode) return $"Failed: {response.StatusCode} | {response.Content.ReadAsStringAsync().Result}";
-
-
 
             return await response.Content.ReadAsStringAsync();
         }

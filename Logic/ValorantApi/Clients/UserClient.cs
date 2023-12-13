@@ -1,9 +1,9 @@
 ﻿using System.Text.Json;
+using iOverlay.Logic.ValorantApi.DataTypes;
+using iOverlay.Logic.ValorantApi.Methods;
 using iOverlay.Logic.WidgetLogic;
-using iOverlay.ValorantApi.DataTypes;
-using iOverlay.ValorantApi.Methods;
 
-namespace iOverlay.ValorantApi.Clients
+namespace iOverlay.Logic.ValorantApi.Clients
 {
     public class UserClient
     {
@@ -20,7 +20,7 @@ namespace iOverlay.ValorantApi.Clients
         public string? Headshot { get; set; }
         public int RankRating { get; set; }
         public int LastRatingChange { get; set; }
-        
+
         internal async Task<Dictionary<string, MatchDetails?>?> ParseMatches(IReadOnlyList<MatchData>? matches)
         {
             Dictionary<string, MatchDetails?> matchDetail = new();
@@ -30,10 +30,8 @@ namespace iOverlay.ValorantApi.Clients
                 MatchData match = matches[i];
                 string? matchDetails = await Net.GetAsync(LogStats.ClientData.PdUrl, $"/match-details/v1/matches/{match.MatchID}");
                 if (string.IsNullOrEmpty(matchDetails)) continue;
-                JsonDocument matchData = JsonDocument.Parse(matchDetails);
-                JsonElement matchRoot = matchData.RootElement;
 
-                matchDetail.Add(match.MatchID, matchRoot.Deserialize<MatchDetails>());
+                matchDetail.Add(match.MatchID, JsonSerializer.Deserialize<MatchDetails>(matchDetails));
             }
 
             return matchDetail;
@@ -45,9 +43,7 @@ namespace iOverlay.ValorantApi.Clients
 
             if (string.IsNullOrEmpty(data)) return (ValorantRank.Default(), 0.0, 0.0, 0.0, 0, 0);
 
-            JsonDocument playerData = JsonDocument.Parse(data);
-            JsonElement dataRoot = playerData.RootElement;
-            MatchDataContainer? matchContainer = dataRoot.Deserialize<MatchDataContainer>();
+            MatchDataContainer? matchContainer = JsonSerializer.Deserialize<MatchDataContainer>(data);
 
             string rankName = ((RankIndex.Ranks)matchContainer?.Matches?[0].TierAfterUpdate!).ToString().Replace("_", " ");
             if (rankName.Contains("Unranked"))
@@ -55,7 +51,7 @@ namespace iOverlay.ValorantApi.Clients
 
             int? rankRatingChanged = matchContainer.Matches?[0].RankedRatingEarned;
             int? rankRating = matchContainer.Matches?[0].RankedRatingAfterUpdate;
-            ValorantRank rank = new ( rankName, RankIcons.RankIcon[rankName]);
+            ValorantRank rank = new(rankName, RankIcons.RankIcon[rankName]);
 
             matchContainer.MatchDetails = await ParseMatches(matchContainer.Matches);
 
@@ -76,14 +72,14 @@ namespace iOverlay.ValorantApi.Clients
                 totalKills = matchDetails!.Players.Where(roundResult => roundResult.Subject == LogStats.ClientData.UserId).Sum(roundResult => roundResult.Stats.Kills ?? 0);
                 totalDeaths = matchDetails.Players.Where(roundResult => roundResult.Subject == LogStats.ClientData.UserId).Sum(roundResult => roundResult.Stats.Deaths ?? 0);
 
-                
+
                 foreach (DamageData damageHits in playerStats?.SelectMany(playerResults => playerResults.Damage)!)
                 {
                     totalHeadshots += damageHits.Headshots ?? 0;
                     totalHits += (damageHits.Bodyshots ?? 0) + (damageHits.Legshots ?? 0);
                 }
             }
-            
+
             return (rank, totalKills / totalDeaths, totalWins / totalLosses, totalHeadshots / totalHits, rankRating ?? 0, rankRatingChanged ?? 0);
         }
 

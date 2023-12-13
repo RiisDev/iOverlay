@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 #pragma warning disable IDE0060
 
-namespace iOverlay.ValorantApi.Methods
+namespace iOverlay.Logic.ValorantApi.Methods
 {
     public record ClientData(ClientData.RegionCode Region, string UserId, string PdUrl, string GlzUrl)
     {
@@ -11,8 +11,8 @@ namespace iOverlay.ValorantApi.Methods
         public enum RegionCode
         {
             na,
-            latam, 
-            br, 
+            latam,
+            br,
             eu,
             ap,
             kr,
@@ -39,7 +39,7 @@ namespace iOverlay.ValorantApi.Methods
             _ = Enum.TryParse(regionData, out ClientData.RegionCode region);
             ClientData = new ClientData(region, userId, pdUrl, glzUrl);
         }
-        
+
         private static string ExtractValue(Match match, int groupId)
         {
             return match.Groups[groupId].Value.Replace("\r", "").Replace("\n", "");

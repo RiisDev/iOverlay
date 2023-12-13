@@ -3,7 +3,7 @@
 // ReSharper disable IdentifierTypo
 // ReSharper disable StringLiteralTypo
 
-namespace iOverlay.ValorantApi.DataTypes
+namespace iOverlay.Logic.ValorantApi.DataTypes
 {
     public record Ability(
         [property: JsonPropertyName("idleTimeMillis")] int? IdleTimeMillis,
@@ -228,7 +228,7 @@ namespace iOverlay.ValorantApi.DataTypes
         [property: JsonPropertyName("wasPenalized")] bool? WasPenalized,
         [property: JsonPropertyName("stayedInSpawn")] bool? StayedInSpawn
     );
-    
+
     public record MatchDetails(
         [property: JsonPropertyName("matchInfo")] MatchInfo MatchInfo,
         [property: JsonPropertyName("players")] IReadOnlyList<Player> Players,
@@ -297,7 +297,7 @@ namespace iOverlay.ValorantApi.DataTypes
         [property: JsonPropertyName("Value")] double? Value,
         [property: JsonPropertyName("ID")] string ID
     );
-    
+
     public record MatchData(
         [property: JsonPropertyName("MatchID")] string MatchID,
         [property: JsonPropertyName("MapID")] string MapID,

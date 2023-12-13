@@ -3,8 +3,8 @@ using System.IO;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using iOverlay.Logic;
+using iOverlay.Logic.ValorantApi.Clients;
 using iOverlay.Logic.WidgetLogic;
-using iOverlay.ValorantApi.Clients;
 
 namespace iOverlay.Apps;
 

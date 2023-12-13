@@ -1,6 +1,6 @@
 ﻿// ReSharper disable InconsistentNaming
 
-namespace iOverlay.ValorantApi.DataTypes
+namespace iOverlay.Logic.ValorantApi.DataTypes
 {
     public static class RankIndex
     {

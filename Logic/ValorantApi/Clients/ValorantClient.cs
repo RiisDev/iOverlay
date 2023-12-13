@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using iOverlay.Logic.WidgetLogic;
 
-namespace iOverlay.ValorantApi.Clients
+namespace iOverlay.Logic.ValorantApi.Clients
 {
     public class ValorantClient
     {
@@ -52,7 +52,7 @@ namespace iOverlay.ValorantApi.Clients
                 FileVersionInfo fileInfo = FileVersionInfo.GetVersionInfo(@"C:\Riot Games\VALORANT\live\ShooterGame\Binaries\Win64\VALORANT-Win64-Shipping.exe");
                 engineVersion = $"{fileInfo.FileMajorPart}.{fileInfo.FileMinorPart}.{fileInfo.FileBuildPart}.{fileInfo.FilePrivatePart}";
             }
-            
+
 
             ValorantClientVersion = new Version(ciServerVersion, branch, buildVersion, changelist, engineVersion);
         }

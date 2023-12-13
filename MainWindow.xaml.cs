@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Windows;
 using iOverlay.Apps;
-using iOverlay.Logic;
+using iOverlay.Logic.DataTypes;
 using Microsoft.Web.WebView2.Core;
 using Wpf.Ui.Common;
 using MessageBox = Wpf.Ui.Controls.MessageBox;
@@ -12,7 +12,7 @@ namespace iOverlay;
 
 public partial class MainWindow
 {
-    internal const string OverlayInternalVersion = "5.0.0";
+    internal const string OverlayInternalVersion = "6.0.0";
 
     public MainWindow() => InitializeComponent();
 
@@ -28,21 +28,13 @@ public partial class MainWindow
 
     private void UiWindow_Loaded(object sender, RoutedEventArgs e)
     {
-        if (Environment.OSVersion.Version.Build > 22000)
+        try
         {
-            try
-            {
-                CoreWebView2Environment.GetAvailableBrowserVersionString();
-            }
-            catch
-            {
-                ShowInvalidMessageBox("WebView2 SDK is not installed!");
-                Environment.Exit(-1);
-            }
+            CoreWebView2Environment.GetAvailableBrowserVersionString();
         }
-        else
+        catch
         {
-            ShowInvalidMessageBox("Invalid OS Detected, please be running Windows 11!");
+            ShowInvalidMessageBox("WebView2 SDK is not installed!");
             Environment.Exit(-1);
         }
 
@@ -57,11 +49,9 @@ public partial class MainWindow
             client.DefaultRequestHeaders.Accept.ParseAdd("application/vnd.github.v3+json");
 
             string gitReturn = client.GetAsync("https://api.github.com/repos/IrisV3rm/iOverlay/releases/latest").Result.Content.ReadAsStringAsync().Result;
-            JsonDocument parsedGitReturn = JsonDocument.Parse(gitReturn);
-            JsonElement rootGit = parsedGitReturn.RootElement;
-            JsonElement? tagElement = rootGit.GetPropertyNullable("tag_name");
+            GitRelease? gitRelease = JsonSerializer.Deserialize<GitRelease>(gitReturn);
 
-            if (OverlayInternalVersion == tagElement?.GetString()) return;
+            if (OverlayInternalVersion == gitRelease?.TagName) return;
 
             MessageBoxResult update = System.Windows.MessageBox.Show("There is an update, would you like to download now?", "iOverlay", MessageBoxButton.YesNo, MessageBoxImage.Information);
             if (update == MessageBoxResult.Yes) Process.Start("https://api.github.com/repos/IrisV3rm/iOverlay/releases/latest");

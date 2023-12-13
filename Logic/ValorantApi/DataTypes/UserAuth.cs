@@ -1,4 +1,4 @@
-﻿namespace iOverlay.ValorantApi.DataTypes
+﻿namespace iOverlay.Logic.ValorantApi.DataTypes
 {
     public record UserAuth(string LockFile, int AuthorizationPort, string OAuth)
     {
