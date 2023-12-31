@@ -31,7 +31,7 @@ namespace iOverlay.Logic
         }
 
 
-        public static void AnimateProgress(this ProgressRing bar, int newProgress)
+        public static void AnimateProgress(this ProgressRing bar, long newProgress)
         {
             Task.Run(() =>
             {
@@ -45,14 +45,14 @@ namespace iOverlay.Logic
 
                         bar.Progress += increment ? 1 : -1;
                         bar.Progress = bar.Progress > 0 ? bar.Progress : 0;
-                        bar.Foreground = ValorantLogic.PercentToColour[(int)bar.Progress].ToBrush();
+                        bar.Foreground = InternalValorantLogic.PercentToColour[(int)bar.Progress].ToBrush();
                         await Task.Delay(20);
                     }
                 });
             });
         }
 
-        public static void AnimateSessionRankRating(this Label label, int rating)
+        public static void AnimateSessionRankRating(this Label label, long rating)
         {
             Task.Run(() =>
             {
@@ -80,7 +80,7 @@ namespace iOverlay.Logic
             });
         }
 
-        public static void AnimateRankRating(this Label label, int rating)
+        public static void AnimateRankRating(this Label label, long rating)
         {
             Task.Run(() =>
             {
@@ -98,7 +98,7 @@ namespace iOverlay.Logic
 
                         label.Content = $"{currentValue + newValue} RR";
                         int colourIndex = currentValue + newValue > 0 ? currentValue + newValue : 0;
-                        label.Foreground = ValorantLogic.PercentToColour[colourIndex].ToBrush();
+                        label.Foreground = InternalValorantLogic.PercentToColour[colourIndex].ToBrush();
 
                         await Task.Delay(20);
                     }

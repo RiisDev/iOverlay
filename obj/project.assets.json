@@ -1,8 +1,8 @@
 {
   "version": 3,
   "targets": {
-    "net8.0-windows7.0": {
-      "Microsoft.Web.WebView2/1.0.2151.40": {
+    "net8.0-windows8.0": {
+      "Microsoft.Web.WebView2/1.0.2210.55": {
         "type": "package",
         "compile": {
           "lib/netcoreapp3.0/Microsoft.Web.WebView2.Core.dll": {
@@ -66,6 +66,15 @@
           }
         }
       },
+      "RadiantConnect/2.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/RadiantConnect.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/RadiantConnect.dll": {}
+        }
+      },
       "System.Drawing.Common/7.0.0": {
         "type": "package",
         "dependencies": {
@@ -113,10 +122,10 @@
     }
   },
   "libraries": {
-    "Microsoft.Web.WebView2/1.0.2151.40": {
-      "sha512": "OPWjZVJvYhDm4Jq+7QdsQfEgv2QHrkaqUkdk4i9FahatsOJ4cIaVLfnDHGsKjcxGqCVX+Lo4mi4Lqh5hcgfsdw==",
+    "Microsoft.Web.WebView2/1.0.2210.55": {
+      "sha512": "pb5kuzl8TQm+ztzOnOm/qX75DXXjOQMdKlcs2hyizbZobiGzJcMcIhpmMmgg1cTGYwof2fVhlC809YScvDbm3w==",
       "type": "package",
-      "path": "microsoft.web.webview2/1.0.2151.40",
+      "path": "microsoft.web.webview2/1.0.2210.55",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -157,7 +166,7 @@
         "lib/netcoreapp3.0/Microsoft.Web.WebView2.WinForms.xml",
         "lib/netcoreapp3.0/Microsoft.Web.WebView2.Wpf.dll",
         "lib/netcoreapp3.0/Microsoft.Web.WebView2.Wpf.xml",
-        "microsoft.web.webview2.1.0.2151.40.nupkg.sha512",
+        "microsoft.web.webview2.1.0.2210.55.nupkg.sha512",
         "microsoft.web.webview2.nuspec",
         "runtimes/win-arm64/native/WebView2Loader.dll",
         "runtimes/win-arm64/native_uap/Microsoft.Web.WebView2.Core.dll",
@@ -236,6 +245,20 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "RadiantConnect/2.0.2": {
+      "sha512": "8ZrQaKsKzD4nBSaiYdIHnKFFazDSei5J5S6ozg+crJ94s8zDBxU3X5tLHDZtE4XQMP0TFL/Lcz1pMvumL4tvTg==",
+      "type": "package",
+      "path": "radiantconnect/2.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "IrisCodingNexus - Icon.png",
+        "README.md",
+        "lib/net8.0/RadiantConnect.dll",
+        "radiantconnect.2.0.2.nupkg.sha512",
+        "radiantconnect.nuspec"
+      ]
+    },
     "System.Drawing.Common/7.0.0": {
       "sha512": "KIX+oBU38pxkKPxvLcLfIkOV5Ien8ReN78wro7OF5/erwcmortzeFx+iBswlh2Vz6gVne0khocQudGwaO1Ey6A==",
       "type": "package",
@@ -300,8 +323,9 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net8.0-windows7.0": [
-      "Microsoft.Web.WebView2 >= 1.0.2151.40",
+    "net8.0-windows8.0": [
+      "Microsoft.Web.WebView2 >= 1.0.2210.55",
+      "RadiantConnect >= 2.0.2",
       "WPF-UI >= 2.1.0"
     ]
   },
@@ -327,15 +351,16 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net8.0-windows7.0"
+        "net8.0-windows8.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net8.0-windows7.0": {
-          "targetAlias": "net8.0-windows7.0",
+        "net8.0-windows8.0": {
+          "targetAlias": "net8.0-windows8.0",
           "projectReferences": {}
         }
       },
@@ -346,12 +371,16 @@
       }
     },
     "frameworks": {
-      "net8.0-windows7.0": {
-        "targetAlias": "net8.0-windows7.0",
+      "net8.0-windows8.0": {
+        "targetAlias": "net8.0-windows8.0",
         "dependencies": {
           "Microsoft.Web.WebView2": {
             "target": "Package",
-            "version": "[1.0.2151.40, )"
+            "version": "[1.0.2210.55, )"
+          },
+          "RadiantConnect": {
+            "target": "Package",
+            "version": "[2.0.2, )"
           },
           "WPF-UI": {
             "target": "Package",
@@ -377,7 +406,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
