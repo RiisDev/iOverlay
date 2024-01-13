@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "ZoVpSUmghBhqnPuPpT+f8Y9H+Oy/eeRNnbhE1i4xyer2T7cglxq5q+TnvUWdDWiLRWQ2ZvG38JHZFINwaK4jjQ==",
+  "dgSpecHash": "kdbGcpZKptLAu5taD7bvgn3ECNFiYEWZzLBJwEEFSIho0kHA9sp33cQN4xK+NTcrlb9z6Kb5cmXbvr2BFB9LwQ==",
   "success": true,
   "projectFilePath": "G:\\Sources\\C#\\Public Source Releases\\iOverlay\\iOverlay.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\irisd\\.nuget\\packages\\microsoft.web.webview2\\1.0.2210.55\\microsoft.web.webview2.1.0.2210.55.nupkg.sha512",
     "C:\\Users\\irisd\\.nuget\\packages\\microsoft.win32.systemevents\\7.0.0\\microsoft.win32.systemevents.7.0.0.nupkg.sha512",
-    "C:\\Users\\irisd\\.nuget\\packages\\radiantconnect\\2.0.2\\radiantconnect.2.0.2.nupkg.sha512",
+    "C:\\Users\\irisd\\.nuget\\packages\\radiantconnect\\5.0.0\\radiantconnect.5.0.0.nupkg.sha512",
     "C:\\Users\\irisd\\.nuget\\packages\\system.drawing.common\\7.0.0\\system.drawing.common.7.0.0.nupkg.sha512",
     "C:\\Users\\irisd\\.nuget\\packages\\wpf-ui\\2.1.0\\wpf-ui.2.1.0.nupkg.sha512"
   ],

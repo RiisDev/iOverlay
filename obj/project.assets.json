@@ -66,7 +66,7 @@
           }
         }
       },
-      "RadiantConnect/2.0.2": {
+      "RadiantConnect/5.0.0": {
         "type": "package",
         "compile": {
           "lib/net8.0/RadiantConnect.dll": {}
@@ -245,17 +245,17 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "RadiantConnect/2.0.2": {
-      "sha512": "8ZrQaKsKzD4nBSaiYdIHnKFFazDSei5J5S6ozg+crJ94s8zDBxU3X5tLHDZtE4XQMP0TFL/Lcz1pMvumL4tvTg==",
+    "RadiantConnect/5.0.0": {
+      "sha512": "qZWgSVDG2ZfijUO8n+nihNJeNQcU4iHRBYkjwmlRhH6NF5ioHyJQ4wJRrSFYbs1fw3ZXh7+J8bFzOBmKEls9hg==",
       "type": "package",
-      "path": "radiantconnect/2.0.2",
+      "path": "radiantconnect/5.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "IrisCodingNexus - Icon.png",
         "README.md",
+        "icon.png",
         "lib/net8.0/RadiantConnect.dll",
-        "radiantconnect.2.0.2.nupkg.sha512",
+        "radiantconnect.5.0.0.nupkg.sha512",
         "radiantconnect.nuspec"
       ]
     },
@@ -325,7 +325,7 @@
   "projectFileDependencyGroups": {
     "net8.0-windows8.0": [
       "Microsoft.Web.WebView2 >= 1.0.2210.55",
-      "RadiantConnect >= 2.0.2",
+      "RadiantConnect >= 5.0.0",
       "WPF-UI >= 2.1.0"
     ]
   },
@@ -380,7 +380,7 @@
           },
           "RadiantConnect": {
             "target": "Package",
-            "version": "[2.0.2, )"
+            "version": "[5.0.0, )"
           },
           "WPF-UI": {
             "target": "Package",

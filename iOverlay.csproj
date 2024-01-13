@@ -65,7 +65,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2210.55" />
-    <PackageReference Include="RadiantConnect" Version="2.0.2" />
+    <PackageReference Include="RadiantConnect" Version="5.0.0" />
     <PackageReference Include="WPF-UI" Version="2.1.0" />
   </ItemGroup>
 

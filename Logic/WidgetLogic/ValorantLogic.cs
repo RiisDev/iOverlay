@@ -1,6 +1,4 @@
 ﻿#pragma warning disable CA2211
-using System.IO;
-using System.Net.Http;
 using System.Windows.Media;
 
 namespace iOverlay.Logic.WidgetLogic;
