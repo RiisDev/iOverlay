@@ -16,7 +16,7 @@ public partial class ValorantOverlay
     private readonly Random _backgroundRandom = new(DateTime.Now.Millisecond);
 
     private string? _seasonId;
-    private bool _firstRun;
+    private bool _firstRun = true;
 
     private readonly List<string> _backgroundAssets =
     [
@@ -50,7 +50,8 @@ public partial class ValorantOverlay
 
         _initiator.GameEvents.Match.OnMatchEnded += async _ =>
         {
-            await Task.Delay(3000);
+            Debug.WriteLine("RUN");
+            await Task.Delay(20000);
             RunRankCheck();
         };
     }
@@ -118,6 +119,8 @@ public partial class ValorantOverlay
         bool playedThisSeason = competitiveUpdate?.Matches.FirstOrDefault(x => x.SeasonID == _seasonId) != null;
         if (!playedThisSeason) return;
         
+        Debug.WriteLine("RAN CHECK");
+
         string currentRankName = ValorantTables.TierToRank[competitiveUpdate?.Matches[0].TierAfterUpdate!.Value ?? 0];
 
         long rankRating = competitiveUpdate?.Matches[0].RankedRatingAfterUpdate ?? 0;
@@ -139,7 +142,8 @@ public partial class ValorantOverlay
             PlayerRank.Content = rank.Rank;
             PlayerRank.Foreground = InternalValorantLogic.RankColors[(string)PlayerRank.Content!];
 
-            if (_firstRun) SessionRrGain.AnimateSessionRankRating(currentRankRating);
+            if (!_firstRun) SessionRrGain.AnimateSessionRankRating(currentRankRating);
+            _firstRun = false;
 
             PlayerRankRating.AnimateRankRating(currentRankRating);
             RankRatingProgress.AnimateProgress(currentRankRating);
@@ -148,7 +152,6 @@ public partial class ValorantOverlay
             PlayerHeadshotPercent.Content = headshotPercentage;
 
             RankIcon.Source = new BitmapImage(new Uri(rank.RankIcon!));
-            _firstRun = false;
         });
     }
 
