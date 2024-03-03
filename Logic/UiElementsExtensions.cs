@@ -58,23 +58,22 @@ namespace iOverlay.Logic
             {
                 label.Dispatcher.Invoke(async () =>
                 {
-                    int currentProgress = int.Parse(label.Content?.ToString()?.Replace("-", "").Replace("+", "").Trim() ?? "0");
-                    bool increment = rating >= currentProgress;
+                    if (rating == 0) return;
 
-                    while (true)
+                    int currentValue = int.Parse(label.Content?.ToString()?.Trim() ?? "0");
+                    bool increment = rating > 0;
+
+                    for (int ratingDifference = 0; ratingDifference < Math.Abs(rating); ratingDifference++)
                     {
-                        int currentValue = int.Parse(label.Content?.ToString()?.Replace("-", "").Replace("+", "").Trim() ?? "0");
                         int newValue = increment ? 1 : -1;
-                        int newRating = currentValue + newValue;
+                        currentValue += newValue;
 
-                        if (currentValue == rating) break;
-
-                        label.Content = newRating < 0 ? $"-{newRating}" : $"+{newRating}";
-                        label.Foreground = newRating < 0
+                        label.Content = currentValue < 0 ? currentValue : $"+{currentValue}";
+                        label.Foreground = currentValue < 0
                             ? new SolidColorBrush(Color.FromRgb(255, 29, 0))
                             : new SolidColorBrush(Color.FromRgb(101, 245, 100));
 
-                        await Task.Delay(20);
+                        await Task.Delay(50);
                     }
                 });
             });

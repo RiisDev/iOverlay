@@ -41,19 +41,26 @@ public partial class ValorantOverlay
 
     private async void Window_Loaded(object sender, RoutedEventArgs e)
     {
-        _initiator = new Initiator();
-        Debug.WriteLine("Init");
-        Content? content = await _initiator.Endpoints.PvpEndpoints.FetchContentAsync();
-        _seasonId = content?.Seasons.FirstOrDefault(s => s.IsActive!.Value && s.Type == "act")?.ID;
+        //_initiator = new Initiator();
+        //Debug.WriteLine("Init");
+        //Content? content = await _initiator.Endpoints.PvpEndpoints.FetchContentAsync();
+        //_seasonId = content?.Seasons.FirstOrDefault(s => s.IsActive!.Value && s.Type == "act")?.ID;
 
-        RunRankCheck();
+        //RunRankCheck();
 
-        _initiator.GameEvents.Match.OnMatchEnded += async _ =>
-        {
-            Debug.WriteLine("RUN");
-            await Task.Delay(20000);
-            RunRankCheck();
-        };
+        //_initiator.GameEvents.Match.OnMatchEnded += async _ =>
+        //{
+        //    Debug.WriteLine("RUN");
+        //    await Task.Delay(20000);
+        //    RunRankCheck();
+        //};
+
+        UpdateUiElements(
+            new ValorantRank("Gold 1", InternalValorantLogic.RankIcon["Gold 1"]),
+            0,
+            $"50%",
+            $"50%"
+        );
     }
 
     internal async Task<Dictionary<Match, MatchInfo?>> ParseMatches(IReadOnlyList<Match>? matches)
