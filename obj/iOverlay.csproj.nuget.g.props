@@ -15,6 +15,6 @@
   </ItemGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgWPF-UI Condition=" '$(PkgWPF-UI)' == '' ">C:\Users\irisd\.nuget\packages\wpf-ui\2.1.0</PkgWPF-UI>
-    <PkgMicrosoft_Web_WebView2 Condition=" '$(PkgMicrosoft_Web_WebView2)' == '' ">C:\Users\irisd\.nuget\packages\microsoft.web.webview2\1.0.2210.55</PkgMicrosoft_Web_WebView2>
+    <PkgMicrosoft_Web_WebView2 Condition=" '$(PkgMicrosoft_Web_WebView2)' == '' ">C:\Users\irisd\.nuget\packages\microsoft.web.webview2\1.0.2365.46</PkgMicrosoft_Web_WebView2>
   </PropertyGroup>
 </Project>

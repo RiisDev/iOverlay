@@ -11,11 +11,14 @@ namespace iOverlay.Apps;
 
 public partial class ValorantOverlay
 {
+
     // Fields
     private Initiator _initiator = null!;
     private readonly Random _backgroundRandom = new(DateTime.Now.Millisecond);
 
     private string? _seasonId;
+    private string? _lastMatchId;
+
     private bool _firstRun = true;
 
     private readonly List<string> _backgroundAssets =
@@ -123,7 +126,10 @@ public partial class ValorantOverlay
 
         string currentRankName = ValorantTables.TierToRank[competitiveUpdate?.Matches[0].TierAfterUpdate!.Value ?? 0];
 
-        long rankRating = competitiveUpdate?.Matches[0].RankedRatingAfterUpdate ?? 0;
+        long rankRating = competitiveUpdate?.Matches[0].RankedRatingEarned ?? 0;
+        rankRating += competitiveUpdate?.Matches[0].RankedRatingPerformanceBonus ?? 0;
+
+        bool increment = competitiveUpdate?.Matches[0].RankedRatingAfterUpdate > competitiveUpdate?.Matches[0].RankedRatingBeforeUpdate;
 
         (double totalWins, double averageHeadshotPercent) = GetRoundStats(await ParseMatches(competitiveUpdate?.Matches));
 
@@ -131,18 +137,18 @@ public partial class ValorantOverlay
             new ValorantRank(currentRankName, InternalValorantLogic.RankIcon[currentRankName]),
             rankRating,
             $"{Math.Round(averageHeadshotPercent)}%",
-            $"{Math.Round(totalWins / competitiveUpdate?.Matches.Count ?? 1, 1) * 100}%"
-            );
+            $"{Math.Round(totalWins / competitiveUpdate?.Matches.Count ?? 1, 1) * 100}%",
+            increment);
     }
 
-    private void UpdateUiElements(ValorantRank rank, long currentRankRating, string? headshotPercentage, string? winPercentage)
+    private void UpdateUiElements(ValorantRank rank, long currentRankRating, string? headshotPercentage, string? winPercentage, bool increment)
     {
         Application.Current.Dispatcher.Invoke(() =>
         {
             PlayerRank.Content = rank.Rank;
             PlayerRank.Foreground = InternalValorantLogic.RankColors[(string)PlayerRank.Content!];
 
-            if (!_firstRun) SessionRrGain.AnimateSessionRankRating(currentRankRating);
+            if (!_firstRun) SessionRrGain.AnimateSessionRankRating(currentRankRating, increment);
             _firstRun = false;
 
             PlayerRankRating.AnimateRankRating(currentRankRating);

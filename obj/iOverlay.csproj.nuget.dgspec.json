@@ -56,7 +56,7 @@
           "dependencies": {
             "Microsoft.Web.WebView2": {
               "target": "Package",
-              "version": "[1.0.2210.55, )"
+              "version": "[1.0.2365.46, )"
             },
             "WPF-UI": {
               "target": "Package",
@@ -96,7 +96,7 @@
       }
     },
     "G:\\Sources\\C#\\Public Source Releases\\RadiantConnect\\RadiantConnect.csproj": {
-      "version": "6.1.0",
+      "version": "6.2.0",
       "restore": {
         "projectUniqueName": "G:\\Sources\\C#\\Public Source Releases\\RadiantConnect\\RadiantConnect.csproj",
         "projectName": "RadiantConnect",

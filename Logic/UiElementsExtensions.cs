@@ -52,7 +52,7 @@ namespace iOverlay.Logic
             });
         }
 
-        public static void AnimateSessionRankRating(this Label label, long rating)
+        public static void AnimateSessionRankRating(this Label label, long rating, bool increment)
         {
             Task.Run(() =>
             {
@@ -61,7 +61,6 @@ namespace iOverlay.Logic
                     if (rating == 0) return;
 
                     int currentValue = int.Parse(label.Content?.ToString()?.Trim() ?? "0");
-                    bool increment = rating > 0;
 
                     for (int ratingDifference = 0; ratingDifference < Math.Abs(rating); ratingDifference++)
                     {
